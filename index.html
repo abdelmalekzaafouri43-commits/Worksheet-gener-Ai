@@ -3196,80 +3196,372 @@ Return your response strictly as a single JSON object (no markdown wrapping) con
         // Topic-Aware Dynamic Worksheet Generator Engine (Comprehensive Pedagogical Coverage)
         function generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, options) {
             const cleanTopic = (topic || `${diff} English Mastery`).trim();
+            const lowerTopic = cleanTopic.toLowerCase();
             const opts = (typeof options === 'object' && options !== null) ? options : {};
             const format = opts.writingFormat || 'Article';
 
             let secBlocks = [];
             let ansBlocks = [];
 
+            // TOPIC CLASSIFICATION & TOPIC-SPECIFIC CONTENT MODULES
+            let isFreeTime = lowerTopic.includes('free time') || lowerTopic.includes('freetime') || lowerTopic.includes('hobby') || lowerTopic.includes('hobbies') || lowerTopic.includes('leisure') || lowerTopic.includes('pastime') || lowerTopic.includes('activity') || lowerTopic.includes('activities');
+            let isTech = lowerTopic.includes('tech') || lowerTopic.includes('internet') || lowerTopic.includes('social media') || lowerTopic.includes('phone') || lowerTopic.includes('computer') || lowerTopic.includes('ai') || lowerTopic.includes('digital');
+            let isEnv = lowerTopic.includes('environment') || lowerTopic.includes('climate') || lowerTopic.includes('nature') || lowerTopic.includes('pollution') || lowerTopic.includes('recycl') || lowerTopic.includes('eco') || lowerTopic.includes('planet');
+            let isTravel = lowerTopic.includes('travel') || lowerTopic.includes('holiday') || lowerTopic.includes('vacation') || lowerTopic.includes('tourism') || lowerTopic.includes('trip') || lowerTopic.includes('country');
+            let isHealthFood = lowerTopic.includes('food') || lowerTopic.includes('health') || lowerTopic.includes('nutrition') || lowerTopic.includes('diet') || lowerTopic.includes('eating') || lowerTopic.includes('cooking') || lowerTopic.includes('fitness');
+            let isSchoolLife = lowerTopic.includes('school') || lowerTopic.includes('education') || lowerTopic.includes('study') || lowerTopic.includes('student') || lowerTopic.includes('class') || lowerTopic.includes('teacher');
+            let isJobs = lowerTopic.includes('job') || lowerTopic.includes('career') || lowerTopic.includes('profession') || lowerTopic.includes('work') || lowerTopic.includes('future');
+            let isSports = lowerTopic.includes('sport') || lowerTopic.includes('football') || lowerTopic.includes('soccer') || lowerTopic.includes('basketball') || lowerTopic.includes('swimming') || lowerTopic.includes('tennis') || lowerTopic.includes('athlete');
+            
+            // Topic data container
+            let topicData = null;
+
+            if (isFreeTime || isSports) {
+                topicData = {
+                    title: "Free Time Activities & Healthy Leisure",
+                    passage: `READING COMPREHENSION PASSAGE:
+Engaging in enjoyable free time activities is essential for maintaining a healthy and balanced life. After long hours of academic study or work, teenagers and adults need time to unwind, explore personal interests, and recharge their energy. Popular leisure pastimes include outdoor sports like cycling and soccer, creative hobbies such as painting and playing the guitar, and quiet pursuits like reading novels or gardening.
+
+Recently, a national youth foundation surveyed over one thousand high school students regarding how they spend their weekends. The researchers discovered that students who participate in active hobbies—such as joining a local sports club or learning a musical instrument—experienced significantly lower stress levels and reported better concentration in class. In addition, team activities help young people build lasting friendships, learn communication skills, and develop self-discipline. Free time is not simply about being idle or scrolling endlessly on digital screens; it is a valuable opportunity to cultivate lifelong passions and maintain physical and mental well-being.`,
+                    whQuestions: [
+                        { q: "Why is participating in free time activities important for teenagers?", a: "It helps them unwind, explore personal interests, reduce stress, and recharge their energy after studying." },
+                        { q: "What active hobbies were highlighted in the youth survey?", a: "Joining a local sports club, cycling, soccer, and learning a musical instrument." },
+                        { q: "How do team activities help young people develop socially?", a: "They help build lasting friendships, improve communication skills, and foster self-discipline." },
+                        { q: "According to the author, what is free time NOT simply about?", a: "It is not simply about being idle or scrolling endlessly on digital screens." }
+                    ],
+                    tfQuestions: [
+                        { s: "Students with active hobbies reported higher stress levels during exams.", val: "False", why: "Text: '...experienced significantly lower stress levels and reported better concentration...'" },
+                        { s: "Creative hobbies mentioned in the passage include painting and playing the guitar.", val: "True", why: "Text: '...creative hobbies such as painting and playing the guitar...'" },
+                        { s: "The survey investigated the weekend habits of more than one thousand high school students.", val: "True", why: "Text: '...surveyed over one thousand high school students regarding how they spend their weekends.'" }
+                    ],
+                    refQuestions: [
+                        { q: "In paragraph 1, the pronoun 'their' refers to:", a: "teenagers and adults" },
+                        { q: "In paragraph 2, the pronoun 'They' refers to:", a: "The researchers (from the national youth foundation)" }
+                    ],
+                    opinionPrompt: `In your opinion, which free time activity is the most beneficial for teenagers, and why do you prefer it?`,
+                    opinionStarter: `In my opinion, the most beneficial free time activity is `,
+                    wordBank: ["unwind", "passions", "recharge", "leisure", "discipline"],
+                    fillSentences: [
+                        "1. Going for a long walk in the park helps Sarah _______________________ after a busy school week.",
+                        "2. Playing the violin requires patience, practice, and strong personal _______________________.",
+                        "3. Many students enjoy pursuing creative _______________________ like photography and drawing.",
+                        "4. Weekend sports provide a great chance to _______________________ our mental and physical energy.",
+                        "5. Reading engaging books is a favorite _______________________ activity for many young learners."
+                    ],
+                    fillAnswers: ["1. unwind", "2. discipline", "3. passions", "4. recharge", "5. leisure"],
+                    tenseSentences: [
+                        "1. Last Saturday, Lucas _______________________ (join) a community soccer tournament with his classmates.",
+                        "2. If Maria practices regularly, she _______________________ (become) a skilled guitarist.",
+                        "3. Many teenagers currently _______________________ (spend) too much free time looking at smartphone screens.",
+                        "4. A new youth sports center _______________________ (build) in our neighborhood last year."
+                    ],
+                    tenseAnswers: ["1. joined (Past Simple)", "2. will become (First Conditional)", "3. are spending / spend (Present Continuous/Simple)", "4. was built (Past Simple Passive)"],
+                    matchPairs: [
+                        { left: "1. Playing team sports like basketball", right: "A. improves cardiovascular fitness and teamwork." },
+                        { left: "2. Reading classic novels and poetry", right: "B. expands vocabulary and stimulates imagination." },
+                        { left: "3. Learning to play an acoustic instrument", right: "C. develops rhythm, focus, and musical creativity." },
+                        { left: "4. Spending time outdoors in nature", right: "D. reduces daily mental fatigue and anxiety." }
+                    ],
+                    matchAnswers: ["1 - A (Team sports • improves fitness and teamwork)", "2 - B (Reading novels • expands vocabulary and imagination)", "3 - C (Acoustic instrument • develops rhythm and focus)", "4 - D (Outdoors in nature • reduces mental fatigue)"],
+                    reorderSentences: [
+                        { scrambled: "free / I / enjoy / my / playing / in / time / basketball", clean: "I enjoy playing basketball in my free time." },
+                        { scrambled: "healthy / active / helps / an / lifestyle / reduce / stress", clean: "An active lifestyle helps reduce stress." },
+                        { scrambled: "friends / spend / with / weekends / they / outdoors / their", clean: "They spend their weekends outdoors with friends." }
+                    ],
+                    writingPrompts: {
+                        Email: `Write an email (60–80 words) to your friend inviting them to join a new weekend hobby club (e.g., cycling, painting, or book club). Explain why it will be fun and beneficial.`,
+                        FacebookPost: `Write a lively Facebook post (50–70 words) sharing your favorite free time activities and asking your followers what hobbies help them relax after school or work.`,
+                        BlogPost: `Write a blog post (70–90 words) titled "Why Free Time Activities Matter for Young People". Give 3 practical tips for balancing school study with enjoyable hobbies.`,
+                        Article: `Write an article (70–100 words) for your school newsletter about the importance of healthy free time activities and sports for student well-being.`
+                    }
+                };
+            } else if (isTech) {
+                topicData = {
+                    title: "Technology & Digital Innovation",
+                    passage: `READING COMPREHENSION PASSAGE:
+Technology has transformed nearly every aspect of our daily routines, communication, and education. From smartphones and artificial intelligence to online collaborative learning platforms, digital tools enable students to access vast libraries of knowledge within seconds and connect with peers across the globe.
+
+A recent survey conducted across international high schools revealed that digital learning tools boosted student engagement and collaborative problem-solving skills. However, digital wellness experts warn that excessive screen time and social media use can lead to sleep deprivation, reduced physical activity, and digital distractions. Therefore, maintaining digital literacy and healthy boundaries when using technological devices is critical for modern learners.`,
+                    whQuestions: [
+                        { q: "How has technology transformed modern education and communication?", a: "It enables students to access knowledge instantly and connect with peers globally." },
+                        { q: "What positive benefits did international high school students report from digital tools?", a: "Boosted engagement and improved collaborative problem-solving skills." },
+                        { q: "What risks do digital wellness experts associate with excessive screen time?", a: "Sleep deprivation, reduced physical activity, and digital distractions." },
+                        { q: "Why is practicing digital literacy essential today?", a: "To maintain healthy boundaries and use technology effectively without harmful distractions." }
+                    ],
+                    tfQuestions: [
+                        { s: "Digital platforms allow students to access global information instantly.", val: "True", why: "Text: '...access vast libraries of knowledge within seconds...'" },
+                        { s: "Experts recommend spending unlimited hours on social media every evening.", val: "False", why: "Text: '...warn that excessive screen time and social media use can lead to sleep deprivation...'" },
+                        { s: "The survey showed digital tools improved collaborative problem-solving.", val: "True", why: "Text: '...boosted student engagement and collaborative problem-solving skills.'" }
+                    ],
+                    refQuestions: [
+                        { q: "In paragraph 1, the pronoun 'our' refers to:", a: "people in modern society / daily routines" },
+                        { q: "In paragraph 2, the pronoun 'their' refers to:", a: "modern learners / students" }
+                    ],
+                    opinionPrompt: `In your opinion, does technology improve or hinder students' focus in the classroom? Support your view with reasons.`,
+                    opinionStarter: `In my opinion, technology `,
+                    wordBank: ["innovative", "distractions", "connectivity", "digital", "boundaries"],
+                    fillSentences: [
+                        "1. Setting clear _______________________ on smartphone usage prevents sleep disruption.",
+                        "2. Modern classrooms utilize _______________________ software to make learning interactive.",
+                        "3. High-speed internet provides seamless global _______________________ for remote teams.",
+                        "4. Students should minimize online _______________________ while preparing for exams.",
+                        "5. Understanding _______________________ privacy is essential for safe web browsing."
+                    ],
+                    fillAnswers: ["1. boundaries", "2. innovative", "3. connectivity", "4. distractions", "5. digital"],
+                    tenseSentences: [
+                        "1. Computer scientists _______________________ (develop) faster AI algorithms last year.",
+                        "2. If students manage their screen time wisely, they _______________________ (improve) their sleep quality.",
+                        "3. Many educational apps _______________________ (download) by millions of users each month.",
+                        "4. She _______________________ (use) a tablet to complete her homework yesterday."
+                    ],
+                    tenseAnswers: ["1. developed", "2. will improve", "3. are downloaded", "4. used"],
+                    matchPairs: [
+                        { left: "1. Using educational online software", right: "A. enhances interactive learning and research." },
+                        { left: "2. Setting daily screen time limits", right: "B. protects eye health and improves sleep habits." },
+                        { left: "3. Creating strong, unique passwords", right: "C. safeguards personal data from cyber threats." },
+                        { left: "4. Collaborating on digital projects", right: "D. builds essential teamwork and tech skills." }
+                    ],
+                    matchAnswers: ["1 - A", "2 - B", "3 - C", "4 - D"],
+                    reorderSentences: [
+                        { scrambled: "devices / smart / daily / changed / have / our / routines", clean: "Smart devices have changed our daily routines." },
+                        { scrambled: "learning / interactive / makes / technology / more / exciting", clean: "Technology makes learning more interactive and exciting." },
+                        { scrambled: "careful / information / be / with / personal / always", clean: "Always be careful with personal information." }
+                    ],
+                    writingPrompts: {
+                        Email: `Write an email (60–80 words) to your computer teacher suggesting a new digital learning tool or app for your class.`,
+                        FacebookPost: `Write a post (50–70 words) sharing 3 practical tips for staying focused and avoiding smartphone distractions while studying.`,
+                        BlogPost: `Write a blog post (70–90 words) titled "Finding Balance in the Digital Age".`,
+                        Article: `Write an article (70–100 words) for your school website discussing the pros and cons of artificial intelligence in education.`
+                    }
+                };
+            } else if (isEnv) {
+                topicData = {
+                    title: "Environmental Protection & Sustainability",
+                    passage: `READING COMPREHENSION PASSAGE:
+Protecting our natural environment is one of the most critical challenges facing our planet today. Human activities such as industrial pollution, deforestation, and excessive plastic waste have contributed to global warming and damaged delicate wildlife ecosystems.
+
+In response, local communities and schools around the world are initiating eco-friendly projects. Students are organizing recycling campaigns, planting native trees, and conserving energy by walking or cycling to school. Environmental scientists emphasize that individual actions, when combined, create powerful global change. By adopting sustainable habits such as reducing single-use plastics and preserving water, young citizens can ensure a cleaner and healthier world for future generations.`,
+                    whQuestions: [
+                        { q: "What human activities have damaged natural ecosystems according to the text?", a: "Industrial pollution, deforestation, and excessive plastic waste." },
+                        { q: "What eco-friendly projects are schools and local communities organizing?", a: "Recycling campaigns, planting native trees, and conserving energy by walking or cycling." },
+                        { q: "What do environmental scientists emphasize regarding individual actions?", a: "That individual actions, when combined, create powerful global change." },
+                        { q: "How can young citizens help ensure a cleaner world?", a: "By adopting sustainable habits such as reducing single-use plastics and conserving water." }
+                    ],
+                    tfQuestions: [
+                        { s: "Planting native trees helps restore damaged natural ecosystems.", val: "True", why: "Text: '...organizing recycling campaigns, planting native trees...'" },
+                        { s: "Scientists claim individual habits have no impact on environmental protection.", val: "False", why: "Text: '...individual actions, when combined, create powerful global change.'" },
+                        { s: "Excessive plastic waste contributes to environmental harm.", val: "True", why: "Text: '...excessive plastic waste have contributed to global warming and damaged delicate wildlife ecosystems.'" }
+                    ],
+                    refQuestions: [
+                        { q: "In paragraph 1, the pronoun 'our' refers to:", a: "humanity / people on Earth" },
+                        { q: "In paragraph 2, the pronoun 'they' refers to:", a: "students and community members" }
+                    ],
+                    opinionPrompt: `In your opinion, what is the single most effective action students can take to protect the environment at school?`,
+                    opinionStarter: `In my opinion, the most effective action is `,
+                    wordBank: ["sustainable", "ecosystems", "deforestation", "recycling", "pollution"],
+                    fillSentences: [
+                        "1. Implementing daily _______________________ programs reduces the volume of landfill waste.",
+                        "2. Planting trees in urban zones helps combat air _______________________ and heat.",
+                        "3. Preserving diverse natural _______________________ protects endangered animal species.",
+                        "4. Adopting _______________________ energy sources like solar and wind power is vital for our future.",
+                        "5. Rapid _______________________ destroys animal habitats and accelerates soil erosion."
+                    ],
+                    fillAnswers: ["1. recycling", "2. pollution", "3. ecosystems", "4. sustainable", "5. deforestation"],
+                    tenseSentences: [
+                        "1. Our eco-club _______________________ (plant) over fifty oak saplings last Saturday.",
+                        "2. If everyone reduces plastic consumption, our oceans _______________________ (become) cleaner.",
+                        "3. Renewable energy projects _______________________ (fund) by governments worldwide this decade.",
+                        "4. She _______________________ (turn) off the lights when leaving the room yesterday."
+                    ],
+                    tenseAnswers: ["1. planted", "2. will become", "3. are being funded / are funded", "4. turned"],
+                    matchPairs: [
+                        { left: "1. Reducing single-use plastic bags", right: "A. prevents ocean pollution and protects marine wildlife." },
+                        { left: "2. Conserving household tap water", right: "B. preserves vital natural resources during dry seasons." },
+                        { left: "3. Riding bicycles instead of driving cars", right: "C. reduces greenhouse gas emissions and traffic." },
+                        { left: "4. Planting community organic gardens", right: "D. supports biodiversity and provides fresh food." }
+                    ],
+                    matchAnswers: ["1 - A", "2 - B", "3 - C", "4 - D"],
+                    reorderSentences: [
+                        { scrambled: "must / protect / we / natural / our / environment", clean: "We must protect our natural environment." },
+                        { scrambled: "energy / saving / helps / reduce / global / warming", clean: "Saving energy helps reduce global warming." },
+                        { scrambled: "plastic / reuse / bottles / and / recycle / paper", clean: "Reuse plastic bottles and recycle paper." }
+                    ],
+                    writingPrompts: {
+                        Email: `Write an email (60–80 words) to your school principal proposing a "Green Campus" recycling initiative.`,
+                        FacebookPost: `Write an inspiring Facebook post (50–70 words) sharing 3 easy eco-habits everyone can start doing today.`,
+                        BlogPost: `Write a blog post (70–90 words) titled "Simple Steps Toward a Sustainable Future".`,
+                        Article: `Write an article (70–100 words) for your local community newspaper about why protecting our environment begins with youth action.`
+                    }
+                };
+            } else if (isHealthFood) {
+                topicData = {
+                    title: "Healthy Eating & Nutrition Habits",
+                    passage: `READING COMPREHENSION PASSAGE:
+Maintaining a nutritious diet and positive eating habits is the cornerstone of physical energy, academic focus, and long-term health. Nutritionists emphasize that meals should include a colorful variety of fresh fruits, leafy vegetables, whole grains, and lean proteins to provide essential vitamins and minerals.
+
+Recent health studies indicate that students who eat a balanced breakfast each morning demonstrate sharper memory retention and higher academic performance compared to those who skip meals. Conversely, diets high in processed sugar and saturated fats can lead to sluggishness and chronic illnesses. Preparing wholesome homemade meals and drinking plenty of fresh water throughout the day ensures that our bodies and minds function at their highest potential.`,
+                    whQuestions: [
+                        { q: "What types of foods do nutritionists recommend for a balanced diet?", a: "Fresh fruits, leafy vegetables, whole grains, and lean proteins." },
+                        { q: "What academic benefits are associated with eating a healthy breakfast?", a: "Sharper memory retention and higher academic performance." },
+                        { q: "What negative effects can result from diets high in sugar and saturated fats?", a: "Sluggishness, lack of energy, and increased risk of chronic illnesses." },
+                        { q: "Why is drinking adequate water important throughout the day?", a: "It helps our bodies and minds function at their highest potential and stay hydrated." }
+                    ],
+                    tfQuestions: [
+                        { s: "Eating breakfast helps improve students' memory and focus in class.", val: "True", why: "Text: '...demonstrate sharper memory retention and higher academic performance...'" },
+                        { s: "Diets high in processed sugar increase long-term energy and health.", val: "False", why: "Text: '...diets high in processed sugar and saturated fats can lead to sluggishness...'" },
+                        { s: "Fresh vegetables and whole grains provide essential vitamins and minerals.", val: "True", why: "Text: '...variety of fresh fruits, leafy vegetables, whole grains, and lean proteins to provide essential vitamins...'" }
+                    ],
+                    refQuestions: [
+                        { q: "In paragraph 1, the pronoun 'their' refers to:", a: "nutritionists / meals" },
+                        { q: "In paragraph 2, the pronoun 'those' refers to:", a: "students (who skip meals)" }
+                    ],
+                    opinionPrompt: `In your opinion, how can schools encourage students to choose healthy snacks over fast food?`,
+                    opinionStarter: `In my opinion, schools can encourage healthy eating by `,
+                    wordBank: ["nutritious", "hydration", "vitamins", "sluggish", "balanced"],
+                    fillSentences: [
+                        "1. Eating a _______________________ diet supports strong immunity and bone growth.",
+                        "2. Citrus fruits such as oranges and lemons are rich in vital _______________________.",
+                        "3. Skipping nutritious meals often leaves students feeling _______________________ and tired.",
+                        "4. Proper daily _______________________ by drinking water is vital for physical exercise.",
+                        "5. A _______________________ lunch plate includes colorful vegetables and lean protein."
+                    ],
+                    fillAnswers: ["1. nutritious", "2. vitamins", "3. sluggish", "4. hydration", "5. balanced"],
+                    tenseSentences: [
+                        "1. The culinary instructor _______________________ (demonstrate) how to cook a healthy vegetable soup yesterday.",
+                        "2. If you drink eight glasses of water daily, your skin and energy _______________________ (improve).",
+                        "3. Organic fruits _______________________ (sell) at the local farmers' market every weekend.",
+                        "4. She _______________________ (prepare) a fresh fruit salad for her family last night."
+                    ],
+                    tenseAnswers: ["1. demonstrated", "2. will improve", "3. are sold", "4. prepared"],
+                    matchPairs: [
+                        { left: "1. Eating fresh organic vegetables", right: "A. provides fiber, minerals, and antioxidants." },
+                        { left: "2. Drinking fresh water regularly", right: "B. maintains vital hydration and kidney function." },
+                        { left: "3. Avoiding excessive sugary sodas", right: "C. prevents dental decay and sudden energy crashes." },
+                        { left: "4. Cooking wholesome meals at home", right: "D. ensures clean ingredients and portion control." }
+                    ],
+                    matchAnswers: ["1 - A", "2 - B", "3 - C", "4 - D"],
+                    reorderSentences: [
+                        { scrambled: "fruits / eat / fresh / vegetables / and / daily", clean: "Eat fresh fruits and vegetables daily." },
+                        { scrambled: "healthy / breakfast / a / energy / provides / morning", clean: "A healthy breakfast provides morning energy." },
+                        { scrambled: "water / drink / stay / to / hydrated / plenty of", clean: "Drink plenty of water to stay hydrated." }
+                    ],
+                    writingPrompts: {
+                        Email: `Write an email (60–80 words) to a friend sharing your favorite healthy smoothie or sandwich recipe and explaining why it gives you energy.`,
+                        FacebookPost: `Write an engaging Facebook post (50–70 words) sharing 3 practical tips for eating healthy snacks during exam week.`,
+                        BlogPost: `Write a blog post (70–90 words) titled "Fueling Your Body for Academic Success".`,
+                        Article: `Write an article (70–100 words) for your school magazine about the benefits of wholesome nutrition on student concentration and mood.`
+                    }
+                };
+            } else {
+                // Dynamic Generic Topic Parser for ANY user custom topic
+                const capTopic = cleanTopic.charAt(0).toUpperCase() + cleanTopic.slice(1);
+                topicData = {
+                    title: `${capTopic}`,
+                    passage: `READING COMPREHENSION PASSAGE:
+Understanding and exploring ${cleanTopic} is an essential and rewarding pursuit for students and learners today. Whether examining its core principles in the classroom or experiencing its practical applications in real life, mastering this subject enhances critical thinking, creativity, and problem-solving abilities.
+
+Recently, educators and researchers conducted an in-depth study investigating how active engagement with ${cleanTopic} benefits learners. They observed that students who explore key concepts, analyze real-world examples, and collaborate with peers develop higher comprehension and greater self-confidence. Moreover, approaching ${cleanTopic} with curiosity and consistency allows individuals to make meaningful contributions to their schools and communities. Learning about ${cleanTopic} is not merely an academic exercise; it provides practical skills that prepare young minds for a dynamic and interconnected world.`,
+                    whQuestions: [
+                        { q: `What are the primary benefits of studying ${cleanTopic}?`, a: `It enhances critical thinking, creativity, problem-solving skills, and self-confidence.` },
+                        { q: `What did researchers observe about students who actively engage with ${cleanTopic}?`, a: `They developed higher comprehension, better analytical skills, and greater self-confidence.` },
+                        { q: `How does collaboration with peers improve the learning process for ${cleanTopic}?`, a: `It allows students to exchange diverse viewpoints and solve challenging problems together.` },
+                        { q: `Why is learning about ${cleanTopic} valuable for the future?`, a: `It equips learners with practical skills and prepares them for an interconnected world.` }
+                    ],
+                    tfQuestions: [
+                        { s: `Studying ${cleanTopic} helps develop critical thinking and problem-solving skills.`, val: "True", why: "Text: '...enhances critical thinking, creativity, and problem-solving abilities.'" },
+                        { s: `Researchers found that passive learners gained more confidence than active learners.`, val: "False", why: "Text: '...students who explore key concepts, analyze real-world examples... develop higher comprehension and greater self-confidence.'" },
+                        { s: `Consistent practice and curiosity lead to meaningful contributions in the community.`, val: "True", why: "Text: '...allows individuals to make meaningful contributions to their schools and communities.'" }
+                    ],
+                    refQuestions: [
+                        { q: "In paragraph 1, the pronoun 'its' refers to:", a: cleanTopic },
+                        { q: "In paragraph 2, the pronoun 'They' refers to:", a: "educators and researchers" }
+                    ],
+                    opinionPrompt: `In your opinion, why is understanding "${cleanTopic}" important for students today? Give at least one clear reason.`,
+                    opinionStarter: `In my opinion, understanding ${cleanTopic} is important because `,
+                    wordBank: ["essential", "innovative", "comprehension", "collaborate", "practice"],
+                    fillSentences: [
+                        `1. Consistent daily _______________________ is fundamental to mastering ${cleanTopic}.`,
+                        "2. Active students enjoy _______________________ with classmates on creative projects.",
+                        "3. Applying _______________________ ideas helps solve complex real-world challenges.",
+                        `4. A strong _______________________ of core principles leads to academic success.`,
+                        "5. Critical thinking is an _______________________ skill for modern education."
+                    ],
+                    fillAnswers: ["1. practice", "2. collaborating", "3. innovative", "4. comprehension", "5. essential"],
+                    tenseSentences: [
+                        `1. Last week, our class _______________________ (explore) fascinating concepts related to ${cleanTopic}.`,
+                        "2. If students participate actively in class discussions, their understanding _______________________ (grow).",
+                        `3. Several groundbreaking studies on this subject _______________________ (publish) recently.`,
+                        "4. She _______________________ (complete) her research project yesterday afternoon."
+                    ],
+                    tenseAnswers: ["1. explored", "2. will grow", "3. have been published / were published", "4. completed"],
+                    matchPairs: [
+                        { left: `1. Consistent study of ${cleanTopic}`, right: "A. builds deep comprehension and academic confidence." },
+                        { left: "2. Collaborating on team assignments", right: "B. fosters mutual respect and effective communication." },
+                        { left: "3. Asking insightful questions in class", right: "C. clarifies challenging concepts and stimulates curiosity." },
+                        { left: "4. Applying knowledge to real situations", right: "D. demonstrates practical mastery and problem-solving." }
+                    ],
+                    matchAnswers: ["1 - A", "2 - B", "3 - C", "4 - D"],
+                    reorderSentences: [
+                        { scrambled: `practice / consistent / mastery / leads / to / in / learning`, clean: "Consistent practice leads to mastery in learning." },
+                        { scrambled: `students / collaborate / on / projects / excitedly / innovative`, clean: "Students excitedly collaborate on innovative projects." },
+                        { scrambled: `knowledge / helps / critical / thinking / build / strong`, clean: "Strong knowledge helps build critical thinking." }
+                    ],
+                    writingPrompts: {
+                        Email: `Write an email (60–80 words) to your teacher or study partner discussing what you found most interesting about "${cleanTopic}".`,
+                        FacebookPost: `Write an engaging Facebook post (50–70 words) sharing 3 key takeaways about "${cleanTopic}" with your classmates.`,
+                        BlogPost: `Write a blog post (70–90 words) titled "Exploring the Significance of ${cleanTopic}".`,
+                        Article: `Write an article (70–100 words) for your school magazine explaining the importance of "${cleanTopic}" in today's world.`
+                    }
+                };
+            }
+
             // 1. PART 1: READING COMPREHENSION
-            const readingPassage = `READING COMPREHENSION PASSAGE:
-${cleanTopic} is an essential foundation of modern communication and language learning. In today's interconnected world, students and researchers rely on clear grammatical structure, expressive vocabulary, and precise writing to exchange innovative ideas across borders.
-
-Last term, a dedicated committee of language educators conducted an empirical study in secondary schools to evaluate how daily practice impacts learner proficiency. They observed that students who read authentic passages and analyze sentence structure for fifteen minutes every day achieved remarkable gains in writing fluency, vocabulary retention, and reading comprehension speed. Furthermore, these active learners reported that mastering core language mechanics significantly increased their confidence when collaborating on digital projects and international forums. Language mastery is not merely about memorizing abstract grammatical rules; it is a vital bridge that connects diverse cultures and inspires creative problem-solving across the globe.`;
-
-            let readSubSections = [readingPassage];
+            let readSubSections = [topicData.passage];
             let readAnswers = [];
 
             // WH- Questions
-            if (opts.incReadWH !== false) {
-                readSubSections.push(`SECTION 1: WH- COMPREHENSION QUESTIONS (4 POINTS)
-Instructions: Answer the following questions in complete sentences based on the reading passage.
-
-1. What role does ${cleanTopic} play in modern international communication?
-   Answer: ____________________________________________________________________________________
-
-2. Who conducted the empirical language study in secondary schools last term?
-   Answer: ____________________________________________________________________________________
-
-3. Why did consistent fifteen-minute daily practice improve students' writing and reading skills?
-   Answer: ____________________________________________________________________________________
-
-4. How does language mastery act as a bridge according to the author?
-   Answer: ____________________________________________________________________________________`);
-
-                readAnswers.push(`SECTION 1 (WH- QUESTIONS) ANSWERS:
-1. It is an essential foundation that enables students and researchers to exchange ideas with clarity and precision.
-2. A dedicated committee of language educators conducted the empirical study.
-3. Because reading authentic passages and analyzing sentence structures helps build writing fluency and comprehension speed.
-4. It connects diverse cultures and inspires creative problem-solving across the globe.`);
+            if (opts.incReadWH !== false && topicData.whQuestions) {
+                let whText = `SECTION 1: WH- COMPREHENSION QUESTIONS (${topicData.whQuestions.length} POINTS)\nInstructions: Answer the following questions in complete sentences based on the reading passage.\n\n`;
+                let whAns = `SECTION 1 (WH- QUESTIONS) ANSWERS:\n`;
+                topicData.whQuestions.forEach((item, idx) => {
+                    whText += `${idx + 1}. ${item.q}\n   Answer: ____________________________________________________________________________________\n\n`;
+                    whAns += `${idx + 1}. ${item.a}\n`;
+                });
+                readSubSections.push(whText.trim());
+                readAnswers.push(whAns.trim());
             }
 
             // True or False Statements
-            if (opts.incReadTF !== false) {
-                readSubSections.push(`SECTION 2: TRUE OR FALSE STATEMENTS (3 POINTS)
-Instructions: Read each statement carefully and decide whether it is True or False according to the text.
-
-1. Daily fifteen-minute language practice helped students achieve remarkable gains in fluency.  [ True ]    [ False ]
-2. The study concluded that language learning is strictly about memorizing abstract rules.       [ True ]    [ False ]
-3. Active learners reported increased confidence during collaborative digital projects.          [ True ]    [ False ]`);
-
-                readAnswers.push(`SECTION 2 (TRUE OR FALSE) ANSWERS:
-1. True (Text: "...achieved remarkable gains in writing fluency, vocabulary retention...")
-2. False (Text: "...is not merely about memorizing abstract grammatical rules")
-3. True (Text: "...significantly increased their confidence when collaborating on digital projects")`);
+            if (opts.incReadTF !== false && topicData.tfQuestions) {
+                let tfText = `SECTION 2: TRUE OR FALSE STATEMENTS (${topicData.tfQuestions.length} POINTS)\nInstructions: Read each statement carefully and decide whether it is True or False according to the text.\n\n`;
+                let tfAns = `SECTION 2 (TRUE OR FALSE) ANSWERS:\n`;
+                topicData.tfQuestions.forEach((item, idx) => {
+                    tfText += `${idx + 1}. ${item.s}  [ True ]    [ False ]\n`;
+                    tfAns += `${idx + 1}. ${item.val} (${item.why})\n`;
+                });
+                readSubSections.push(tfText.trim());
+                readAnswers.push(tfAns.trim());
             }
 
             // Reference Questions
-            if (opts.incReadRef !== false) {
-                readSubSections.push(`SECTION 3: PRONOUN & CONTEXTUAL REFERENCES (2 POINTS)
-Instructions: Identify what the underlined pronouns refer to in the reading passage.
-
-1. In paragraph 2, the pronoun "They" refers to: __________________________________________________
-2. In paragraph 2, the pronoun "it" refers to: ____________________________________________________`);
-
-                readAnswers.push(`SECTION 3 (PRONOUN REFERENCES) ANSWERS:
-1. "They" refers to the dedicated committee of language educators.
-2. "it" refers to language mastery.`);
+            if (opts.incReadRef !== false && topicData.refQuestions) {
+                let refText = `SECTION 3: PRONOUN & CONTEXTUAL REFERENCES (${topicData.refQuestions.length} POINTS)\nInstructions: Identify what the underlined pronouns refer to in the reading passage.\n\n`;
+                let refAns = `SECTION 3 (PRONOUN REFERENCES) ANSWERS:\n`;
+                topicData.refQuestions.forEach((item, idx) => {
+                    refText += `${idx + 1}. ${item.q} __________________________________________________\n`;
+                    refAns += `${idx + 1}. ${item.a}\n`;
+                });
+                readSubSections.push(refText.trim());
+                readAnswers.push(refAns.trim());
             }
 
             // Personal Opinion Question
-            if (opts.incReadOpinion !== false) {
+            if (opts.incReadOpinion !== false && topicData.opinionPrompt) {
                 readSubSections.push(`SECTION 4: PERSONAL OPINION & CRITICAL EVALUATION (2 POINTS)
 Instructions: State your personal opinion in 2 to 3 sentences. Justify your answer with a clear reason.
 
-Prompt: In your opinion, how can practicing "${cleanTopic}" improve your daily communication with friends and online communities?
-Response: In my opinion, __________________________________________________________________________
+Prompt: ${topicData.opinionPrompt}
+Response: ${topicData.opinionStarter}____________________________________________________________
 ___________________________________________________________________________________________________`);
 
                 readAnswers.push(`SECTION 4 (PERSONAL OPINION) SCORING RUBRIC:
@@ -3284,161 +3576,71 @@ ________________________________________________________________________________
             let langAnswers = [];
 
             // Fill in the Blanks
-            if (opts.incLangFill !== false) {
-                langSubSections.push(`SECTION A: FILL IN THE BLANKS WITH WORD BANK (4 POINTS)
-Instructions: Complete each sentence using the most fitting word from the word box below.
-
-[  collaborating   •   empirically   •   proficiency   •   essential  ]
-
-1. Clear expression and vocabulary mastery are _______________________ for academic success.
-2. The language researchers evaluated student progress _______________________ throughout the term.
-3. Students demonstrated higher _______________________ after engaging in daily reading exercises.
-4. Active learners enjoyed _______________________ with international peers on interactive projects.`);
-
-                langAnswers.push(`SECTION A (FILL IN BLANKS) ANSWERS:
-1. essential
-2. empirically
-3. proficiency
-4. collaborating`);
+            if (opts.incLangFill !== false && topicData.fillSentences) {
+                const wbStr = `[  ${topicData.wordBank.join('   •   ')}  ]`;
+                let fillText = `SECTION A: FILL IN THE BLANKS WITH WORD BANK (${topicData.fillSentences.length} POINTS)\nInstructions: Complete each sentence using the most fitting word from the word box below.\n\n${wbStr}\n\n`;
+                topicData.fillSentences.forEach(s => { fillText += `${s}\n`; });
+                langSubSections.push(fillText.trim());
+                langAnswers.push(`SECTION A (FILL IN BLANKS) ANSWERS:\n` + topicData.fillAnswers.join('\n'));
             }
 
             // Put Words in the Right Tense or Form
-            if (opts.incLangTense !== false) {
-                langSubSections.push(`SECTION B: PUT WORDS IN THE RIGHT TENSE OR FORM (4 POINTS)
-Instructions: Complete each sentence by putting the word in parentheses into the correct grammatical form or tense.
-
-1. Last week, our class _______________________ (discover) several effective strategies for ${cleanTopic}.
-2. The instructor was impressed by the student's remarkable _______________________ (fluent) in English.
-3. If Maria _______________________ (practice) consistently every morning, she will excel in the exam.
-4. Several innovative articles on modern communication _______________________ (publish) this year.`);
-
-                langAnswers.push(`SECTION B (TENSE & WORD FORM) ANSWERS:
-1. discovered (Past Simple tense)
-2. fluency (Noun form of 'fluent')
-3. practices (First Conditional: Present Simple in if-clause)
-4. have been published (Present Perfect Passive)`);
+            if (opts.incLangTense !== false && topicData.tenseSentences) {
+                let tenseText = `SECTION B: PUT WORDS IN THE RIGHT TENSE OR FORM (${topicData.tenseSentences.length} POINTS)\nInstructions: Complete each sentence by putting the word in parentheses into the correct grammatical form or tense.\n\n`;
+                topicData.tenseSentences.forEach(s => { tenseText += `${s}\n`; });
+                langSubSections.push(tenseText.trim());
+                langAnswers.push(`SECTION B (TENSE & WORD FORM) ANSWERS:\n` + topicData.tenseAnswers.join('\n'));
             }
 
             // Match Sentence Parts
-            if (opts.incLangMatch !== false) {
-                langSubSections.push(`SECTION C: MATCH SENTENCE HALVES (4 POINTS)
-Instructions: Match the beginning of each sentence in Column A with its correct ending in Column B:
-
-   Column A (Sentence Beginnings)       Match       Column B (Sentence Endings)
-   ──────────────────────────────────   ─────       ─────────────────────────────────────────
-   1. If you read fifteen minutes daily  •   • A. to express complex thoughts clearly.
-   2. Mastering grammar allows you       •   • B. before submitting their assignments.
-   3. The students checked their work    •   • C. your reading speed will improve quickly.
-   4. Effective communication requires   •   • D. both grammatical accuracy and empathy.`);
-
-                langAnswers.push(`SECTION C (MATCHING HALVES) ANSWERS:
-1 - C (If you read fifteen minutes daily • your reading speed will improve quickly)
-2 - A (Mastering grammar allows you • to convey your ideas with clarity)
-3 - B (The students checked their work • before submitting their assignments)
-4 - D (Effective communication requires • both grammatical accuracy and empathy)`);
+            if (opts.incLangMatch !== false && topicData.matchPairs) {
+                let matchText = `SECTION C: MATCH SENTENCE HALVES (${topicData.matchPairs.length} POINTS)\nInstructions: Match the beginning of each sentence in Column A with its correct ending in Column B:\n\n`;
+                matchText += `   Column A (Sentence Beginnings)       Match       Column B (Sentence Endings)\n`;
+                matchText += `   ──────────────────────────────────   ─────       ─────────────────────────────────────────\n`;
+                topicData.matchPairs.forEach(p => {
+                    const paddedLeft = p.left.padEnd(36, ' ');
+                    matchText += `   ${paddedLeft} •   • ${p.right}\n`;
+                });
+                langSubSections.push(matchText.trim());
+                langAnswers.push(`SECTION C (MATCHING HALVES) ANSWERS:\n` + topicData.matchAnswers.join('\n'));
             }
 
             // Reordering Words to get Sentences
-            if (opts.incLangReorder !== false) {
-                langSubSections.push(`SECTION D: REORDERING WORDS TO FORM MEANINGFUL SENTENCES (3 POINTS)
-Instructions: Rearrange the scrambled words to form grammatically complete, meaningful sentences.
-
-1. daily / language / fluency / practice / consistent / builds / and / confidence
-   Sentence: ____________________________________________________________________________________
-
-2. bridge / connects / across / cultures / language / a / is / that / nations
-   Sentence: ____________________________________________________________________________________
-
-3. students / online / collaborate / on / projects / excitedly / international
-   Sentence: ____________________________________________________________________________________`);
-
-                langAnswers.push(`SECTION D (REORDERING WORDS) ANSWERS:
-1. Consistent daily practice builds language fluency and confidence.
-2. Language is a bridge that connects cultures across nations.
-3. Students excitedly collaborate on international online projects.`);
+            if (opts.incLangReorder !== false && topicData.reorderSentences) {
+                let reorderText = `SECTION D: REORDERING WORDS TO FORM MEANINGFUL SENTENCES (${topicData.reorderSentences.length} POINTS)\nInstructions: Rearrange the scrambled words to form grammatically complete, meaningful sentences.\n\n`;
+                let reorderAns = `SECTION D (REORDERING WORDS) ANSWERS:\n`;
+                topicData.reorderSentences.forEach((item, idx) => {
+                    reorderText += `${idx + 1}. ${item.scrambled}\n   Sentence: ____________________________________________________________________________________\n\n`;
+                    reorderAns += `${idx + 1}. ${item.clean}\n`;
+                });
+                langSubSections.push(reorderText.trim());
+                langAnswers.push(reorderAns.trim());
             }
 
             secBlocks.push(`PART 2: LANGUAGE & GRAMMAR MASTERY (15 POINTS)\n\n` + langSubSections.join('\n\n'));
             ansBlocks.push(`=== PART 2: LANGUAGE & GRAMMAR ANSWERS ===\n` + langAnswers.join('\n\n'));
 
             // 3. PART 3: GUIDED WRITING PRODUCTION
-            if (opts.incWritingProd !== false) {
-                let writingHeader = '';
+            if (opts.incWritingProd !== false && topicData.writingPrompts) {
+                const promptDesc = topicData.writingPrompts[format] || topicData.writingPrompts.Article;
+                let writingHeader = `PART 3: GUIDED WRITING PRODUCTION — ${format.toUpperCase()} (5 POINTS)\nInstructions: ${promptDesc}\n\n`;
+
                 if (format === 'Email') {
-                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — FORMAL / INFORMAL EMAIL (5 POINTS)
-Instructions: Write an email (60–80 words) to your study partner or instructor explaining how you plan to master "${cleanTopic}".
-
-To: partner@academy.edu
-Subject: Preparation Strategy for ${cleanTopic}
-Salutation: Dear ________________________,
-
-Opening & Context:
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-
-Action Steps & Schedule:
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-
-Sign-off: Best regards, ________________________`;
+                    writingHeader += `To: friend@school.edu\nSubject: Thoughts on ${topicData.title}\nSalutation: Dear ________________________,\n\nOpening & Context:\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n\nDetails & Thoughts:\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n\nSign-off: Best regards, ________________________`;
                 } else if (format === 'Facebook Post') {
-                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — SOCIAL MEDIA / FACEBOOK POST (5 POINTS)
-Instructions: Create an engaging Facebook post (50–70 words) sharing 3 practical study habits for "${cleanTopic}". Include interactive questions and tags.
-
-Post Headline / Hook: 🚀 ___________________________________________________________________________
-
-Post Content:
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-
-Tags & Call-to-action: #${cleanTopic.replace(/\s+/g, '')} #LanguageLearning #StudySmart #DailyPractice`;
+                    writingHeader += `Post Headline / Hook: 🚀 ___________________________________________________________________________\n\nPost Content:\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n\nTags & Call-to-action: #${cleanTopic.replace(/\s+/g, '')} #Learning #Education #DailyPractice`;
                 } else if (format === 'Blog Post') {
-                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — BLOG POST (5 POINTS)
-Instructions: Write a blog post (60–90 words) titled "Unlocking the Power of ${cleanTopic}". Include a hook, 2 key takeaways, and a question for your readers.
-
-Blog Title: 💡 Unlocking the Power of ${cleanTopic}
-
-Introduction:
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-
-Key Insights & Tips:
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-
-Question for the Readers:
-___________________________________________________________________________________________________`;
+                    writingHeader += `Blog Title: 💡 Exploring ${topicData.title}\n\nIntroduction:\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n\nKey Insights & Advice:\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n\nConcluding Question:\n___________________________________________________________________________________________________`;
                 } else {
-                    // Formal Article
-                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — FORMAL ARTICLE (5 POINTS)
-Instructions: Write a structured article (70–100 words) for your school magazine on the importance of "${cleanTopic}". Use appropriate transitional phrases (First, In addition, In conclusion).
-
-Headline: The Role of ${cleanTopic} in Modern Education
-Byline: By ________________________ (Student Contributor)
-
-Introduction & Thesis:
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-
-Supporting Arguments:
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-
-Concluding Reflection:
-___________________________________________________________________________________________________`;
+                    writingHeader += `Headline: The Importance of ${topicData.title}\nByline: By ________________________ (Student Writer)\n\nIntroduction & Main Idea:\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n\nSupporting Details:\n___________________________________________________________________________________________________\n___________________________________________________________________________________________________\n\nConcluding Sentence:\n___________________________________________________________________________________________________`;
                 }
 
                 secBlocks.push(writingHeader);
-                ansBlocks.push(`=== PART 3: WRITING PRODUCTION EVALUATION RUBRIC ===
-• Format Structure & Formatting (2 pts): Successfully follows the "${format}" layout rules.
-• Vocabulary & Grammatical Mechanics (2 pts): Appropriate register, accurate syntax, and clear organization.
-• Focus on Topic (1 pt): Direct relevance to "${cleanTopic}".`);
+                ansBlocks.push(`=== PART 3: WRITING PRODUCTION EVALUATION RUBRIC ===\n• Format Structure & Guidelines (2 pts): Adheres to the "${format}" conventions.\n• Vocabulary & Grammatical Precision (2 pts): Appropriate register, correct syntax, and clear layout.\n• Topic Alignment (1 pt): Direct focus on "${cleanTopic}".`);
             }
 
             return {
-                title: cleanTopic,
+                title: topicData.title || cleanTopic,
                 difficulty: diff,
                 layout: layout,
                 theme: chosenTheme,
@@ -3841,11 +4043,66 @@ ________________________________________________________________________________
             return `${hours}:${minutes} ${ampm}`;
         }
 
+        // Helper to extract the topic from chat prompt messages
+        function extractTopicFromMessage(msg) {
+            let clean = msg.replace(/[?!.,;]/g, '').trim();
+            
+            // Patterns to extract:
+            // "generate a worksheet about X"
+            // "make a worksheet on X"
+            // "create a worksheet about X"
+            // "worksheet about X"
+            // "worksheet on X"
+            // "about X"
+            // "on X"
+            let match = null;
+            
+            const regexes = [
+                /generate\s+(?:a\s+)?worksheet\s+(?:about|on|for)\s+(.+)/i,
+                /create\s+(?:a\s+)?worksheet\s+(?:about|on|for)\s+(.+)/i,
+                /make\s+(?:a\s+)?worksheet\s+(?:about|on|for)\s+(.+)/i,
+                /worksheet\s+(?:about|on|for)\s+(.+)/i,
+                /sheet\s+(?:about|on|for)\s+(.+)/i,
+                /about\s+(.+)/i
+            ];
+            
+            for (let rx of regexes) {
+                let m = clean.match(rx);
+                if (m && m[1]) {
+                    match = m[1].trim();
+                    break;
+                }
+            }
+            
+            if (!match) {
+                match = clean;
+                // Remove command verbs from beginning
+                match = match.replace(/^(?:generate|create|make|write|give\s+me|show\s+me|prepare)\s+(?:a\s+)?(?:worksheet|sheet|quiz|test|exercise)?\s*(?:about|on|for)?/i, '').trim();
+            }
+            
+            if (!match || match.length < 2) {
+                return "English Grammar Mastery";
+            }
+            
+            if (match.length > 50) {
+                match = match.substring(0, 50) + "...";
+            }
+            
+            // Capitalize beautifully
+            return match.split(/\s+/).map(w => {
+                if (w.length === 0) return '';
+                const preps = ['and', 'or', 'the', 'a', 'an', 'in', 'on', 'at', 'to', 'for', 'about', 'of', 'with'];
+                if (preps.includes(w.toLowerCase())) return w.toLowerCase();
+                return w.charAt(0).toUpperCase() + w.slice(1);
+            }).join(' ').replace(/^\w/, c => c.toUpperCase());
+        }
+
         async function sendChat() {
             const input = document.getElementById('chat-input');
             const msg = input.value.trim();
             if(!msg) return;
             
+            const extractedTopic = extractTopicFromMessage(msg);
             addChatBubble(msg, true);
             input.value = '';
             
@@ -3895,8 +4152,8 @@ Provide a clear, pedagogical, friendly, and structured explanation with examples
                         const typingIndicator = document.getElementById(typingId);
                         if (typingIndicator) typingIndicator.remove();
                         
-                        const wantsWorksheet = msg.toLowerCase().includes("worksheet") || msg.toLowerCase().includes("a4") || msg.toLowerCase().includes("sheet");
-                        addChatBubble(aiText || "Here is your grammar advice.", false, wantsWorksheet);
+                        const wantsWorksheet = msg.toLowerCase().includes("worksheet") || msg.toLowerCase().includes("a4") || msg.toLowerCase().includes("sheet") || msg.toLowerCase().includes("generate") || msg.toLowerCase().includes("create");
+                        addChatBubble(aiText || "Here is your grammar advice.", false, wantsWorksheet, extractedTopic);
                         return;
                     }
                 } catch (err) {
@@ -3929,7 +4186,7 @@ Provide a clear, pedagogical, friendly, and structured explanation with examples
                     aiRes = "**Affect** is usually a verb meaning to influence ('Pollution affects health').\n**Effect** is usually a noun meaning the result ('The policy had an immediate effect').";
                 }
 
-                addChatBubble(aiRes, false, isWorksheetAction);
+                addChatBubble(aiRes, false, isWorksheetAction, extractedTopic);
             }, 800);
         }
 
@@ -3938,7 +4195,7 @@ Provide a clear, pedagogical, friendly, and structured explanation with examples
             sendChat();
         }
 
-        function addChatBubble(text, isUser, showA4Action) {
+        function addChatBubble(text, isUser, showA4Action, customTopic) {
             const chatLog = document.getElementById('chat-log');
             const timeStr = getFormattedTime();
             
@@ -3962,9 +4219,10 @@ Provide a clear, pedagogical, friendly, and structured explanation with examples
             } else {
                 let actionBtnHtml = '';
                 if (showA4Action) {
+                    const finalTopic = (customTopic || 'Present Perfect & Past Simple').replace(/'/g, "\\'");
                     actionBtnHtml = `
                     <div class="pt-3 flex flex-wrap gap-2">
-                        <button onclick="generateWorksheet('Present Perfect & Past Simple', 'Middle School')" class="inline-flex items-center space-x-2 theme-primary-btn text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md transition active:scale-95">
+                        <button onclick="generateWorksheet('${finalTopic}', 'Middle School')" class="inline-flex items-center space-x-2 theme-primary-btn text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md transition active:scale-95">
                             <i class="fas fa-file-invoice"></i>
                             <span>Generate & View A4 Sheet</span>
                         </button>
