@@ -961,68 +961,85 @@
             <!-- SUB-PANEL 1: STUDIO BUILDER -->
             <div id="studio-panel-builder" class="space-y-6">
                 <div id="gen-form" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <!-- Left Configuration Column (8 cols) -->
-                    <div class="lg:col-span-8 space-y-5">
-                        <!-- Card 1: Curriculum Topic & Quick Subject Pills -->
-                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4">
-                            <div>
-                                <div class="flex items-center justify-between mb-2">
-                                    <label for="topic-input" class="block font-bold text-gray-800 dark:text-slate-200 text-sm">
-                                        <i class="fas fa-book-open theme-accent-color mr-1.5"></i>Worksheet Topic or Curriculum Focus:
-                                    </label>
-                                    <button type="button" onclick="clearTopicInput()" class="text-[11px] text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition">
-                                        <i class="fas fa-times-circle mr-1"></i>Clear
-                                    </button>
+                    <!-- Left Configuration Column (8 cols) - 3 Organized Steps -->
+                    <div class="lg:col-span-7 xl:col-span-8 space-y-6">
+                        
+                        <!-- STEP 1: CURRICULUM TOPIC & LEVEL -->
+                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-5">
+                            <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-slate-800">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">1</span>
+                                    <div>
+                                        <h3 class="font-bold text-gray-900 dark:text-white text-sm">Curriculum Target & Grade Level</h3>
+                                        <p class="text-xs text-gray-500 dark:text-slate-400">Define the core pedagogical focus and learner CEFR proficiency</p>
+                                    </div>
                                 </div>
-                                <div class="relative">
-                                    <input type="text" id="topic-input" oninput="updateStudioLiveSummary()" placeholder="e.g. Present Perfect vs Past Simple, Irregular Verbs, Synonyms & Antonyms..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-gray-300 dark:border-slate-700 rounded-xl p-3.5 pl-10 text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner text-sm transition" />
-                                    <i class="fas fa-pencil-alt absolute left-3.5 top-4 text-gray-400 dark:text-slate-500 text-xs"></i>
-                                </div>
+                                <span class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-1 rounded-lg border border-indigo-200/60 dark:border-indigo-800/60">Step 1 of 3</span>
                             </div>
-
-                            <!-- Fast Subject Pills -->
-                            <div class="space-y-2 pt-1 border-t border-gray-100 dark:border-slate-800">
-                                <span class="text-xs font-bold text-gray-500 dark:text-slate-400 block">Quick Topic Suggestions:</span>
-                                <div class="flex flex-wrap gap-1.5">
-                                    <button type="button" onclick="setGenTopic('Present Perfect vs Past Simple', 'Middle School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
-                                        <i class="fas fa-clock text-amber-500 mr-1"></i>Present Perfect vs Past Simple
-                                    </button>
-                                    <button type="button" onclick="setGenTopic('Irregular Verbs Drill', 'Middle School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
-                                        <i class="fas fa-bolt text-indigo-500 mr-1"></i>Irregular Verbs Drill
-                                    </button>
-                                    <button type="button" onclick="setGenTopic('Elementary Synonyms & Antonyms', 'Elementary')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
-                                        <i class="fas fa-spell-check text-emerald-500 mr-1"></i>Synonyms & Antonyms
-                                    </button>
-                                    <button type="button" onclick="setGenTopic('Passive Voice Mastery', 'High School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
-                                        <i class="fas fa-graduation-cap text-purple-500 mr-1"></i>Passive Voice
-                                    </button>
-                                    <button type="button" onclick="setGenTopic('Conditionals & Modal Auxiliaries', 'High School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
-                                        <i class="fas fa-code-branch text-rose-500 mr-1"></i>Conditionals & Modals
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 2: Educational Level, Layout Structure & Density -->
-                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4">
-                            <h3 class="font-bold text-gray-800 dark:text-slate-200 text-sm flex items-center justify-between">
-                                <span class="flex items-center">
-                                    <i class="fas fa-sliders-h theme-accent-color mr-2"></i>Curriculum & Layout Specifications
-                                </span>
-                                <span class="text-[11px] text-gray-400 dark:text-slate-500 font-normal">ISO 216 Dimensions</span>
-                            </h3>
 
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <div>
-                                    <label for="difficulty-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Target Level / Grade:</label>
-                                    <select id="difficulty-select" onchange="updateStudioLiveSummary()" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
+                                <div class="sm:col-span-2 space-y-1.5">
+                                    <div class="flex items-center justify-between">
+                                        <label for="topic-input" class="block font-semibold text-gray-700 dark:text-slate-200 text-xs">Worksheet Topic / Grammar Drill:</label>
+                                        <button type="button" onclick="clearTopicInput()" class="text-[11px] text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition">
+                                            <i class="fas fa-times-circle mr-1"></i>Clear
+                                        </button>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="text" id="topic-input" oninput="updateStudioLiveSummary()" placeholder="e.g. Present Perfect vs Past Simple, Modal Verbs, Synonyms..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-gray-300 dark:border-slate-700 rounded-xl p-3 pl-9 text-xs text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                        <i class="fas fa-book-open absolute left-3 top-3.5 text-gray-400 dark:text-slate-500 text-xs"></i>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-1.5">
+                                    <label for="difficulty-select" class="block font-semibold text-gray-700 dark:text-slate-200 text-xs">Target Level / CEFR:</label>
+                                    <select id="difficulty-select" onchange="updateStudioLiveSummary()" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-xs font-medium text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                                         <option value="Elementary">Elementary (Grades 1-4 • A1-A2)</option>
                                         <option value="Middle School" selected>Middle School (Grades 5-8 • B1-B2)</option>
                                         <option value="High School">High School (Grades 9-12 • C1-C2)</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <!-- Fast Subject Pills -->
+                            <div class="pt-2 border-t border-gray-100 dark:border-slate-800 space-y-2">
+                                <span class="text-[11px] font-bold text-gray-400 dark:text-slate-500 uppercase tracking-wider block">Quick Curriculum Topics:</span>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <button type="button" onclick="setGenTopic('Present Perfect vs Past Simple', 'Middle School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                        <i class="fas fa-clock text-amber-500 mr-1 text-[10px]"></i>Present Perfect vs Past Simple
+                                    </button>
+                                    <button type="button" onclick="setGenTopic('Irregular Verbs Drill', 'Middle School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                        <i class="fas fa-bolt text-indigo-500 mr-1 text-[10px]"></i>Irregular Verbs Drill
+                                    </button>
+                                    <button type="button" onclick="setGenTopic('Elementary Synonyms & Antonyms', 'Elementary')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                        <i class="fas fa-spell-check text-emerald-500 mr-1 text-[10px]"></i>Synonyms & Antonyms
+                                    </button>
+                                    <button type="button" onclick="setGenTopic('Passive Voice Mastery', 'High School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                        <i class="fas fa-graduation-cap text-purple-500 mr-1 text-[10px]"></i>Passive Voice
+                                    </button>
+                                    <button type="button" onclick="setGenTopic('Conditionals & Modal Auxiliaries', 'High School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                        <i class="fas fa-code-branch text-rose-500 mr-1 text-[10px]"></i>Conditionals & Modals
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: A4 LAYOUT & SECTION SELECTION -->
+                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-5">
+                            <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-slate-800">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">2</span>
+                                    <div>
+                                        <h3 class="font-bold text-gray-900 dark:text-white text-sm">A4 Layout Architecture & Exercise Sections</h3>
+                                        <p class="text-xs text-gray-500 dark:text-slate-400">Select exercises to balance evenly across 210×297mm standard margins</p>
+                                    </div>
+                                </div>
+                                <span class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-1 rounded-lg border border-indigo-200/60 dark:border-indigo-800/60">Step 2 of 3</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label for="layout-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">A4 Layout Architecture:</label>
+                                    <label for="layout-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Worksheet Architecture Style:</label>
                                     <select id="layout-select" onchange="updateStudioLiveSummary()" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
                                         <option value="Standard Practice" selected>Classroom Practice Drill</option>
                                         <option value="Reading & Grammar">Reading Passage + Exercises</option>
@@ -1031,7 +1048,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="worksheet-theme-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Printable Gem Accent:</label>
+                                    <label for="worksheet-theme-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Printable Gem Accent Color:</label>
                                     <select id="worksheet-theme-select" onchange="updateStudioLiveSummary()" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
                                         <option value="app" selected>Match Workspace Theme</option>
                                         <option value="amethyst">Amethyst (Purple)</option>
@@ -1044,104 +1061,150 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Card 3: Exercise Sections Configurator -->
-                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-bold text-gray-800 dark:text-slate-200 text-sm flex items-center">
-                                    <i class="fas fa-tasks theme-accent-color mr-2"></i>Exercise Sections to Include
-                                </h3>
-                                <span class="text-[11px] text-gray-400 dark:text-slate-500">Auto-balanced for A4 fit</span>
-                            </div>
+                            <div class="space-y-2 pt-1">
+                                <label class="block font-semibold text-gray-700 dark:text-slate-300 text-xs">Active Exercise Sections:</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                        <input type="checkbox" id="sec-fill" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                        <div class="ml-3">
+                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section A: Fill in Blanks & Word Box</span>
+                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Contextual sentence drills with word bank</span>
+                                        </div>
+                                    </label>
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <label class="flex items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                    <input type="checkbox" id="sec-fill" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                    <div class="ml-3">
-                                        <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section A: Fill in Blanks & Drills</span>
-                                        <span class="text-[11px] text-gray-500 dark:text-slate-400">Contextual verb and vocabulary sentences</span>
-                                    </div>
-                                </label>
+                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                        <input type="checkbox" id="sec-match" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                        <div class="ml-3">
+                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section B: Matching Columns</span>
+                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Word pairs, definitions, and synonyms</span>
+                                        </div>
+                                    </label>
 
-                                <label class="flex items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                    <input type="checkbox" id="sec-match" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                    <div class="ml-3">
-                                        <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section B: Matching Columns / Bank</span>
-                                        <span class="text-[11px] text-gray-500 dark:text-slate-400">Word pairs, definitions, and word bank</span>
-                                    </div>
-                                </label>
+                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                        <input type="checkbox" id="sec-edit" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                        <div class="ml-3">
+                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section C: Error Correction</span>
+                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Critical proofreading and sentence rewrite</span>
+                                        </div>
+                                    </label>
 
-                                <label class="flex items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                    <input type="checkbox" id="sec-edit" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                    <div class="ml-3">
-                                        <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section C: Error Correction / Edit</span>
-                                        <span class="text-[11px] text-gray-500 dark:text-slate-400">Sentence rewriting with grammatical corrections</span>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                    <input type="checkbox" id="sec-write" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                    <div class="ml-3">
-                                        <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section D: Ruled Creative Writing</span>
-                                        <span class="text-[11px] text-gray-500 dark:text-slate-400">Guided prompt with handwriting ruled lines</span>
-                                    </div>
-                                </label>
+                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                        <input type="checkbox" id="sec-write" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                        <div class="ml-3">
+                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section D: Ruled Creative Writing</span>
+                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Guided prompt with handwriting ruled lines</span>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Card 4: Teacher & School Header Customizer (Collapsible) -->
+                        <!-- STEP 3: SCHOOL HEADER & TEACHER DETAILS (COLLAPSIBLE / EXPANDED) -->
                         <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4">
-                            <details class="group">
-                                <summary class="flex items-center justify-between cursor-pointer font-bold text-gray-800 dark:text-slate-200 text-sm list-none">
-                                    <span class="flex items-center">
-                                        <i class="fas fa-id-card theme-accent-color mr-2"></i>Header & School Customization (Optional)
-                                    </span>
-                                    <span class="text-xs text-indigo-600 dark:text-indigo-400 group-open:rotate-180 transition-transform">
-                                        <i class="fas fa-chevron-down"></i>
-                                    </span>
-                                </summary>
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 mt-3 border-t border-gray-100 dark:border-slate-800">
+                            <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-slate-800">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">3</span>
                                     <div>
-                                        <label for="custom-school" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1 text-xs">School / Academy:</label>
-                                        <input type="text" id="custom-school" placeholder="e.g. Oxford Academy" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-2.5 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                    </div>
-                                    <div>
-                                        <label for="custom-teacher" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1 text-xs">Teacher Name:</label>
-                                        <input type="text" id="custom-teacher" placeholder="e.g. Prof. Anderson" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-2.5 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                    </div>
-                                    <div>
-                                        <label for="custom-points" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1 text-xs">Total Marks / Score:</label>
-                                        <input type="text" id="custom-points" placeholder="e.g. 20 Points" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-2.5 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                        <h3 class="font-bold text-gray-900 dark:text-white text-sm">School Header & Evaluation Metadata (Optional)</h3>
+                                        <p class="text-xs text-gray-500 dark:text-slate-400">Personalize printable worksheet top header and score criteria</p>
                                     </div>
                                 </div>
-                            </details>
+                                <span class="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-1 rounded-lg border border-indigo-200/60 dark:border-indigo-800/60">Step 3 of 3</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+                                <div>
+                                    <label for="custom-school" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1 text-xs">School / Academy:</label>
+                                    <input type="text" id="custom-school" oninput="updateStudioLiveSummary()" placeholder="e.g. Oxford Academy" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-2.5 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                </div>
+                                <div>
+                                    <label for="custom-teacher" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1 text-xs">Teacher Name:</label>
+                                    <input type="text" id="custom-teacher" oninput="updateStudioLiveSummary()" placeholder="e.g. Prof. Anderson" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-2.5 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                </div>
+                                <div>
+                                    <label for="custom-points" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1 text-xs">Total Marks / Score:</label>
+                                    <input type="text" id="custom-points" oninput="updateStudioLiveSummary()" placeholder="e.g. 20 Points" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-2.5 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Generate CTA Button -->
-                        <div class="flex items-center space-x-3">
-                            <button onclick="generateWorksheet()" class="flex-1 theme-primary-btn text-white font-bold text-base py-4 rounded-2xl flex items-center justify-center space-x-2.5 shadow-md hover:shadow-lg transition transform active:scale-95">
-                                <i class="fas fa-magic text-lg"></i>
+                        <!-- Generate Action Row -->
+                        <div class="flex items-center space-x-3 pt-2">
+                            <button onclick="generateWorksheet()" class="flex-1 theme-primary-btn text-white font-bold text-sm sm:text-base py-4 px-6 rounded-2xl flex items-center justify-center space-x-2.5 shadow-md hover:shadow-lg transition transform active:scale-95">
+                                <i class="fas fa-wand-magic-sparkles text-lg"></i>
                                 <span>Generate A4 Worksheet</span>
                             </button>
-                            <button type="button" onclick="resetStudioDefaults()" title="Reset to Defaults" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition active:scale-95">
-                                <i class="fas fa-redo-alt"></i>
+                            <button type="button" onclick="resetStudioDefaults()" title="Reset to Defaults" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition active:scale-95 border border-gray-200 dark:border-slate-700">
+                                <i class="fas fa-rotate-left"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Right Information & Summary Column (4 cols) -->
-                    <div class="lg:col-span-4 space-y-4">
-                        <!-- Live A4 Spec Sheet Summary Card -->
-                        <div class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-3">
+                    <!-- Right Column (5 cols) - Interactive Live Mini A4 Preview -->
+                    <div class="lg:col-span-5 xl:col-span-4 space-y-4">
+                        
+                        <!-- Live Mini A4 Paper Draft Card -->
+                        <div class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4">
                             <div class="flex items-center justify-between pb-2 border-b border-gray-100 dark:border-slate-800">
                                 <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center">
-                                    <i class="fas fa-clipboard-check text-emerald-500 mr-1.5"></i>Live Sheet Summary
+                                    <i class="fas fa-eye mr-1.5"></i>Live A4 Paper Preview
                                 </span>
-                                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">A4 Ready</span>
+                                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">1 Page Draft</span>
                             </div>
 
-                            <div class="space-y-2.5 text-xs text-gray-600 dark:text-slate-300">
+                            <!-- Miniature A4 Sheet Canvas -->
+                            <div id="mini-a4-preview-canvas" class="w-full bg-slate-50 dark:bg-slate-950 p-4 rounded-xl border border-dashed border-gray-300 dark:border-slate-700 space-y-3 font-sans transition-all text-[11px]">
+                                <!-- Mini School Header -->
+                                <div class="text-center pb-2 border-b border-gray-200 dark:border-slate-800 space-y-0.5">
+                                    <div id="preview-mini-school" class="font-extrabold text-xs text-gray-800 dark:text-slate-200 tracking-wide uppercase">Academy of Language & Grammar</div>
+                                    <div id="preview-mini-title" class="font-black text-sm theme-accent-color truncate">Middle School Grammar Mastery</div>
+                                    <div id="preview-mini-meta" class="text-[10px] text-gray-500 dark:text-slate-400 flex justify-between px-1 pt-1">
+                                        <span>Student: ____________</span>
+                                        <span>Score: 20 Pts</span>
+                                    </div>
+                                </div>
+
+                                <!-- Mini Dynamic Section Blocks -->
+                                <div id="preview-mini-sections" class="space-y-2">
+                                    <div id="preview-mini-sec-a" class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 space-y-1">
+                                        <div class="font-bold text-[10px] text-indigo-600 dark:text-indigo-400 flex justify-between">
+                                            <span>SEC A: FILL IN BLANKS</span>
+                                            <span>10 Pts</span>
+                                        </div>
+                                        <div class="h-1.5 w-3/4 bg-gray-200 dark:bg-slate-800 rounded"></div>
+                                        <div class="h-1.5 w-1/2 bg-gray-200 dark:bg-slate-800 rounded"></div>
+                                    </div>
+
+                                    <div id="preview-mini-sec-b" class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 space-y-1">
+                                        <div class="font-bold text-[10px] text-indigo-600 dark:text-indigo-400 flex justify-between">
+                                            <span>SEC B: MATCH TERMS</span>
+                                            <span>5 Pts</span>
+                                        </div>
+                                        <div class="h-1.5 w-5/6 bg-gray-200 dark:bg-slate-800 rounded"></div>
+                                    </div>
+
+                                    <div id="preview-mini-sec-c" class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 space-y-1">
+                                        <div class="font-bold text-[10px] text-indigo-600 dark:text-indigo-400 flex justify-between">
+                                            <span>SEC C: ERROR CORRECTION</span>
+                                            <span>6 Pts</span>
+                                        </div>
+                                        <div class="h-1.5 w-2/3 bg-gray-200 dark:bg-slate-800 rounded"></div>
+                                    </div>
+
+                                    <div id="preview-mini-sec-d" class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 space-y-1">
+                                        <div class="font-bold text-[10px] text-indigo-600 dark:text-indigo-400 flex justify-between">
+                                            <span>SEC D: RULED ESSAY</span>
+                                            <span>5 Pts</span>
+                                        </div>
+                                        <div class="h-1.5 w-full bg-gray-200 dark:bg-slate-800 rounded"></div>
+                                        <div class="h-1.5 w-4/5 bg-gray-200 dark:bg-slate-800 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Live Sheet Metadata Summary -->
+                            <div class="space-y-2 text-xs text-gray-600 dark:text-slate-300 pt-1">
                                 <div class="flex items-center justify-between">
                                     <span class="text-gray-400 dark:text-slate-500">Target Grade:</span>
                                     <span id="summary-grade" class="font-bold text-gray-800 dark:text-slate-200">Middle School</span>
@@ -1165,13 +1228,13 @@
                             </div>
                         </div>
 
-                        <!-- Instant 1-Click Generation Box -->
+                        <!-- 1-Click Fast Generation Box -->
                         <div class="p-5 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-900 dark:to-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900/60 space-y-2.5">
                             <div class="flex items-center space-x-2 text-xs font-bold text-indigo-900 dark:text-indigo-200">
                                 <i class="fas fa-bolt text-amber-500"></i>
-                                <span>1-Click Fast Generation</span>
+                                <span>1-Click Starter Presets</span>
                             </div>
-                            <p class="text-xs text-indigo-700/80 dark:text-slate-400">Instantly launch popular standard lesson worksheets:</p>
+                            <p class="text-xs text-indigo-700/80 dark:text-slate-400">Instantly launch popular standard classroom worksheets:</p>
                             <div class="space-y-1.5 pt-1">
                                 <button type="button" onclick="generateWorksheet('Present Perfect vs Past Simple', 'Middle School')" class="w-full text-left p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-xs font-semibold text-gray-800 dark:text-slate-200 border border-indigo-100 dark:border-slate-700 flex items-center justify-between transition group">
                                     <span class="flex items-center">
@@ -1197,15 +1260,6 @@
                             </div>
                         </div>
 
-                        <!-- Printing Pro-Tip Card -->
-                        <div class="p-5 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-800 space-y-2">
-                            <span class="text-xs font-bold text-gray-700 dark:text-slate-300 flex items-center">
-                                <i class="fas fa-lightbulb text-amber-500 mr-1.5"></i>Teacher Pro-Tip
-                            </span>
-                            <p class="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
-                                Use the <strong>Print Preview</strong> screen to toggle teacher answer keys on or off before handing sheets to students.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -2284,6 +2338,10 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
             const gradeEl = document.getElementById('difficulty-select');
             const layoutEl = document.getElementById('layout-select');
             const themeEl = document.getElementById('worksheet-theme-select');
+            const topicEl = document.getElementById('topic-input');
+            const schoolEl = document.getElementById('custom-school');
+            const teacherEl = document.getElementById('custom-teacher');
+            const pointsEl = document.getElementById('custom-points');
             
             const summaryGrade = document.getElementById('summary-grade');
             const summaryLayout = document.getElementById('summary-layout');
@@ -2295,16 +2353,48 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
             
             // Count active checked sections
             let checkedCount = 0;
-            if (document.getElementById('sec-fill')?.checked) checkedCount++;
-            if (document.getElementById('sec-match')?.checked) checkedCount++;
-            if (document.getElementById('sec-edit')?.checked) checkedCount++;
-            if (document.getElementById('sec-write')?.checked) checkedCount++;
+            const fillChecked = document.getElementById('sec-fill')?.checked;
+            const matchChecked = document.getElementById('sec-match')?.checked;
+            const editChecked = document.getElementById('sec-edit')?.checked;
+            const writeChecked = document.getElementById('sec-write')?.checked;
+
+            if (fillChecked) checkedCount++;
+            if (matchChecked) checkedCount++;
+            if (editChecked) checkedCount++;
+            if (writeChecked) checkedCount++;
             if (summarySections) summarySections.innerText = `${checkedCount} Section${checkedCount !== 1 ? 's' : ''}`;
 
             if (summaryTheme && themeEl) {
                 const tVal = themeEl.value;
                 summaryTheme.innerText = tVal === 'app' ? 'Workspace Theme' : (GEM_THEMES[tVal]?.name || 'Theme');
             }
+
+            // Sync Mini A4 Live Paper Preview
+            const miniSchool = document.getElementById('preview-mini-school');
+            const miniTitle = document.getElementById('preview-mini-title');
+            const miniMeta = document.getElementById('preview-mini-meta');
+            const miniSecA = document.getElementById('preview-mini-sec-a');
+            const miniSecB = document.getElementById('preview-mini-sec-b');
+            const miniSecC = document.getElementById('preview-mini-sec-c');
+            const miniSecD = document.getElementById('preview-mini-sec-d');
+
+            if (miniSchool) {
+                miniSchool.innerText = schoolEl && schoolEl.value.trim() ? schoolEl.value.trim() : 'Academy of Language & Grammar';
+            }
+            if (miniTitle) {
+                const gradeVal = gradeEl ? gradeEl.value : 'Middle School';
+                miniTitle.innerText = topicEl && topicEl.value.trim() ? topicEl.value.trim() : `${gradeVal} Grammar Mastery`;
+            }
+            if (miniMeta) {
+                const teacherVal = teacherEl && teacherEl.value.trim() ? ` • ${teacherEl.value.trim()}` : '';
+                const pointsVal = pointsEl && pointsEl.value.trim() ? pointsEl.value.trim() : '20 Pts';
+                miniMeta.innerHTML = `<span>Student: ________${teacherVal}</span><span>Score: ${pointsVal}</span>`;
+            }
+
+            if (miniSecA) miniSecA.style.display = fillChecked ? 'block' : 'none';
+            if (miniSecB) miniSecB.style.display = matchChecked ? 'block' : 'none';
+            if (miniSecC) miniSecC.style.display = editChecked ? 'block' : 'none';
+            if (miniSecD) miniSecD.style.display = writeChecked ? 'block' : 'none';
         }
 
         function clearTopicInput() {
