@@ -233,13 +233,23 @@
         <!-- 3. VIEWER VIEW -->
         <section id="view-viewer" class="view-section p-4 md:p-8 space-y-6 flex-1 overflow-y-auto">
             <div class="flex justify-between items-start">
-                <div>
-                    <h2 id="viewer-title" class="text-2xl font-bold text-gray-800 dark:text-slate-100">Worksheet Title</h2>
-                    <p id="viewer-difficulty" class="text-sm text-gray-500 dark:text-slate-400">Difficulty</p>
+                <div class="flex items-center space-x-3">
+                    <button onclick="navigate('dashboard')" title="Back to Dashboard" class="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition active:scale-95">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h2 id="viewer-title" class="text-2xl font-bold text-gray-800 dark:text-slate-100">Worksheet Title</h2>
+                        <p id="viewer-difficulty" class="text-sm text-gray-500 dark:text-slate-400">Difficulty</p>
+                    </div>
                 </div>
-                <button onclick="window.print()" class="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 p-3 rounded-full shadow-sm hover:bg-indigo-200 dark:hover:bg-indigo-800 transition">
-                    <i class="fas fa-print"></i>
-                </button>
+                <div class="flex items-center space-x-2">
+                    <button id="viewer-share-btn" onclick="shareWorksheet()" title="Share Worksheet" class="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 p-3 rounded-full shadow-sm hover:bg-indigo-200 dark:hover:bg-indigo-800 transition active:scale-95">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button onclick="window.print()" title="Print Worksheet" class="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 p-3 rounded-full shadow-sm hover:bg-indigo-200 dark:hover:bg-indigo-800 transition active:scale-95">
+                        <i class="fas fa-print"></i>
+                    </button>
+                </div>
             </div>
 
             <hr class="border-gray-200 dark:border-slate-800">
@@ -298,7 +308,7 @@
                 <!-- Chat Input -->
                 <div class="p-4 sm:p-6 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border-t border-white/60 dark:border-slate-700 pb-safe">
                     <div class="flex items-center space-x-3">
-                        <input type="text" id="chat-input" placeholder="Ask your tutor..." class="flex-1 bg-white/70 dark:bg-slate-800/80 backdrop-blur-sm border border-white/60 dark:border-slate-700 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 text-lg">
+                        <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Ask your tutor..." class="flex-1 bg-white/70 dark:bg-slate-800/80 backdrop-blur-sm border border-white/60 dark:border-slate-700 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 text-lg">
                         <button onclick="sendChat()" class="bg-indigo-600 hover:bg-indigo-700 text-white h-14 w-14 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition flex-shrink-0">
                             <i class="fas fa-paper-plane text-xl"></i>
                         </button>
@@ -516,6 +526,37 @@
                 document.getElementById('answer-container').classList.remove('hidden');
             } else {
                 document.getElementById('answer-container').classList.add('hidden');
+            }
+        }
+
+        // Web Share API implementation
+        async function shareWorksheet() {
+            const title = document.getElementById('viewer-title').innerText || 'Worksheet';
+            const difficulty = document.getElementById('viewer-difficulty').innerText || '';
+            const content = document.getElementById('viewer-content').innerText || '';
+            const shareText = `${title} (${difficulty})\n\n${content}`;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: title,
+                        text: shareText
+                    });
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        console.error('Error sharing:', err);
+                    }
+                }
+            } else if (navigator.clipboard) {
+                try {
+                    await navigator.clipboard.writeText(shareText);
+                    alert('Worksheet copied to clipboard! (Web Share API not supported on this browser)');
+                } catch (err) {
+                    console.error('Clipboard copy failed:', err);
+                    alert('Sharing is not supported on this browser.');
+                }
+            } else {
+                alert('Sharing is not supported on this browser.');
             }
         }
 
