@@ -1156,59 +1156,140 @@
                                 <div>
                                     <label for="layout-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Worksheet Architecture Style:</label>
                                     <select id="layout-select" onchange="updateStudioLiveSummary()" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
-                                        <option value="Standard Practice" selected>Classroom Practice Drill</option>
-                                        <option value="Reading & Grammar">Reading Passage + Exercises</option>
+                                        <option value="Complete Pedagogical" selected>Complete Pedagogical (Reading + Language + Writing)</option>
+                                        <option value="Reading & Comprehension">Reading Comprehension & Analysis</option>
+                                        <option value="Language Mastery">Language & Grammar Drills</option>
+                                        <option value="Writing Studio">Guided Writing (Article / Email / Blog)</option>
+                                        <option value="Standard Practice">Classroom Practice Drill</option>
                                         <option value="Assessment Test">Pop Quiz & Assessment</option>
-                                        <option value="Vocabulary & Writing">Vocabulary & Ruled Writing</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label for="worksheet-theme-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Printable Gem Accent Color:</label>
                                     <select id="worksheet-theme-select" onchange="updateStudioLiveSummary()" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
                                         <option value="app" selected>Match Workspace Theme</option>
-                                        <option value="amethyst">Amethyst (Purple)</option>
-                                        <option value="ruby">Ruby (Deep Red)</option>
-                                        <option value="emerald">Emerald (Vibrant Green)</option>
-                                        <option value="topaz">Topaz (Orange)</option>
-                                        <option value="diamond">Diamond / Pearl (Sky Cyan)</option>
-                                        <option value="obsidian">Slate / Obsidian</option>
+                                        <option value="amethyst">Amethyst (Royal Purple)</option>
+                                        <option value="emerald">Emerald (Forest Green)</option>
+                                        <option value="ruby">Ruby (Crimson Red)</option>
+                                        <option value="topaz">Topaz (Tangerine Orange)</option>
+                                        <option value="diamond">Diamond (Cobalt & Cyan)</option>
                                         <option value="citrine">Citrine (Golden Yellow)</option>
+                                        <option value="obsidian">Obsidian (Slate Minimalist)</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="space-y-2 pt-1">
-                                <label class="block font-semibold text-gray-700 dark:text-slate-300 text-xs">Active Exercise Sections:</label>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                        <input type="checkbox" id="sec-fill" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                        <div class="ml-3">
-                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section A: Fill in Blanks & Word Box</span>
-                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Contextual sentence drills with word bank</span>
-                                        </div>
-                                    </label>
+                            <!-- Writing Format Selector -->
+                            <div class="p-3.5 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-gray-200 dark:border-slate-700">
+                                <label for="writing-format-select" class="block font-bold text-gray-800 dark:text-slate-200 mb-1 text-xs">
+                                    <i class="fas fa-pen-nib text-indigo-500 mr-1.5"></i>Writing Production Format:
+                                </label>
+                                <select id="writing-format-select" onchange="updateStudioLiveSummary()" class="w-full bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg p-2 text-xs font-medium text-gray-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <option value="Article" selected>Formal Article (Headline + Body + Conclusion)</option>
+                                    <option value="Email">Formal / Informal Email (To, Subject, Salutation, Sign-off)</option>
+                                    <option value="Facebook Post">Social Media / Facebook Post (Tags, Interactive Call-to-action)</option>
+                                    <option value="Blog Post">Blog Post (Catchy Title, Key Takeaways, Comments prompt)</option>
+                                </select>
+                            </div>
 
-                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                        <input type="checkbox" id="sec-match" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                        <div class="ml-3">
-                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section B: Matching Columns</span>
-                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Word pairs, definitions, and synonyms</span>
-                                        </div>
-                                    </label>
+                            <div class="space-y-3 pt-1">
+                                <div class="flex items-center justify-between">
+                                    <label class="block font-semibold text-gray-700 dark:text-slate-300 text-xs">Active Pedagogical Sections:</label>
+                                    <span class="text-[11px] text-gray-400 dark:text-slate-500">Toggle sections as needed</span>
+                                </div>
 
-                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                        <input type="checkbox" id="sec-edit" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                        <div class="ml-3">
-                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section C: Error Correction</span>
-                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Critical proofreading and sentence rewrite</span>
-                                        </div>
-                                    </label>
+                                <!-- PART 1: READING COMPREHENSION -->
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 space-y-2">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider flex items-center">
+                                            <i class="fas fa-book-reader mr-1.5"></i> Part 1: Reading Comprehension
+                                        </span>
+                                    </div>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-read-wh" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">WH- Questions</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Direct who, where, when, why inquiries</span>
+                                            </div>
+                                        </label>
 
-                                    <label class="flex items-center p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
-                                        <input type="checkbox" id="sec-write" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
-                                        <div class="ml-3">
-                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Section D: Ruled Creative Writing</span>
-                                            <span class="text-[11px] text-gray-500 dark:text-slate-400">Guided prompt with handwriting ruled lines</span>
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-read-tf" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">True / False Statements</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Checkbox validation grids</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-read-ref" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Pronoun / Reference Questions</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Identify what underlined pronouns refer to</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-read-opinion" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Personal Opinion Question</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Critical reflection with guided justification</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- PART 2: LANGUAGE & GRAMMAR -->
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 space-y-2">
+                                    <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center">
+                                        <i class="fas fa-spell-check mr-1.5"></i> Part 2: Language & Grammar
+                                    </span>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-lang-fill" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Fill in the Blanks</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Contextual word bank passage/drills</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-lang-tense" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Right Tense or Word Form</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Supply correct form of root verbs/nouns</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-lang-match" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Match Sentence Parts</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Connect clause halves (Column A to B)</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                            <input type="checkbox" id="sec-lang-reorder" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                            <div class="ml-2.5">
+                                                <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Reorder Words for Sentences</span>
+                                                <span class="text-[10px] text-gray-500 dark:text-slate-400">Scrambled word syntax reorganization</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- PART 3: WRITING PRODUCTION -->
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-gray-200 dark:border-slate-700 space-y-2">
+                                    <span class="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center">
+                                        <i class="fas fa-feather-alt mr-1.5"></i> Part 3: Writing Production
+                                    </span>
+                                    <label class="flex items-center p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 cursor-pointer hover:border-indigo-500 transition">
+                                        <input type="checkbox" id="sec-writing-prod" checked onchange="updateStudioLiveSummary()" class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                                        <div class="ml-2.5">
+                                            <span class="text-xs font-bold text-gray-800 dark:text-slate-200 block">Guided Formatted Writing Task</span>
+                                            <span class="text-[10px] text-gray-500 dark:text-slate-400">Production task with ruled lines formatted as Article, Email, Facebook Post, or Blog</span>
                                         </div>
                                     </label>
                                 </div>
@@ -2871,19 +2952,34 @@ ${ws.answerKey}
         async function generateWorksheet(customTopic, customDiff) {
             const diff = customDiff || (document.getElementById('difficulty-select') ? document.getElementById('difficulty-select').value : 'Middle School');
             const rawTopic = customTopic || (document.getElementById('topic-input') ? document.getElementById('topic-input').value.trim() : '');
-            const topic = rawTopic || (diff + " Grammar Mastery");
-            const layout = document.getElementById('layout-select') ? document.getElementById('layout-select').value : 'Standard Practice';
+            const topic = rawTopic || (diff + " English Mastery");
+            const layout = document.getElementById('layout-select') ? document.getElementById('layout-select').value : 'Complete Pedagogical';
             const themeSelect = document.getElementById('worksheet-theme-select');
             const chosenTheme = (themeSelect && themeSelect.value !== 'app') ? themeSelect.value : currentTheme;
+            const writingFormat = document.getElementById('writing-format-select') ? document.getElementById('writing-format-select').value : 'Article';
             
             const customSchool = document.getElementById('custom-school')?.value.trim() || '';
             const customTeacher = document.getElementById('custom-teacher')?.value.trim() || '';
             const customPoints = document.getElementById('custom-points')?.value.trim() || '';
 
-            const incFill = document.getElementById('sec-fill') ? document.getElementById('sec-fill').checked : true;
-            const incMatch = document.getElementById('sec-match') ? document.getElementById('sec-match').checked : true;
-            const incEdit = document.getElementById('sec-edit') ? document.getElementById('sec-edit').checked : true;
-            const incWrite = document.getElementById('sec-write') ? document.getElementById('sec-write').checked : true;
+            // Section selection flags
+            const incReadWH = document.getElementById('sec-read-wh') ? document.getElementById('sec-read-wh').checked : true;
+            const incReadTF = document.getElementById('sec-read-tf') ? document.getElementById('sec-read-tf').checked : true;
+            const incReadRef = document.getElementById('sec-read-ref') ? document.getElementById('sec-read-ref').checked : true;
+            const incReadOpinion = document.getElementById('sec-read-opinion') ? document.getElementById('sec-read-opinion').checked : true;
+
+            const incLangFill = document.getElementById('sec-lang-fill') ? document.getElementById('sec-lang-fill').checked : true;
+            const incLangTense = document.getElementById('sec-lang-tense') ? document.getElementById('sec-lang-tense').checked : true;
+            const incLangMatch = document.getElementById('sec-lang-match') ? document.getElementById('sec-lang-match').checked : true;
+            const incLangReorder = document.getElementById('sec-lang-reorder') ? document.getElementById('sec-lang-reorder').checked : true;
+
+            const incWritingProd = document.getElementById('sec-writing-prod') ? document.getElementById('sec-writing-prod').checked : true;
+
+            const sectionOptions = {
+                incReadWH, incReadTF, incReadRef, incReadOpinion,
+                incLangFill, incLangTense, incLangMatch, incLangReorder,
+                incWritingProd, writingFormat
+            };
 
             const genForm = document.getElementById('gen-form');
             const genLoading = document.getElementById('gen-loading');
@@ -2920,7 +3016,7 @@ ${ws.answerKey}
                 console.warn("No valid Gemini API key found. Generating dynamic topic-aligned worksheet locally.");
                 if (genLoadingText) genLoadingText.innerText = `Generating customized exercises for "${topic}"...`;
                 setTimeout(() => {
-                    const ws = generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, incFill, incMatch, incEdit, incWrite);
+                    const ws = generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, sectionOptions);
                     worksheets.unshift(ws);
                     localStorage.setItem('worksheets', JSON.stringify(worksheets));
 
@@ -2942,17 +3038,39 @@ ${ws.answerKey}
                 if (genLoadingText) genLoadingText.innerText = `Designing curriculum & exercises on "${topic}" for ${diff}...`;
 
                 const sectionsPrompt = [];
-                if (incFill) {
-                    sectionsPrompt.push(`- SECTION A: Fill in the Blanks / Sentence Completion (Word Bank included): Provide 5 to 8 numbered sentences strictly on the topic "${topic}". Include a bracketed Word Bank at the top of the section like: "[ word1 • word2 • word3 • word4 • word5 ]"`);
+                sectionsPrompt.push(`I. READING COMPREHENSION:
+- Include an engaging reading passage (120–180 words) strictly about "${topic}".`);
+                if (incReadWH) {
+                    sectionsPrompt.push(`  * WH- Questions: 3 to 4 questions (Who, Where, Why, How, What) based on the text.`);
                 }
-                if (incMatch) {
-                    sectionsPrompt.push(`- SECTION B: Matching Columns / Synonym & Term Connections: Provide 5 numbered terms/concepts on the left and matching capital-letter definitions/answers (A, B, C, D, E) on the right, all strictly focused on "${topic}".`);
+                if (incReadTF) {
+                    sectionsPrompt.push(`  * True or False: 3 to 4 statements with [ True ] / [ False ] checkboxes.`);
                 }
-                if (incEdit) {
-                    sectionsPrompt.push(`- SECTION C: Critical Error Correction & Sentence Rewriting: Provide 3 to 4 sentences containing common grammatical/usage errors specific to "${topic}", with a "Correction: _____________________" line beneath each.`);
+                if (incReadRef) {
+                    sectionsPrompt.push(`  * Reference Questions: 2 questions asking what specific underlined pronouns in the text refer to.`);
                 }
-                if (incWrite) {
-                    sectionsPrompt.push(`- SECTION D: Guided Ruled Writing & Application: Provide an engaging writing prompt or scenario directly addressing "${topic}", followed by multiple ruled handwriting lines ("____________________________________________________").`);
+                if (incReadOpinion) {
+                    sectionsPrompt.push(`  * Personal Opinion Question: 1 critical thinking question asking the student's personal view with a sentence starter.`);
+                }
+
+                sectionsPrompt.push(`II. LANGUAGE & GRAMMAR:`);
+                if (incLangFill) {
+                    sectionsPrompt.push(`  * Fill in the blanks: 4 to 5 contextual sentences with a bracketed Word Bank at the top [ word1 • word2 • word3 • word4 ].`);
+                }
+                if (incLangTense) {
+                    sectionsPrompt.push(`  * Put words in the right tense or form: 4 sentences with root words/verbs in parentheses, e.g. "She ________ (drive) to school yesterday" or "His ________ (succeed) was inspiring."`);
+                }
+                if (incLangMatch) {
+                    sectionsPrompt.push(`  * Match sentence parts: 4 to 5 sentence halves in Column A (1, 2, 3, 4) to be matched with Column B (A, B, C, D) to form coherent sentences.`);
+                }
+                if (incLangReorder) {
+                    sectionsPrompt.push(`  * Reordering words to get sentences: 2 to 3 scrambled sentence word groups separated by slashes (e.g., "always / breakfast / she / eats / healthy / a") with an underline for the correct sentence.`);
+                }
+
+                if (incWritingProd) {
+                    sectionsPrompt.push(`III. WRITING PRODUCTION:
+  * Guided Writing Task formatted as a: "${writingFormat}" (Topic: "${topic}").
+  * Include a clear scenario, target word count (50–80 words), formatting guidelines (e.g. Subject line for Email, Headline for Article, Tags for Facebook Post), and 4 to 5 ruled lines ("____________________________________________________").`);
                 }
 
                 const promptText = `You are a master curriculum designer and educational author.
@@ -2962,19 +3080,21 @@ TARGET SPECIFICATIONS:
 - Topic / Learning Focus: "${topic}"
 - Grade Level / CEFR: "${diff}"
 - Worksheet Style: "${layout}"
-- Active Sections to Include:
+- Writing Production Format: "${writingFormat}"
+
+PEDAGOGICAL STRUCTURE TO GENERATE:
 ${sectionsPrompt.join('\n')}
 
 STRICT PEDAGOGICAL RULES (CRITICAL):
-1. MANDATORY: Every single question, word box item, matching pair, error sentence, and writing prompt MUST be 100% directly about "${topic}". Never substitute generic or off-topic placeholder questions.
+1. MANDATORY: Every single question, reading passage, word box item, matching pair, and writing prompt MUST be 100% directly about "${topic}". Never substitute generic or off-topic placeholder questions.
 2. Ensure vocabulary, tone, and grammar difficulty strictly reflect the "${diff}" level.
-3. Label each section clearly with standard capitalized headers (e.g. "SECTION A: VOCABULARY & SENTENCE COMPLETION (10 POINTS)").
+3. Label each section clearly with standard capitalized headers (e.g. "PART 1: READING COMPREHENSION (10 POINTS)", "SECTION A: WH-QUESTIONS", "PART 2: LANGUAGE & GRAMMAR (10 POINTS)", "PART 3: GUIDED WRITING (${writingFormat.toUpperCase()}) (5 POINTS)").
 4. Provide a thorough, step-by-step ANSWER KEY that accurately corresponds to every single question created.
 
 Return your response strictly as a single JSON object (no markdown wrapping) conforming to this schema:
 {
   "title": "${topic.replace(/"/g, '')}",
-  "content": "The complete worksheet text containing all requested sections, instructions, and double line breaks.",
+  "content": "The complete worksheet text containing all requested reading passages, sections, instructions, and double line breaks.",
   "answerKey": "Complete question-by-question answer key and scoring criteria."
 }`;
 
@@ -3035,7 +3155,7 @@ Return your response strictly as a single JSON object (no markdown wrapping) con
                     illustrationUrl: illustrationUrl,
                     customSchool: customSchool,
                     customTeacher: customTeacher,
-                    customPoints: customPoints
+                    customPoints: customPoints || '30 Points'
                 };
 
                 worksheets.unshift(ws);
@@ -3056,7 +3176,7 @@ Return your response strictly as a single JSON object (no markdown wrapping) con
                 console.error("Gemini API call encountered an issue. Using topic-aware generation engine:", error);
                 if (genLoadingText) genLoadingText.innerText = `Assembling customized worksheet for "${topic}"...`;
                 setTimeout(() => {
-                    const ws = generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, incFill, incMatch, incEdit, incWrite);
+                    const ws = generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, sectionOptions);
                     worksheets.unshift(ws);
                     localStorage.setItem('worksheets', JSON.stringify(worksheets));
 
@@ -3073,359 +3193,248 @@ Return your response strictly as a single JSON object (no markdown wrapping) con
             }
         }
 
-        // Topic-Aware Dynamic Worksheet Generator Engine (Ensures 100% prompt matching in all environments)
-        function generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, incFill, incMatch, incEdit, incWrite) {
-            const cleanTopic = (topic || `${diff} Grammar Practice`).trim();
-            const topicWords = cleanTopic.split(/\s+/).filter(w => w.length > 2);
-            const mainKeyword = topicWords.length > 0 ? topicWords[0] : 'Language';
-            const secondKeyword = topicWords.length > 1 ? topicWords[1] : 'Practice';
-            
+        // Topic-Aware Dynamic Worksheet Generator Engine (Comprehensive Pedagogical Coverage)
+        function generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, options) {
+            const cleanTopic = (topic || `${diff} English Mastery`).trim();
+            const opts = (typeof options === 'object' && options !== null) ? options : {};
+            const format = opts.writingFormat || 'Article';
+
             let secBlocks = [];
             let ansBlocks = [];
 
-            // Detect grammar and vocabulary topic patterns
-            const lowerTopic = cleanTopic.toLowerCase();
-            const isPastVsPresent = lowerTopic.includes('past') || lowerTopic.includes('present') || lowerTopic.includes('perfect') || lowerTopic.includes('tense');
-            const isConditionals = lowerTopic.includes('conditional') || lowerTopic.includes('if clause');
-            const isPassive = lowerTopic.includes('passive') || lowerTopic.includes('active and passive') || lowerTopic.includes('voice');
-            const isSynonymsAntonyms = lowerTopic.includes('synonym') || lowerTopic.includes('antonym') || lowerTopic.includes('opposite');
-            const isPlurals = lowerTopic.includes('plural') || lowerTopic.includes('irregular noun') || lowerTopic.includes('singular');
-            const isReportedSpeech = lowerTopic.includes('reported speech') || lowerTopic.includes('indirect speech') || lowerTopic.includes('direct speech');
-            const isModals = lowerTopic.includes('modal') || lowerTopic.includes('auxiliary') || lowerTopic.includes('obligation') || lowerTopic.includes('deduction');
-            const isSubjectVerb = lowerTopic.includes('subject-verb') || lowerTopic.includes('agreement') || lowerTopic.includes('concord');
-            const isHomophones = lowerTopic.includes('homophone') || lowerTopic.includes('confusing') || lowerTopic.includes('affect') || lowerTopic.includes('their');
-            const isSubjunctive = lowerTopic.includes('subjunctive') || lowerTopic.includes('inversion') || lowerTopic.includes('inverted');
-            const isPunctuation = lowerTopic.includes('punctuation') || lowerTopic.includes('capitalization') || lowerTopic.includes('comma');
+            // 1. PART 1: READING COMPREHENSION
+            const readingPassage = `READING COMPREHENSION PASSAGE:
+${cleanTopic} is an essential foundation of modern communication and language learning. In today's interconnected world, students and researchers rely on clear grammatical structure, expressive vocabulary, and precise writing to exchange innovative ideas across borders.
 
-            // 1. SECTION A: Fill in the Blanks / Sentence Drills
-            if (incFill) {
-                if (isSynonymsAntonyms) {
-                    secBlocks.push(`SECTION A: CONTEXTUAL SYNONYM & VOCABULARY SELECTION (10 POINTS)
-Instructions: Read each sentence carefully and fill in the blank with the most appropriate synonym from the word box to replace the underlined concept.
+Last term, a dedicated committee of language educators conducted an empirical study in secondary schools to evaluate how daily practice impacts learner proficiency. They observed that students who read authentic passages and analyze sentence structure for fifteen minutes every day achieved remarkable gains in writing fluency, vocabulary retention, and reading comprehension speed. Furthermore, these active learners reported that mastering core language mechanics significantly increased their confidence when collaborating on digital projects and international forums. Language mastery is not merely about memorizing abstract grammatical rules; it is a vital bridge that connects diverse cultures and inspires creative problem-solving across the globe.`;
 
-[  courageous   •   delighted   •   exhausted   •   gigantic   •   furious  ]
+            let readSubSections = [readingPassage];
+            let readAnswers = [];
 
-1. After studying for the national certification exam for six hours, Marcus felt completely __________ (tired).
-2. The firefighter received a medal for her __________ (brave) actions during the flood.
-3. When the acceptance letter arrived in the mail, Clara was utterly __________ (happy).
-4. The botanical garden featured a __________ (huge) ancient oak tree in the central plaza.
-5. The chef became __________ (angry) when the dessert was accidentally dropped.`);
+            // WH- Questions
+            if (opts.incReadWH !== false) {
+                readSubSections.push(`SECTION 1: WH- COMPREHENSION QUESTIONS (4 POINTS)
+Instructions: Answer the following questions in complete sentences based on the reading passage.
 
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. exhausted (Synonym for tired)
-2. courageous (Synonym for brave)
-3. delighted (Synonym for happy)
-4. gigantic (Synonym for huge)
-5. furious (Synonym for angry)`);
+1. What role does ${cleanTopic} play in modern international communication?
+   Answer: ____________________________________________________________________________________
 
-                } else if (isPlurals) {
-                    secBlocks.push(`SECTION A: REGULAR & IRREGULAR PLURAL NOUNS (10 POINTS)
-Instructions: Complete each sentence by writing the correct plural form of the noun in parentheses in the blank.
+2. Who conducted the empirical language study in secondary schools last term?
+   Answer: ____________________________________________________________________________________
 
-[  children   •   teeth   •   leaves   •   tomatoes   •   crises  ]
+3. Why did consistent fifteen-minute daily practice improve students' writing and reading skills?
+   Answer: ____________________________________________________________________________________
 
-1. The autumn wind blew colorful __________ (leaf) across the school courtyard.
-2. All the __________ (child) participated enthusiastically in the science fair.
-3. Dentists recommend brushing your __________ (tooth) twice every day.
-4. The greenhouse produced an abundant harvest of ripe red __________ (tomato).
-5. International diplomats resolved several economic __________ (crisis) this year.`);
+4. How does language mastery act as a bridge according to the author?
+   Answer: ____________________________________________________________________________________`);
 
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. leaves (leaf → leaves)
-2. children (child → children)
-3. teeth (tooth → teeth)
-4. tomatoes (tomato → tomatoes)
-5. crises (crisis → crises)`);
-
-                } else if (isReportedSpeech) {
-                    secBlocks.push(`SECTION A: REPORTED SPEECH & TENSE BACKSHIFT DRILLS (10 POINTS)
-Instructions: Convert each direct speech statement into reported speech using the word box verbs and appropriate tense backshift.
-
-[  had finished   •   was studying   •   would attend   •   could solve   •   had seen  ]
-
-1. "I am studying for the exam," Liam said. → Liam said that he _______________________ for the exam.
-2. "We have finished the lab experiment," the students said. → The students explained that they _______________________ the lab experiment.
-3. "I will attend the conference tomorrow," Dr. Taylor stated. → Dr. Taylor stated that she _______________________ the conference the next day.
-4. "I can solve this equation," Maya asserted. → Maya asserted that she _______________________ the equation.
-5. "I saw that documentary last week," Jason mentioned. → Jason mentioned that he _______________________ that documentary the previous week.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. was studying (Present Continuous → Past Continuous)
-2. had finished (Present Perfect → Past Perfect)
-3. would attend (will → would)
-4. could solve (can → could)
-5. had seen (Past Simple → Past Perfect)`);
-
-                } else if (isHomophones) {
-                    secBlocks.push(`SECTION A: COMMONLY CONFUSED WORDS & HOMOPHONES (10 POINTS)
-Instructions: Select the correct homophone from the word bank to complete each sentence accurately.
-
-[  their   •   they're   •   there   •   effect   •   affect  ]
-
-1. The students packed __________ backpacks before heading out to the school bus.
-2. Please place the reference books over __________ on the top library shelf.
-3. The sudden drop in temperature will significantly __________ (affect / effect) the citrus crop.
-4. The positive __________ (affect / effect) of regular exercise is well documented in medical research.
-5. Look out the window; __________ (they're / their) arriving right on time for the meeting.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. their (Possessive pronoun)
-2. there (Adverb of place)
-3. affect (Verb: to influence)
-4. effect (Noun: result or impact)
-5. they're (Contraction of 'they are')`);
-
-                } else if (isSubjectVerb) {
-                    secBlocks.push(`SECTION A: SUBJECT-VERB AGREEMENT DRILLS (10 POINTS)
-Instructions: Choose the correct verb form from the word box to agree with the subject in each sentence.
-
-[  was   •   were   •   is   •   are   •   has  ]
-
-1. Neither of the two finalists __________ (is / are) available for an immediate interview.
-2. The bouquet of fresh wildflowers __________ (smell / smells) fragrant throughout the room.
-3. Either the principal or the teachers __________ (was / were) present at the workshop.
-4. Every student in the advanced language seminar __________ (has / have) submitted a paper.
-5. The statistics presented in the report __________ (is / are) reliable and peer-reviewed.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. is (Neither is singular)
-2. is / smells (Subject is 'bouquet', singular)
-3. were (Teachers is plural and closest to verb)
-4. has (Every is singular)
-5. are (Statistics in this context is plural)`);
-
-                } else if (isSubjunctive) {
-                    secBlocks.push(`SECTION A: ADVANCED SUBJUNCTIVE MOOD & INVERTED SYNTAX (10 POINTS)
-Instructions: Fill in each blank with the correct subjunctive verb form or inverted construction from the word bank.
-
-[  be   •   submit   •   Had we known   •   did the committee approve   •   were  ]
-
-1. It is imperative that every applicant __________ the portfolio prior to the deadline.
-2. The committee recommended that the proposal __________ reviewed by an independent auditor.
-3. _______________________ about the road closure, we would have selected an alternate route.
-4. Not only _______________________ the grant, but they also doubled the research stipend.
-5. If she __________ in your position, she would demand an immediate explanation.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. submit (Subjunctive base form)
-2. be (Subjunctive passive)
-3. Had we known (Third conditional inversion)
-4. did the committee approve (Negative adverbial inversion)
-5. were (Subjunctive mood for hypothetical condition)`);
-
-                } else if (isPastVsPresent) {
-                    secBlocks.push(`SECTION A: TENSE DRILLS & TIME MARKERS (10 POINTS)
-Instructions: Read each sentence focusing on ${cleanTopic}. Complete the blank with the correct form of the verb in parentheses.
-
-[  have completed   •   discovered   •   has lived   •   saw   •   have known  ]
-
-1. Dr. Harris _______________________ (live) in Cambridge since 2018.
-2. The research students _______________________ (complete) their laboratory analysis already.
-3. Yesterday evening, the astronomy club _______________________ (see) a meteorite shower.
-4. We _______________________ (know) our mentor for more than seven years.
-5. In 1928, Alexander Fleming _______________________ (discover) penicillin by accident.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. has lived (Present Perfect with 'since')
-2. have completed (Present Perfect with 'already')
-3. saw (Past Simple - yesterday)
-4. have known (Present Perfect duration)
-5. discovered (Past Simple - specific past year)`);
-
-                } else if (isConditionals) {
-                    secBlocks.push(`SECTION A: CONDITIONAL STRUCTURES & CLAUSE SYNTAX (10 POINTS)
-Instructions: Complete each conditional sentence according to rules of ${cleanTopic}.
-
-[  would travel   •   had studied   •   will succeed   •   would have arrived   •   rains  ]
-
-1. If it _______________________ (rain) tomorrow, the outdoor tournament will be postponed.
-2. If Clara had extra funding, she _______________________ (travel) across South America.
-3. If they _______________________ (study) the historical documents, they would have passed the exam.
-4. The engineer _______________________ (arrive) on time if the train had not been delayed.
-5. Provided you work diligently on ${cleanTopic}, you _______________________ (succeed) in the assessment.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. rains (First Conditional - present simple in if-clause)
-2. would travel (Second Conditional - hypothetical present)
-3. had studied (Third Conditional - past perfect condition)
-4. would have arrived (Third Conditional result)
-5. will succeed (First conditional real consequence)`);
-
-                } else if (isPassive) {
-                    secBlocks.push(`SECTION A: ACTIVE TO PASSIVE VOICE CONVERSION (10 POINTS)
-Instructions: Convert each sentence into the passive voice or supply the correct passive verb phrase.
-
-[  was designed   •   are produced   •   has been discovered   •   will be announced   •   were written  ]
-
-1. The architectural blueprint _______________________ (design) by a renowned studio in 2022.
-2. Thousands of organic components _______________________ (produce) in this facility every week.
-3. A revolutionary solution for ${cleanTopic} _______________________ (discover) recently by researchers.
-4. The national scholarship recipients _______________________ (announce) by the dean next Monday.
-5. These influential historical essays _______________________ (write) during the nineteenth century.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. was designed (Past Simple Passive)
-2. are produced (Present Simple Passive)
-3. has been discovered (Present Perfect Passive)
-4. will be announced (Future Simple Passive)
-5. were written (Past Simple Passive Plural)`);
-
-                } else {
-                    // Custom Topic-Tailored Word Bank and Sentences
-                    secBlocks.push(`SECTION A: TOPICAL DRILLS & SENTENCE COMPLETION (10 POINTS)
-Instructions: Read each sentence regarding "${cleanTopic}" carefully. Choose the most fitting term from the word bank to fill in the blank.
-
-[  ${cleanTopic}   •   fundamental   •   application   •   structure   •   essential  ]
-
-1. A comprehensive understanding of _______________________ is fundamental to mastering this unit.
-2. In formal writing, analyzing the grammatical _______________________ ensures precision and clarity.
-3. The instructor demonstrated how practical _______________________ strengthens comprehension.
-4. Mastering key terminology is _______________________ for achieving high academic performance.
-5. The study of ${mainKeyword} provides a _______________________ foundation for critical language skills.`);
-
-                    ansBlocks.push(`SECTION A ANSWERS (${cleanTopic}):
-1. ${cleanTopic}
-2. structure
-3. application
-4. essential
-5. fundamental`);
-                }
+                readAnswers.push(`SECTION 1 (WH- QUESTIONS) ANSWERS:
+1. It is an essential foundation that enables students and researchers to exchange ideas with clarity and precision.
+2. A dedicated committee of language educators conducted the empirical study.
+3. Because reading authentic passages and analyzing sentence structures helps build writing fluency and comprehension speed.
+4. It connects diverse cultures and inspires creative problem-solving across the globe.`);
             }
 
-            // 2. SECTION B: Matching Columns
-            if (incMatch) {
-                if (isSynonymsAntonyms) {
-                    secBlocks.push(`SECTION B: ANTONYM PAIRS MATCHING (5 POINTS)
-Match each word on the left with its precise antonym (opposite) on the right:
+            // True or False Statements
+            if (opts.incReadTF !== false) {
+                readSubSections.push(`SECTION 2: TRUE OR FALSE STATEMENTS (3 POINTS)
+Instructions: Read each statement carefully and decide whether it is True or False according to the text.
 
-   1. Ancient            [   ]     A. Modern
-   2. Flexible           [   ]     B. Rigid
-   3. Abundant           [   ]     C. Scarce
-   4. Hostile            [   ]     D. Friendly
-   5. Victory            [   ]     E. Defeat`);
+1. Daily fifteen-minute language practice helped students achieve remarkable gains in fluency.  [ True ]    [ False ]
+2. The study concluded that language learning is strictly about memorizing abstract rules.       [ True ]    [ False ]
+3. Active learners reported increased confidence during collaborative digital projects.          [ True ]    [ False ]`);
 
-                    ansBlocks.push(`SECTION B ANSWERS (${cleanTopic}):
-1 - A (Ancient ↔ Modern)
-2 - B (Flexible ↔ Rigid)
-3 - C (Abundant ↔ Scarce)
-4 - D (Hostile ↔ Friendly)
-5 - E (Victory ↔ Defeat)`);
-
-                } else if (isPlurals) {
-                    secBlocks.push(`SECTION B: IRREGULAR PLURAL NOUN CONNECTIONS (5 POINTS)
-Match the singular noun on the left to its irregular plural form on the right:
-
-   1. Goose              [   ]     A. Geese
-   2. Mouse              [   ]     B. Mice
-   3. Criterion          [   ]     C. Criteria
-   4. Cactus             [   ]     D. Cacti
-   5. Phenomenon         [   ]     E. Phenomena`);
-
-                    ansBlocks.push(`SECTION B ANSWERS (${cleanTopic}):
-1 - A (Goose → Geese)
-2 - B (Mouse → Mice)
-3 - C (Criterion → Criteria)
-4 - D (Cactus → Cacti)
-5 - E (Phenomenon → Phenomena)`);
-
-                } else if (isPastVsPresent) {
-                    secBlocks.push(`SECTION B: TIME MARKERS & TENSE USAGE (5 POINTS)
-Match each time expression on the left with its appropriate grammatical usage on the right:
-
-   1. "Since last Monday"    [   ]     A. Finished event at a specific past point
-   2. "Yesterday morning"    [   ]     B. Action starting in past continuing to now
-   3. "Have you ever..."     [   ]     C. Unspecified life experience inquiry
-   4. "In 1999"              [   ]     D. Definite historical date in Past Simple
-   5. "Just now / Already"   [   ]     E. Action completed immediately before present`);
-
-                    ansBlocks.push(`SECTION B ANSWERS (${cleanTopic}):
-1 - B (since denotes continuation from past)
-2 - A (yesterday denotes specific past moment)
-3 - C (ever inquires about lifetime experience)
-4 - D (in 1999 marks historical completion)
-5 - E (just/already marks recent completion)`);
-
-                } else {
-                    secBlocks.push(`SECTION B: CORE TERMINOLOGY & CONCEPTS (5 POINTS)
-Connect each key term relating to "${cleanTopic}" on the left to its accurate definition on the right:
-
-   1. ${cleanTopic}          [   ]     A. The core concept and learning goal of this lesson
-   2. Structural Mechanics   [   ]     B. The grammatical rules and syntax guidelines
-   3. Contextual Nuance      [   ]     C. Subtle distinctions in meaning and tone
-   4. Practical Application  [   ]     D. Using concepts effectively in real-world writing
-   5. Critical Review        [   ]     E. Evaluating accuracy and correcting errors`);
-
-                    ansBlocks.push(`SECTION B ANSWERS (${cleanTopic}):
-1 - A (${cleanTopic} = Core learning focus)
-2 - B (Structural Mechanics = Grammatical rules)
-3 - C (Contextual Nuance = Meaning distinctions)
-4 - D (Practical Application = Real-world use)
-5 - E (Critical Review = Error evaluation)`);
-                }
+                readAnswers.push(`SECTION 2 (TRUE OR FALSE) ANSWERS:
+1. True (Text: "...achieved remarkable gains in writing fluency, vocabulary retention...")
+2. False (Text: "...is not merely about memorizing abstract grammatical rules")
+3. True (Text: "...significantly increased their confidence when collaborating on digital projects")`);
             }
 
-            // 3. SECTION C: Critical Error Correction
-            if (incEdit) {
-                if (isPastVsPresent) {
-                    secBlocks.push(`SECTION C: TENSE ERROR CORRECTION & REWRITING (5 POINTS)
-Instructions: Each sentence contains a tense or aspect error. Identify the mistake and rewrite the correct sentence below.
+            // Reference Questions
+            if (opts.incReadRef !== false) {
+                readSubSections.push(`SECTION 3: PRONOUN & CONTEXTUAL REFERENCES (2 POINTS)
+Instructions: Identify what the underlined pronouns refer to in the reading passage.
 
-1. Error Sentence: "I have visited that historical landmark yesterday with my classmates."
-   Correction: ____________________________________________________________________________________
+1. In paragraph 2, the pronoun "They" refers to: __________________________________________________
+2. In paragraph 2, the pronoun "it" refers to: ____________________________________________________`);
 
-2. Error Sentence: "Dr. Evans didn't publish his research paper yet, but it is under review."
-   Correction: ____________________________________________________________________________________`);
-
-                    ansBlocks.push(`SECTION C ANSWERS & CORRECTION (${cleanTopic}):
-1. "I visited that historical landmark yesterday with my classmates." (Use Past Simple with specific time 'yesterday').
-2. "Dr. Evans has not published his research paper yet, but it is under review." (Use Present Perfect with 'yet').`);
-
-                } else if (isSubjectVerb) {
-                    secBlocks.push(`SECTION C: SUBJECT-VERB AGREEMENT EDITING (5 POINTS)
-Instructions: Find and correct the subject-verb agreement error in each sentence.
-
-1. Error Sentence: "The collection of rare artifacts were donated to the national museum."
-   Correction: ____________________________________________________________________________________
-
-2. Error Sentence: "Neither the architect nor the building contractors was satisfied with the foundation."
-   Correction: ____________________________________________________________________________________`);
-
-                    ansBlocks.push(`SECTION C ANSWERS & CORRECTION (${cleanTopic}):
-1. "The collection of rare artifacts was donated to the national museum." (Subject is singular 'collection').
-2. "Neither the architect nor the building contractors were satisfied with the foundation." ('contractors' is plural and closest to verb).`);
-
-                } else {
-                    secBlocks.push(`SECTION C: ERROR CORRECTION & CRITICAL REWRITING (5 POINTS)
-Instructions: Each sentence contains a usage or structural error related to "${cleanTopic}". Rewrite the corrected sentence on the line provided.
-
-1. Error Sentence: "The team has completed the research on ${cleanTopic} before the semester ended."
-   Correction: ____________________________________________________________________________________
-
-2. Error Sentence: "Understanding the principles of ${cleanTopic} have a positive affect on essay writing."
-   Correction: ____________________________________________________________________________________`);
-
-                    ansBlocks.push(`SECTION C ANSWERS & CORRECTION (${cleanTopic}):
-1. "The team had completed the research on ${cleanTopic} before the semester ended." (Past Perfect required for action prior to past event).
-2. "Understanding the principles of ${cleanTopic} has a positive effect on essay writing." (Singular gerund subject 'Understanding' takes 'has'; 'effect' is the noun).`);
-                }
+                readAnswers.push(`SECTION 3 (PRONOUN REFERENCES) ANSWERS:
+1. "They" refers to the dedicated committee of language educators.
+2. "it" refers to language mastery.`);
             }
 
-            // 4. SECTION D: Guided Ruled Writing
-            if (incWrite) {
-                secBlocks.push(`SECTION D: CONTEXTUAL WRITING & SYNTHESIS (5 POINTS)
-Curriculum Focus: "${cleanTopic}" (${diff})
-Prompt: In 3 to 5 well-constructed sentences, explain how practicing "${cleanTopic}" enhances your ability to communicate clearly and persuasively. Use at least two target terms from this worksheet.
+            // Personal Opinion Question
+            if (opts.incReadOpinion !== false) {
+                readSubSections.push(`SECTION 4: PERSONAL OPINION & CRITICAL EVALUATION (2 POINTS)
+Instructions: State your personal opinion in 2 to 3 sentences. Justify your answer with a clear reason.
 
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
-___________________________________________________________________________________________________
+Prompt: In your opinion, how can practicing "${cleanTopic}" improve your daily communication with friends and online communities?
+Response: In my opinion, __________________________________________________________________________
 ___________________________________________________________________________________________________`);
 
-                ansBlocks.push(`SECTION D EVALUATION RUBRIC:
-• Topic Relevance (2 pts): Clearly focuses on "${cleanTopic}" with coherent reasoning.
-• Grammatical Precision (2 pts): Free of structural errors, demonstrates proper mechanics.
-• Vocabulary Integration (1 pt): Effectively incorporates relevant terminology.`);
+                readAnswers.push(`SECTION 4 (PERSONAL OPINION) SCORING RUBRIC:
+• Full Credit (2 pts): Clearly states personal opinion and supports it with coherent justification.`);
+            }
+
+            secBlocks.push(`PART 1: READING COMPREHENSION (11 POINTS)\n\n` + readSubSections.join('\n\n'));
+            ansBlocks.push(`=== PART 1: READING COMPREHENSION ANSWERS ===\n` + readAnswers.join('\n\n'));
+
+            // 2. PART 2: LANGUAGE & GRAMMAR
+            let langSubSections = [];
+            let langAnswers = [];
+
+            // Fill in the Blanks
+            if (opts.incLangFill !== false) {
+                langSubSections.push(`SECTION A: FILL IN THE BLANKS WITH WORD BANK (4 POINTS)
+Instructions: Complete each sentence using the most fitting word from the word box below.
+
+[  collaborating   •   empirically   •   proficiency   •   essential  ]
+
+1. Clear expression and vocabulary mastery are _______________________ for academic success.
+2. The language researchers evaluated student progress _______________________ throughout the term.
+3. Students demonstrated higher _______________________ after engaging in daily reading exercises.
+4. Active learners enjoyed _______________________ with international peers on interactive projects.`);
+
+                langAnswers.push(`SECTION A (FILL IN BLANKS) ANSWERS:
+1. essential
+2. empirically
+3. proficiency
+4. collaborating`);
+            }
+
+            // Put Words in the Right Tense or Form
+            if (opts.incLangTense !== false) {
+                langSubSections.push(`SECTION B: PUT WORDS IN THE RIGHT TENSE OR FORM (4 POINTS)
+Instructions: Complete each sentence by putting the word in parentheses into the correct grammatical form or tense.
+
+1. Last week, our class _______________________ (discover) several effective strategies for ${cleanTopic}.
+2. The instructor was impressed by the student's remarkable _______________________ (fluent) in English.
+3. If Maria _______________________ (practice) consistently every morning, she will excel in the exam.
+4. Several innovative articles on modern communication _______________________ (publish) this year.`);
+
+                langAnswers.push(`SECTION B (TENSE & WORD FORM) ANSWERS:
+1. discovered (Past Simple tense)
+2. fluency (Noun form of 'fluent')
+3. practices (First Conditional: Present Simple in if-clause)
+4. have been published (Present Perfect Passive)`);
+            }
+
+            // Match Sentence Parts
+            if (opts.incLangMatch !== false) {
+                langSubSections.push(`SECTION C: MATCH SENTENCE HALVES (4 POINTS)
+Instructions: Match the beginning of each sentence in Column A with its correct ending in Column B:
+
+   Column A (Sentence Beginnings)       Match       Column B (Sentence Endings)
+   ──────────────────────────────────   ─────       ─────────────────────────────────────────
+   1. If you read fifteen minutes daily  •   • A. to express complex thoughts clearly.
+   2. Mastering grammar allows you       •   • B. before submitting their assignments.
+   3. The students checked their work    •   • C. your reading speed will improve quickly.
+   4. Effective communication requires   •   • D. both grammatical accuracy and empathy.`);
+
+                langAnswers.push(`SECTION C (MATCHING HALVES) ANSWERS:
+1 - C (If you read fifteen minutes daily • your reading speed will improve quickly)
+2 - A (Mastering grammar allows you • to convey your ideas with clarity)
+3 - B (The students checked their work • before submitting their assignments)
+4 - D (Effective communication requires • both grammatical accuracy and empathy)`);
+            }
+
+            // Reordering Words to get Sentences
+            if (opts.incLangReorder !== false) {
+                langSubSections.push(`SECTION D: REORDERING WORDS TO FORM MEANINGFUL SENTENCES (3 POINTS)
+Instructions: Rearrange the scrambled words to form grammatically complete, meaningful sentences.
+
+1. daily / language / fluency / practice / consistent / builds / and / confidence
+   Sentence: ____________________________________________________________________________________
+
+2. bridge / connects / across / cultures / language / a / is / that / nations
+   Sentence: ____________________________________________________________________________________
+
+3. students / online / collaborate / on / projects / excitedly / international
+   Sentence: ____________________________________________________________________________________`);
+
+                langAnswers.push(`SECTION D (REORDERING WORDS) ANSWERS:
+1. Consistent daily practice builds language fluency and confidence.
+2. Language is a bridge that connects cultures across nations.
+3. Students excitedly collaborate on international online projects.`);
+            }
+
+            secBlocks.push(`PART 2: LANGUAGE & GRAMMAR MASTERY (15 POINTS)\n\n` + langSubSections.join('\n\n'));
+            ansBlocks.push(`=== PART 2: LANGUAGE & GRAMMAR ANSWERS ===\n` + langAnswers.join('\n\n'));
+
+            // 3. PART 3: GUIDED WRITING PRODUCTION
+            if (opts.incWritingProd !== false) {
+                let writingHeader = '';
+                if (format === 'Email') {
+                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — FORMAL / INFORMAL EMAIL (5 POINTS)
+Instructions: Write an email (60–80 words) to your study partner or instructor explaining how you plan to master "${cleanTopic}".
+
+To: partner@academy.edu
+Subject: Preparation Strategy for ${cleanTopic}
+Salutation: Dear ________________________,
+
+Opening & Context:
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+Action Steps & Schedule:
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+Sign-off: Best regards, ________________________`;
+                } else if (format === 'Facebook Post') {
+                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — SOCIAL MEDIA / FACEBOOK POST (5 POINTS)
+Instructions: Create an engaging Facebook post (50–70 words) sharing 3 practical study habits for "${cleanTopic}". Include interactive questions and tags.
+
+Post Headline / Hook: 🚀 ___________________________________________________________________________
+
+Post Content:
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+Tags & Call-to-action: #${cleanTopic.replace(/\s+/g, '')} #LanguageLearning #StudySmart #DailyPractice`;
+                } else if (format === 'Blog Post') {
+                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — BLOG POST (5 POINTS)
+Instructions: Write a blog post (60–90 words) titled "Unlocking the Power of ${cleanTopic}". Include a hook, 2 key takeaways, and a question for your readers.
+
+Blog Title: 💡 Unlocking the Power of ${cleanTopic}
+
+Introduction:
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+Key Insights & Tips:
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+Question for the Readers:
+___________________________________________________________________________________________________`;
+                } else {
+                    // Formal Article
+                    writingHeader = `PART 3: GUIDED WRITING PRODUCTION — FORMAL ARTICLE (5 POINTS)
+Instructions: Write a structured article (70–100 words) for your school magazine on the importance of "${cleanTopic}". Use appropriate transitional phrases (First, In addition, In conclusion).
+
+Headline: The Role of ${cleanTopic} in Modern Education
+Byline: By ________________________ (Student Contributor)
+
+Introduction & Thesis:
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+Supporting Arguments:
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+Concluding Reflection:
+___________________________________________________________________________________________________`;
+                }
+
+                secBlocks.push(writingHeader);
+                ansBlocks.push(`=== PART 3: WRITING PRODUCTION EVALUATION RUBRIC ===
+• Format Structure & Formatting (2 pts): Successfully follows the "${format}" layout rules.
+• Vocabulary & Grammatical Mechanics (2 pts): Appropriate register, accurate syntax, and clear organization.
+• Focus on Topic (1 pt): Direct relevance to "${cleanTopic}".`);
             }
 
             return {
@@ -3439,7 +3448,7 @@ ________________________________________________________________________________
                 illustrationUrl: illustrationUrl,
                 customSchool: customSchool,
                 customTeacher: customTeacher,
-                customPoints: customPoints || '25 Points'
+                customPoints: customPoints || '31 Points'
             };
         }
 
