@@ -313,7 +313,7 @@
         ::-webkit-scrollbar { display: none; }
         
         .view-section:not(.active) { display: none !important; }
-        .view-section.active { display: flex !important; }
+        .view-section.active { display: flex !important; flex-direction: column !important; width: 100% !important; min-width: 0 !important; }
         
         .nav-item { transition: all 0.2s ease; }
         .nav-item.active { background-color: var(--theme-primary-light) !important; color: var(--theme-primary) !important; font-weight: 700; }
@@ -333,7 +333,7 @@
                 left: 0;
                 z-index: 60;
                 transform: translateX(-100%);
-                width: 17rem !important;
+                width: 17.5rem !important;
             }
             #left-sidebar.sidebar-mobile-open {
                 transform: translateX(0) !important;
@@ -765,21 +765,21 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main id="app-content" class="flex-1 overflow-hidden relative flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+    <main id="app-content" class="flex-1 min-w-0 w-full overflow-hidden relative flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
         
         <!-- Premium Top Header Bar with Hamburger Menu & Quick Actions -->
-        <header class="h-16 px-4 md:px-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200/80 dark:border-slate-800/80 flex items-center justify-between z-30 shrink-0 print:hidden transition-colors">
-            <div class="flex items-center space-x-3">
+        <header class="h-16 px-3.5 sm:px-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200/80 dark:border-slate-800/80 flex items-center justify-between z-30 shrink-0 print:hidden transition-colors w-full">
+            <div class="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
                 <!-- Hamburger Button (Controls Left Dashboard Sidebar) -->
-                <button id="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Dashboard Menu" title="Toggle Dashboard Sidebar" class="w-10 h-10 rounded-xl flex flex-col items-center justify-center space-y-1.2 p-2 bg-slate-100/90 dark:bg-slate-800/90 hover:bg-slate-200 dark:hover:bg-slate-700 border border-gray-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition-all active:scale-95 group focus:outline-none shrink-0 shadow-2xs">
-                    <span class="hamburger-line line-1 w-4.5 h-0.5 rounded-full bg-slate-700 dark:bg-slate-200"></span>
-                    <span class="hamburger-line line-2 w-3.5 h-0.5 rounded-full bg-slate-700 dark:bg-slate-200 self-start ml-0.5"></span>
-                    <span class="hamburger-line line-3 w-4.5 h-0.5 rounded-full bg-slate-700 dark:bg-slate-200"></span>
+                <button id="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Dashboard Menu" title="Toggle Dashboard Sidebar" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex flex-col items-center justify-center space-y-1 sm:space-y-1.2 p-1.5 sm:p-2 bg-slate-100/90 dark:bg-slate-800/90 hover:bg-slate-200 dark:hover:bg-slate-700 border border-gray-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition-all active:scale-95 group focus:outline-none shrink-0 shadow-2xs">
+                    <span class="hamburger-line line-1 w-4 sm:w-4.5 h-0.5 rounded-full bg-slate-700 dark:bg-slate-200"></span>
+                    <span class="hamburger-line line-2 w-3 sm:w-3.5 h-0.5 rounded-full bg-slate-700 dark:bg-slate-200 self-start ml-0.5"></span>
+                    <span class="hamburger-line line-3 w-4 sm:w-4.5 h-0.5 rounded-full bg-slate-700 dark:bg-slate-200"></span>
                 </button>
                 
                 <!-- Current View Title & Gem Badge -->
-                <div class="flex items-center space-x-2.5">
-                    <h2 id="topbar-view-title" class="font-bold text-gray-900 dark:text-white text-base md:text-lg">Dashboard</h2>
+                <div class="flex items-center space-x-2 min-w-0">
+                    <h2 id="topbar-view-title" class="font-bold text-gray-900 dark:text-white text-sm sm:text-base md:text-lg truncate">Dashboard</h2>
                     <span class="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-slate-600"></span>
                     <button type="button" onclick="openThemePickerModal()" id="topbar-theme-pill" class="cursor-pointer hidden sm:inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-semibold theme-badge hover:opacity-90 transition border border-transparent hover:border-gray-300 dark:hover:border-slate-600">
                         <span id="topbar-theme-dot" class="w-2 h-2 rounded-full" style="background: var(--theme-dot);"></span>
@@ -789,7 +789,7 @@
             </div>
 
             <!-- Right Controls -->
-            <div class="flex items-center space-x-2 sm:space-x-3">
+            <div class="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
                 <!-- Gemstone Theme Trigger -->
                 <button type="button" onclick="openThemePickerModal()" title="Gemstone Themes" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition active:scale-95">
                     <i class="fas fa-palette theme-accent-color"></i>
@@ -802,7 +802,7 @@
                 </button>
 
                 <!-- Quick Create Button -->
-                <button type="button" onclick="navigate('generator')" class="theme-primary-btn text-white px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm hover:shadow transition active:scale-95">
+                <button type="button" onclick="navigate('generator', 'builder')" class="theme-primary-btn text-white px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm hover:shadow transition active:scale-95">
                     <i class="fas fa-plus text-xs"></i>
                     <span class="hidden sm:inline">New Worksheet</span>
                 </button>
@@ -810,7 +810,7 @@
         </header>
 
         <!-- 1. DASHBOARD VIEW -->
-        <section id="view-dashboard" class="view-section active p-4 md:p-8 space-y-6 flex-1 overflow-y-auto">
+        <section id="view-dashboard" class="view-section active p-4 md:p-8 space-y-6 flex-1 overflow-y-auto w-full min-w-0">
             <!-- Welcome Hero Banner -->
             <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-r from-indigo-900 via-indigo-800 to-purple-900 text-white shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div class="relative z-10 max-w-xl space-y-2">
