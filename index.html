@@ -313,6 +313,7 @@
         ::-webkit-scrollbar { display: none; }
         
         .view-section:not(.active) { display: none !important; }
+        .view-section.active { display: flex !important; }
         
         .nav-item { transition: all 0.2s ease; }
         .nav-item.active { background-color: var(--theme-primary-light) !important; color: var(--theme-primary) !important; font-weight: 700; }
@@ -377,6 +378,208 @@
             transform: translateY(-6px) rotate(-45deg);
         }
 
+        /* Stunning Worksheet Components & Colors */
+        .ws-section-block {
+            margin-bottom: 1.5rem;
+            page-break-inside: avoid;
+        }
+        .ws-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--theme-border);
+        }
+        .dark .ws-section-header {
+            border-bottom: 2px solid var(--theme-border-dark);
+        }
+        .ws-section-badge {
+            background: var(--theme-gradient) !important;
+            color: #ffffff !important;
+            font-size: 0.725rem;
+            font-weight: 800;
+            padding: 0.25rem 0.65rem;
+            border-radius: 0.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px var(--theme-glow);
+            flex-shrink: 0;
+        }
+        .ws-section-title {
+            color: var(--theme-primary) !important;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            flex: 1;
+        }
+        .dark .ws-section-title {
+            color: var(--theme-dot) !important;
+        }
+        .ws-points-pill {
+            background-color: var(--theme-badge-bg) !important;
+            color: var(--theme-badge-text) !important;
+            border: 1px solid var(--theme-border) !important;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .dark .ws-points-pill {
+            background-color: var(--theme-primary-dark) !important;
+            color: var(--theme-dot) !important;
+            border: 1px solid var(--theme-border-dark) !important;
+        }
+        .ws-instruction-box {
+            background-color: var(--theme-primary-light);
+            border-left: 3.5px solid var(--theme-primary);
+            color: #334155;
+            padding: 0.6rem 0.85rem;
+            border-radius: 0.375rem;
+            font-size: 0.825rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.45;
+        }
+        .dark .ws-instruction-box {
+            background-color: var(--theme-primary-dark);
+            border-left: 3.5px solid var(--theme-dot);
+            color: #cbd5e1;
+        }
+        .ws-word-bank {
+            background: #ffffff;
+            border: 1.5px dashed var(--theme-primary);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .dark .ws-word-bank {
+            background: #1e293b;
+            border: 1.5px dashed var(--theme-dot);
+        }
+        .ws-word-chip {
+            background-color: var(--theme-badge-bg);
+            color: var(--theme-badge-text);
+            border: 1px solid var(--theme-border);
+            font-weight: 700;
+            font-size: 0.825rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+        .dark .ws-word-chip {
+            background-color: var(--theme-primary-dark);
+            color: var(--theme-dot);
+            border: 1px solid var(--theme-border-dark);
+        }
+        .ws-question-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            margin-bottom: 0.85rem;
+            font-size: 0.875rem;
+            line-height: 1.55;
+        }
+        .ws-q-num {
+            width: 1.4rem;
+            height: 1.4rem;
+            background: var(--theme-primary);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .dark .ws-q-num {
+            background: var(--theme-dot);
+            color: #0f172a;
+        }
+        .ws-q-blank {
+            display: inline-block;
+            min-width: 5.5rem;
+            border-bottom: 1.5px solid var(--theme-primary);
+            margin: 0 0.25rem;
+            vertical-align: bottom;
+            height: 1.15rem;
+        }
+        .dark .ws-q-blank {
+            border-bottom: 1.5px solid var(--theme-dot);
+        }
+        .ws-mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.4rem;
+            margin-top: 0.4rem;
+        }
+        .ws-mcq-option {
+            background-color: var(--theme-primary-light);
+            border: 1px solid var(--theme-border);
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.375rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #334155;
+        }
+        .dark .ws-mcq-option {
+            background-color: var(--theme-primary-dark);
+            border: 1px solid var(--theme-border-dark);
+            color: #cbd5e1;
+        }
+        .ws-match-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0.4rem;
+            font-size: 0.85rem;
+        }
+        .ws-match-table th {
+            color: var(--theme-primary);
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            padding: 0.4rem 0.75rem;
+            border-bottom: 1.5px solid var(--theme-border);
+            text-align: left;
+        }
+        .dark .ws-match-table th {
+            color: var(--theme-dot);
+            border-bottom: 1.5px solid var(--theme-border-dark);
+        }
+        .ws-match-row {
+            background-color: var(--theme-primary-light);
+            border-radius: 0.5rem;
+        }
+        .dark .ws-match-row {
+            background-color: var(--theme-primary-dark);
+        }
+        .ws-match-row td {
+            padding: 0.4rem 0.75rem;
+        }
+        .ws-ruled-line {
+            width: 100%;
+            height: 1.8rem;
+            border-bottom: 1px dashed var(--theme-border);
+            position: relative;
+            margin-bottom: 0.4rem;
+        }
+        .dark .ws-ruled-line {
+            border-bottom: 1px dashed var(--theme-border-dark);
+        }
+
         /* A4 Page Formatting & Print Styles */
         .a4-page {
             width: 100%;
@@ -387,6 +590,8 @@
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
             margin: 0 auto;
             position: relative;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .dark .a4-page {
@@ -415,6 +620,8 @@
                 overflow: visible !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             body * {
                 visibility: hidden !important;
@@ -933,27 +1140,49 @@
             </div>
         </section>
 
-        <!-- 4. TUTOR VIEW (Side-by-side AI area next to chat text) -->
-        <section id="view-tutor" class="view-section flex flex-col flex-1 h-full p-2 sm:p-4 md:p-6 relative overflow-hidden">
+        <!-- 4. TUTOR VIEW (Interactive AI Tutor Chat & Assist) -->
+        <section id="view-tutor" class="view-section flex flex-col flex-1 min-h-0 h-full p-2.5 sm:p-4 md:p-6 relative overflow-hidden">
             <!-- Decorative Ambient Glowing Orbs behind glass -->
             <div class="absolute -top-20 -left-20 w-80 h-80 bg-indigo-400/20 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="flex flex-col lg:flex-row flex-1 h-full gap-4 relative z-10 min-h-0 overflow-hidden">
+            <!-- Mobile Quick Topic Chips Tray (Visible on < lg screens) -->
+            <div class="lg:hidden shrink-0 mb-2.5 glass-ai-stage rounded-xl p-2 flex items-center space-x-2 overflow-x-auto hide-scrollbar z-10">
+                <span class="text-[11px] font-bold text-gray-500 dark:text-slate-400 shrink-0 flex items-center mr-1">
+                    <i class="fas fa-bolt text-amber-400 mr-1"></i> Quick:
+                </span>
+                <button onclick="sendQuickPrompt('Generate an A4 worksheet on Present Perfect for Middle School')" class="text-xs px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 font-semibold border border-indigo-200/60 dark:border-indigo-800/60 whitespace-nowrap active:scale-95 transition">
+                    <i class="fas fa-file-invoice text-indigo-500 mr-1"></i>+ A4 Worksheet
+                </button>
+                <button onclick="sendQuickPrompt('Explain Present Perfect vs Past Simple with 3 examples')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap active:scale-95 transition">
+                    Present Perfect
+                </button>
+                <button onclick="sendQuickPrompt('Give me a common English idiom with meaning')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap active:scale-95 transition">
+                    Idiom of Day
+                </button>
+                <button onclick="sendQuickPrompt('Generate a 5-question pop quiz on prepositions')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap active:scale-95 transition">
+                    Prepositions Quiz
+                </button>
+                <button onclick="sendQuickPrompt('Difference between Affect vs Effect with examples')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap active:scale-95 transition">
+                    Affect vs Effect
+                </button>
+            </div>
+
+            <div class="flex flex-1 h-full gap-4 relative z-10 min-h-0 overflow-hidden">
                 
-                <!-- Left AI Assistant Panel (Enlarged & Glassed next to the chat) -->
-                <div class="w-full lg:w-80 xl:w-96 glass-ai-stage rounded-2xl md:rounded-3xl p-5 md:p-6 flex flex-col justify-between shrink-0 shadow-xl overflow-y-auto hide-scrollbar">
-                    <div class="space-y-5">
+                <!-- Left AI Assistant Panel (Visible on lg+ screens) -->
+                <div class="hidden lg:flex w-72 xl:w-80 glass-ai-stage rounded-2xl md:rounded-3xl p-5 flex-col justify-between shrink-0 shadow-xl overflow-y-auto hide-scrollbar">
+                    <div class="space-y-4">
                         <!-- AI Avatar & Identity -->
-                        <div class="flex items-center space-x-3.5 pb-4 border-b border-white/40 dark:border-slate-700/60">
+                        <div class="flex items-center space-x-3.5 pb-3 border-b border-white/40 dark:border-slate-700/60">
                             <div class="relative">
-                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center text-xl shadow-lg shadow-indigo-500/30">
+                                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center text-lg shadow-md shadow-indigo-500/30">
                                     <i class="fas fa-brain"></i>
                                 </div>
-                                <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
+                                <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-800 dark:text-slate-100 text-lg flex items-center">
+                                <h3 class="font-bold text-gray-800 dark:text-slate-100 text-base flex items-center">
                                     Worksheet AI
                                     <span class="ml-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300">Online</span>
                                 </h3>
@@ -962,27 +1191,27 @@
                         </div>
 
                         <!-- AI Status Glass Card -->
-                        <div class="glass-bubble-ai p-4 rounded-2xl border space-y-2">
+                        <div class="glass-bubble-ai p-3.5 rounded-2xl border space-y-1.5">
                             <div class="flex items-center justify-between text-xs font-semibold text-gray-600 dark:text-slate-300">
-                                <span><i class="fas fa-sparkles text-amber-400 mr-1.5"></i>Tutor Capabilities</span>
+                                <span><i class="fas fa-sparkles text-amber-400 mr-1.5"></i>Tutor Mode</span>
                                 <span class="text-indigo-600 dark:text-indigo-400">Active</span>
                             </div>
                             <p class="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
-                                Ask about grammar structures, idioms, synonym matches, reading texts, or requesting practice drills.
+                                Ask about grammar rules, vocabulary drills, essay topics, reading comprehension, or quick classroom prompts.
                             </p>
                         </div>
 
                         <!-- Suggested Quick Topics / Prompts -->
                         <div>
-                            <span class="text-xs font-bold text-gray-700 dark:text-slate-300 mb-2.5 flex items-center">
+                            <span class="text-xs font-bold text-gray-700 dark:text-slate-300 mb-2 block flex items-center">
                                 <i class="fas fa-bolt text-amber-400 mr-1.5"></i>Quick Learning & Generation
                             </span>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-1">
-                                <button onclick="sendQuickPrompt('Generate an A4 worksheet on Present Perfect for Middle School')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95 border border-indigo-200/50 dark:border-indigo-800/50">
-                                    <span class="flex items-center"><i class="fas fa-file-invoice text-indigo-500 mr-2"></i>Generate A4 Worksheet</span>
+                            <div class="grid grid-cols-1 gap-1.5">
+                                <button onclick="sendQuickPrompt('Generate an A4 worksheet on Present Perfect for Middle School')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-semibold text-left transition flex items-center justify-between active:scale-95 border border-indigo-200/50 dark:border-indigo-800/50 shadow-2xs">
+                                    <span class="flex items-center"><i class="fas fa-file-invoice text-indigo-500 mr-2"></i>Generate A4 Sheet</span>
                                     <i class="fas fa-arrow-right text-[10px] opacity-60"></i>
                                 </button>
-                                <button onclick="sendQuickPrompt('Explain Present Perfect with 3 examples')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
+                                <button onclick="sendQuickPrompt('Explain Present Perfect vs Past Simple with 3 examples')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
                                     <span>Present Perfect Tense</span>
                                     <i class="fas fa-chevron-right text-[10px] opacity-60"></i>
                                 </button>
@@ -994,7 +1223,7 @@
                                     <span>Prepositions Quiz</span>
                                     <i class="fas fa-chevron-right text-[10px] opacity-60"></i>
                                 </button>
-                                <button onclick="sendQuickPrompt('Difference between Affect vs Effect')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
+                                <button onclick="sendQuickPrompt('Explain the difference between Affect vs Effect with examples')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
                                     <span>Affect vs Effect</span>
                                     <i class="fas fa-chevron-right text-[10px] opacity-60"></i>
                                 </button>
@@ -1003,50 +1232,60 @@
                     </div>
 
                     <!-- Reset Chat Helper -->
-                    <div class="pt-4 mt-4 border-t border-white/40 dark:border-slate-700/60 flex items-center justify-between">
-                        <span class="text-[11px] text-gray-400 dark:text-slate-500">Session Memory Active</span>
+                    <div class="pt-3 border-t border-white/40 dark:border-slate-700/60 flex items-center justify-between">
+                        <span class="text-[11px] text-gray-400 dark:text-slate-500">Live Session</span>
                         <button onclick="document.getElementById('chat-log').innerHTML=''; addChatBubble('Chat cleared! What shall we explore next?', false);" class="text-xs text-gray-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 flex items-center transition">
-                            <i class="fas fa-trash-alt mr-1"></i> Clear
+                            <i class="fas fa-trash-alt mr-1"></i> Clear Log
                         </button>
                     </div>
                 </div>
 
                 <!-- Right / Main Chat Text Stage -->
-                <div class="flex flex-col flex-1 h-full glass-ai-stage rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden min-h-0">
+                <div class="flex flex-col flex-1 h-full glass-ai-stage rounded-2xl md:rounded-3xl shadow-xl overflow-hidden min-h-0">
                     <!-- Chat Header Bar -->
-                    <div class="p-3.5 px-4 sm:px-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border-b border-white/40 dark:border-slate-700/60 flex items-center justify-between shrink-0">
+                    <div class="p-3 px-4 sm:px-5 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border-b border-white/40 dark:border-slate-700/60 flex items-center justify-between shrink-0">
                         <div class="flex items-center space-x-2">
-                            <i class="fas fa-comments text-indigo-600 dark:text-indigo-400 text-lg"></i>
-                            <h4 class="font-bold text-gray-800 dark:text-slate-100 text-sm sm:text-base">Interactive Conversation</h4>
+                            <div class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 dark:text-slate-100 text-sm leading-tight">AI Language Tutor</h4>
+                                <p class="text-[10px] text-slate-500 dark:text-slate-400">English Grammar, Drills & Explanations</p>
+                            </div>
                         </div>
-                        <span class="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span> Live
-                        </span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span> Live
+                            </span>
+                            <button onclick="document.getElementById('chat-log').innerHTML=''; addChatBubble('Chat cleared! What shall we explore next?', false);" class="lg:hidden p-1.5 text-xs text-slate-400 hover:text-red-500 transition" title="Clear Chat">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Chat Messages Log -->
-                    <div id="chat-log" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-transparent min-h-0">
+                    <div id="chat-log" class="flex-1 p-3 sm:p-5 overflow-y-auto space-y-3.5 bg-transparent min-h-0">
                         <div class="flex items-end space-x-3 justify-start">
-                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md shadow-indigo-500/20 shrink-0 mb-1">
+                            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-sm shrink-0 mb-1">
                                 <i class="fas fa-robot"></i>
                             </div>
                             <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-start space-y-1">
-                                <div class="p-4 sm:p-5 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-3xl rounded-bl-xs leading-relaxed text-sm sm:text-base border">
+                                <div class="p-3.5 sm:p-4 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-2xl rounded-bl-xs leading-relaxed text-sm border">
                                     Hello! I'm your AI English Tutor. How can I help you with grammar, vocabulary, reading texts, or lesson planning today?
                                 </div>
-                                <span class="text-[11px] text-slate-400 dark:text-slate-500 px-2 font-medium select-none">Just now</span>
+                                <span class="text-[10px] text-slate-400 dark:text-slate-500 px-2 font-medium select-none">Just now</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Chat Input Glass Bar -->
-                    <div class="p-3 sm:p-4 md:p-5 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border-t border-white/50 dark:border-slate-700/60 pb-safe shrink-0">
-                        <div class="flex items-center space-x-3">
+                    <div class="p-2.5 sm:p-3.5 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl border-t border-white/50 dark:border-slate-700/60 shrink-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3">
                             <div class="flex-1 relative flex items-center">
-                                <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Type your question or practice sentence..." class="w-full glass-input-bar rounded-full pl-6 pr-12 py-3.5 sm:py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/80 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-base">
+                                <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Type your question or practice sentence..." class="w-full glass-input-bar rounded-full pl-5 pr-10 py-2.5 sm:py-3.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/80 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-sm sm:text-base">
                             </div>
-                            <button onclick="sendChat()" class="bg-gradient-to-tr from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white h-12 w-12 sm:h-14 sm:w-14 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/30 active:scale-95 transition flex-shrink-0">
-                                <i class="fas fa-paper-plane text-base sm:text-lg"></i>
+                            <button onclick="sendChat()" class="theme-primary-btn text-white h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center shadow-md active:scale-95 transition shrink-0">
+                                <i class="fas fa-paper-plane text-sm sm:text-base"></i>
                             </button>
                         </div>
                     </div>
@@ -1184,6 +1423,67 @@
         let worksheets = JSON.parse(localStorage.getItem('worksheets') || '[]');
         let isDarkMode = localStorage.getItem('isDarkMode') === 'true';
         let currentTheme = localStorage.getItem('gemTheme') || 'amethyst';
+
+        // Seed default educational A4 sample if empty
+        if (!worksheets || worksheets.length === 0) {
+            worksheets = [
+                {
+                    title: 'Present Perfect & Past Simple Mastery',
+                    difficulty: 'Middle School',
+                    layout: 'Standard Practice',
+                    theme: 'amethyst',
+                    format: 'A4 Standard (210×297mm)',
+                    content: `SECTION A: PRESENT PERFECT VS. PAST SIMPLE (8 POINTS)
+Instructions: Complete each sentence by writing the correct form of the verb in parentheses.
+
+1. They _______________________ (live) in Chicago for five years before moving to Seattle.
+2. Look! Jordan _______________________ (finish) all his homework already!
+3. We _______________________ (not see) our favorite teacher since last Tuesday.
+4. Shakespeare _______________________ (write) many renowned sonnets and plays during the Elizabethan era.
+5. _______________ you ever _______________ (climb) a mountain taller than 3,000 meters?
+6. The scientist _______________________ (discover) a new compound in 2024.
+7. I can't find my library book; I think I _______________________ (lose) it.
+8. Yesterday morning, the bell _______________________ (ring) at exactly 8:15 AM.
+
+
+SECTION B: EDITING & SENTENCE CORRECTION (6 POINTS)
+Instructions: Identify and correct the grammatical or usage error in each sentence. Rewrite the corrected sentence on the line.
+
+1. Sentence: "Neither of the two students were prepared for the oral presentation."
+   Correction: _____________________________________________________________________
+
+2. Sentence: "The heavy rainfall had an enormous affect on the highway traffic."
+   Correction: _____________________________________________________________________
+
+
+SECTION C: CONTEXTUAL APPLICATION & ESSAY EXPANSION (6 POINTS)
+Topic: "The Power of Clear Communication"
+Instructions: In 3 to 5 well-constructed sentences, explain how practicing grammar rules helps you communicate ideas persuasively.
+
+Sentence 1: ________________________________________________________________________
+Sentence 2: ________________________________________________________________________
+Sentence 3: ________________________________________________________________________`,
+                    answerKey: `SECTION A ANSWERS:
+1. lived (Past Simple)
+2. has finished (Present Perfect)
+3. have not seen (Present Perfect with 'since')
+4. wrote (Past Simple - historical specific)
+5. Have / climbed (Present Perfect - life experience)
+6. discovered (Past Simple - past year 2024)
+7. have lost (Present Perfect - present consequence)
+8. rang (Past Simple - yesterday)
+
+SECTION B ANSWERS:
+1. "Neither of the two students was prepared for the oral presentation." ('Neither' is singular subject).
+2. "The heavy rainfall had an enormous effect on the highway traffic." ('Effect' is a noun; 'affect' is a verb).
+
+SECTION C SCORING:
+Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary depth (2 pts).`,
+                    illustrationUrl: 'assets/images/img_worksheet_middle.jpg'
+                }
+            ];
+            localStorage.setItem('worksheets', JSON.stringify(worksheets));
+        }
 
         // Set Gemstone Theme Function
         function setTheme(themeId) {
@@ -1380,6 +1680,14 @@
 
             if (viewId === 'dashboard') renderDashboard();
             if (viewId === 'premium') renderPremium();
+            if (viewId === 'tutor') {
+                setTimeout(() => {
+                    const chatLog = document.getElementById('chat-log');
+                    if (chatLog) chatLog.scrollTop = chatLog.scrollHeight;
+                    const chatInput = document.getElementById('chat-input');
+                    if (chatInput) chatInput.focus();
+                }, 50);
+            }
         }
 
         // Dashboard Render
@@ -1687,9 +1995,307 @@ Full credit requires an argumentative thesis statement and two clear, coherent r
             }, 1800);
         }
 
+        // Format Raw Generated Worksheet Text into Structured, Colored HTML
+        function formatWorksheetToStunningHTML(rawContent, themeKey, title, difficulty) {
+            if (!rawContent) return '<p class="text-gray-500">No worksheet content available.</p>';
+            
+            // Split into sections by SECTION tags or major headers
+            const rawSections = rawContent.split(/(?=SECTION\s+[A-Z0-9]+)/i);
+            let html = '<div class="space-y-6">';
+            
+            rawSections.forEach((sectionBlock, sIdx) => {
+                const trimmed = sectionBlock.trim();
+                if (!trimmed) return;
+                
+                const lines = trimmed.split('\n');
+                const firstLine = lines[0].trim();
+                
+                let sectionBadge = `SECTION ${String.fromCharCode(65 + sIdx)}`;
+                let sectionTitle = 'PRACTICE DRILL';
+                let sectionPoints = '';
+                
+                // Match "SECTION A: TITLE (X POINTS)"
+                const headerMatch = firstLine.match(/SECTION\s+([A-Z0-9]+)(?:\s*[:\-–]\s*([^\(\[\n]+))?(?:[\(\[]\s*([^\)\]]+)\s*[\)\]])?/i);
+                if (headerMatch) {
+                    sectionBadge = `SECTION ${headerMatch[1].trim()}`;
+                    sectionTitle = headerMatch[2] ? headerMatch[2].trim() : `PRACTICE DRILL ${headerMatch[1]}`;
+                    sectionPoints = headerMatch[3] ? headerMatch[3].trim() : '';
+                } else {
+                    sectionTitle = firstLine;
+                }
+                
+                const bodyLines = lines.slice(1);
+                let instructions = '';
+                let wordBankItems = [];
+                let questions = [];
+                let currentQuestion = null;
+                let matchingRows = [];
+                let isMatchingTable = false;
+                let writingLines = [];
+                let otherLines = [];
+                
+                let i = 0;
+                while (i < bodyLines.length) {
+                    const line = bodyLines[i].trim();
+                    if (!line) {
+                        i++;
+                        continue;
+                    }
+                    
+                    // Instructions / Prompts
+                    if (/^(Instructions|Prompt|Directions)\s*:/i.test(line)) {
+                        instructions = line.replace(/^(Instructions|Prompt|Directions)\s*:\s*/i, '');
+                        i++;
+                        continue;
+                    }
+                    
+                    // Word Box / Bank [ word • word • word ]
+                    if (/^\[\s*[^\]]+\s*\]$/.test(line) || /^Word Box\s*:/i.test(line) || /^Word Bank\s*:/i.test(line)) {
+                        const inner = line.replace(/^(Word Box|Word Bank)\s*:\s*/i, '').replace(/^\[/, '').replace(/\]$/, '');
+                        wordBankItems = inner.split(/[•|,]/).map(w => w.trim()).filter(Boolean);
+                        i++;
+                        continue;
+                    }
+                    
+                    // Matching Column rows e.g. "1. Little • • A. Very Happy" or "1. Ubiquitous [ ] A. ..."
+                    if (/\b(?:[1-9]\.|\d+\))\s+[^•\n]+\s*(?:•|\[\s*\])\s*(?:•\s*)?[A-E]\.\s+/.test(line)) {
+                        isMatchingTable = true;
+                        matchingRows.push(line);
+                        i++;
+                        continue;
+                    }
+                    if (/Word Column\s+Matching Meaning/i.test(line) || /^[─\-_]{5,}/.test(line)) {
+                        i++;
+                        continue;
+                    }
+                    
+                    // Numbered Question e.g. "1. The fluffy cat..."
+                    const qMatch = line.match(/^(\d+)[\.\)]\s+(.*)/);
+                    if (qMatch) {
+                        if (currentQuestion) {
+                            questions.push(currentQuestion);
+                        }
+                        currentQuestion = {
+                            num: qMatch[1],
+                            text: qMatch[2],
+                            options: [],
+                            subLines: []
+                        };
+                        i++;
+                        continue;
+                    }
+                    
+                    // Multiple Choice options e.g. "A) would have proceeded B) will proceed..."
+                    if (currentQuestion && /[A-D]\)\s+[^\s]/.test(line)) {
+                        const optMatches = [...line.matchAll(/([A-D]\))\s+([^A-D\)]+)(?=[A-D]\)|$)/g)];
+                        if (optMatches.length > 0) {
+                            optMatches.forEach(m => {
+                                currentQuestion.options.push({ letter: m[1], text: m[2].trim() });
+                            });
+                        } else {
+                            currentQuestion.subLines.push(line);
+                        }
+                        i++;
+                        continue;
+                    }
+                    
+                    // Sub-lines for current question e.g. "Correction: ______"
+                    if (currentQuestion && /^(Correction|Sentence|Thesis|Example \d+|Concluding Remark)\s*:/i.test(line)) {
+                        currentQuestion.subLines.push(line);
+                        i++;
+                        continue;
+                    }
+                    
+                    // Standalone writing lines / topics
+                    if (/^(Sentence \d+|Thesis|Example \d+|Concluding Remark|Topic)\s*:/i.test(line)) {
+                        writingLines.push(line);
+                        i++;
+                        continue;
+                    }
+                    
+                    if (/^[_\-]{10,}/.test(line)) {
+                        writingLines.push('__________________________________________________');
+                        i++;
+                        continue;
+                    }
+                    
+                    if (currentQuestion) {
+                        currentQuestion.subLines.push(line);
+                    } else {
+                        otherLines.push(line);
+                    }
+                    i++;
+                }
+                
+                if (currentQuestion) {
+                    questions.push(currentQuestion);
+                }
+                
+                // Construct Section DOM
+                html += `
+                <div class="ws-section-block">
+                    <div class="ws-section-header">
+                        <div class="flex items-center space-x-2.5 min-w-0">
+                            <span class="ws-section-badge">${sectionBadge}</span>
+                            <h3 class="ws-section-title truncate">${sectionTitle}</h3>
+                        </div>
+                        ${sectionPoints ? `<span class="ws-points-pill"><i class="fas fa-star text-amber-500 mr-1 text-[10px]"></i>${sectionPoints}</span>` : ''}
+                    </div>`;
+                    
+                if (instructions) {
+                    html += `
+                    <div class="ws-instruction-box">
+                        <i class="fas fa-pencil-alt mr-1.5 opacity-80"></i>
+                        <strong>Instructions:</strong> ${instructions}
+                    </div>`;
+                }
+                
+                if (wordBankItems.length > 0) {
+                    html += `
+                    <div class="ws-word-bank">
+                        <span class="text-[11px] uppercase font-extrabold tracking-wider text-gray-400 dark:text-slate-500 mr-2 flex items-center">
+                            <i class="fas fa-shapes mr-1 text-indigo-500"></i> Word Bank:
+                        </span>
+                        ${wordBankItems.map(item => `<span class="ws-word-chip">${item}</span>`).join('')}
+                    </div>`;
+                }
+                
+                if (isMatchingTable && matchingRows.length > 0) {
+                    html += `
+                    <div class="overflow-x-auto my-3">
+                        <table class="ws-match-table">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/2">Term / Question Column</th>
+                                    <th class="text-center w-16">Match</th>
+                                    <th class="w-1/2">Definition / Meaning Column</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+                            
+                    matchingRows.forEach(rowStr => {
+                        const parts = rowStr.split(/(?:•\s*•|•|\[\s*\])/);
+                        const left = parts[0] ? parts[0].trim() : rowStr;
+                        const right = parts[1] ? parts[1].trim() : '';
+                        html += `
+                        <tr class="ws-match-row">
+                            <td class="font-semibold text-gray-800 dark:text-slate-200">${left}</td>
+                            <td class="text-center">
+                                <span class="inline-block w-8 h-6 border-2 border-dashed border-gray-400 dark:border-slate-500 rounded bg-white dark:bg-slate-800 text-xs font-bold text-center leading-5 text-indigo-600 dark:text-indigo-400"></span>
+                            </td>
+                            <td class="text-gray-700 dark:text-slate-300">${right}</td>
+                        </tr>`;
+                    });
+                    
+                    html += `
+                            </tbody>
+                        </table>
+                    </div>`;
+                }
+                
+                if (questions.length > 0) {
+                    html += '<div class="space-y-3.5 my-2">';
+                    questions.forEach(q => {
+                        let styledText = q.text.replace(/_{4,}/g, '<span class="ws-q-blank"></span>');
+                        styledText = styledText.replace(/\(([a-zA-Z\s\/\,\-]+)\)/g, '<span class="font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-1.5 py-0.5 rounded text-xs">($1)</span>');
+                        
+                        html += `
+                        <div class="ws-question-item">
+                            <span class="ws-q-num">${q.num}</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-gray-900 dark:text-slate-100 font-medium">${styledText}</div>`;
+                                
+                        if (q.options.length > 0) {
+                            html += `
+                            <div class="ws-mcq-grid">
+                                ${q.options.map(opt => `
+                                    <div class="ws-mcq-option flex items-center space-x-1.5">
+                                        <span class="font-bold theme-accent-color">${opt.letter}</span>
+                                        <span>${opt.text}</span>
+                                    </div>
+                                `).join('')}
+                            </div>`;
+                        }
+                        
+                        if (q.subLines.length > 0) {
+                            html += '<div class="mt-2 space-y-1.5">';
+                            q.subLines.forEach(sub => {
+                                let styledSub = sub.replace(/_{4,}/g, '<span class="inline-block flex-1 border-b-2 border-dashed border-gray-400 dark:border-slate-600 h-4"></span>');
+                                html += `<div class="text-xs sm:text-sm text-gray-600 dark:text-slate-300 flex items-center space-x-2 font-medium">${styledSub}</div>`;
+                            });
+                            html += '</div>';
+                        }
+                        
+                        html += `
+                            </div>
+                        </div>`;
+                    });
+                    html += '</div>';
+                }
+                
+                if (writingLines.length > 0) {
+                    html += '<div class="space-y-2.5 my-3">';
+                    writingLines.forEach(wLine => {
+                        if (wLine.startsWith('Topic:')) {
+                            html += `<div class="text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 inline-block mb-1"><i class="fas fa-bookmark text-amber-500 mr-1.5"></i>${wLine}</div>`;
+                        } else if (wLine.includes('____')) {
+                            html += `<div class="ws-ruled-line"></div>`;
+                        } else {
+                            html += `<div class="text-xs font-bold text-gray-700 dark:text-slate-300 mt-2">${wLine}</div><div class="ws-ruled-line"></div>`;
+                        }
+                    });
+                    html += '</div>';
+                }
+                
+                if (otherLines.length > 0) {
+                    html += `<div class="text-sm text-gray-700 dark:text-slate-300 leading-relaxed space-y-1">${otherLines.map(l => `<p>${l}</p>`).join('')}</div>`;
+                }
+                
+                html += '</div>';
+            });
+            
+            html += '</div>';
+            return html;
+        }
+
+        // Format Answer Key into Polished Badged Cards
+        function formatAnswerKeyToStunningHTML(rawAnswers, themeKey) {
+            if (!rawAnswers) return '<p class="text-gray-500">No answer key available.</p>';
+            const sections = rawAnswers.split(/(?=SECTION\s+[A-Z0-9]+)/i);
+            let html = '<div class="space-y-4">';
+            
+            sections.forEach(sec => {
+                const trimmed = sec.trim();
+                if (!trimmed) return;
+                const lines = trimmed.split('\n');
+                const headerLine = lines[0].trim();
+                const contentLines = lines.slice(1);
+                
+                html += `
+                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-gray-200 dark:border-slate-800 space-y-2">
+                    <h4 class="font-extrabold text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center">
+                        <i class="fas fa-check-circle text-emerald-500 mr-1.5"></i>
+                        ${headerLine}
+                    </h4>
+                    <div class="space-y-1 text-xs sm:text-sm text-gray-700 dark:text-slate-300 font-medium">
+                        ${contentLines.map(l => {
+                            const lTrim = l.trim();
+                            if (!lTrim) return '';
+                            return `<div class="flex items-start space-x-2 py-0.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span><span>${lTrim}</span></div>`;
+                        }).join('')}
+                    </div>
+                </div>`;
+            });
+            
+            html += '</div>';
+            return html;
+        }
+
         // Viewer Logic
         function openViewer(idx) {
             const ws = worksheets[idx];
+            if (!ws) return;
+            
             const wsThemeKey = ws.theme || currentTheme;
             const wsTheme = GEM_THEMES[wsThemeKey] || GEM_THEMES.amethyst;
 
@@ -1711,8 +2317,9 @@ Full credit requires an argumentative thesis statement and two clear, coherent r
             if (a4Subtitle) a4Subtitle.innerText = `${ws.difficulty.toUpperCase()} CURRICULUM DRILL • ISO A4 (210×297MM)`;
             if (a4Badge) a4Badge.innerText = `A4 Sheet • ${wsTheme.name}`;
 
-            document.getElementById('viewer-content').innerText = ws.content;
-            document.getElementById('viewer-answer').innerText = ws.answerKey;
+            // Render Stunning Formatted Worksheet Content & Answers
+            document.getElementById('viewer-content').innerHTML = formatWorksheetToStunningHTML(ws.content, wsThemeKey, ws.title, ws.difficulty);
+            document.getElementById('viewer-answer').innerHTML = formatAnswerKeyToStunningHTML(ws.answerKey, wsThemeKey);
             
             const illContainer = document.getElementById('viewer-illustration');
             if(ws.illustrationUrl) {
