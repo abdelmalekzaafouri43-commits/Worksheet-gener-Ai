@@ -84,33 +84,33 @@
 <body class="h-screen flex font-sans overflow-hidden bg-slate-50">
 
     <!-- Left Sidebar Nav -->
-    <nav class="w-64 bg-white/90 backdrop-blur-md border-r border-gray-200 flex flex-col pt-6 z-50 print:hidden h-full shrink-0">
-        <h1 class="text-2xl font-bold text-indigo-600 flex items-center px-6 mb-8">
-            <i class="fas fa-layer-group mr-2"></i> Worksheet AI
+    <nav class="w-20 md:w-64 transition-all duration-300 bg-white/90 backdrop-blur-md border-r border-gray-200 flex flex-col pt-6 z-50 print:hidden h-full shrink-0">
+        <h1 class="text-xl md:text-2xl font-bold text-indigo-600 flex items-center justify-center md:justify-start px-2 md:px-6 mb-8 overflow-hidden whitespace-nowrap">
+            <i class="fas fa-layer-group md:mr-2"></i> <span class="hidden md:inline">Worksheet AI</span>
         </h1>
         
-        <div class="flex-1 px-4 space-y-2">
-            <button onclick="navigate('dashboard')" id="nav-dashboard" class="nav-item active w-full flex items-center text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
-                <i class="fas fa-home w-6 text-center mr-3 text-lg"></i>
-                <span class="font-semibold text-sm">Home</span>
+        <div class="flex-1 px-2 md:px-4 space-y-2">
+            <button onclick="navigate('dashboard')" id="nav-dashboard" class="nav-item active w-full flex items-center justify-center md:justify-start text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
+                <i class="fas fa-home text-xl md:text-lg md:w-6 text-center md:mr-3"></i>
+                <span class="hidden md:inline font-semibold text-sm">Home</span>
             </button>
-            <button onclick="navigate('generator')" id="nav-generator" class="nav-item w-full flex items-center text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
-                <i class="fas fa-plus-circle w-6 text-center mr-3 text-lg"></i>
-                <span class="font-semibold text-sm">Create</span>
+            <button onclick="navigate('generator')" id="nav-generator" class="nav-item w-full flex items-center justify-center md:justify-start text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
+                <i class="fas fa-plus-circle text-xl md:text-lg md:w-6 text-center md:mr-3"></i>
+                <span class="hidden md:inline font-semibold text-sm">Create</span>
             </button>
-            <button onclick="navigate('tutor')" id="nav-tutor" class="nav-item w-full flex items-center text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
-                <i class="fas fa-comment-dots w-6 text-center mr-3 text-lg"></i>
-                <span class="font-semibold text-sm">AI Tutor</span>
+            <button onclick="navigate('tutor')" id="nav-tutor" class="nav-item w-full flex items-center justify-center md:justify-start text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
+                <i class="fas fa-comment-dots text-xl md:text-lg md:w-6 text-center md:mr-3"></i>
+                <span class="hidden md:inline font-semibold text-sm">AI Tutor</span>
             </button>
-            <button onclick="navigate('premium')" id="nav-premium" class="nav-item w-full flex items-center text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
-                <i class="fas fa-crown w-6 text-center mr-3 text-lg"></i>
-                <span class="font-semibold text-sm">Premium</span>
+            <button onclick="navigate('premium')" id="nav-premium" class="nav-item w-full flex items-center justify-center md:justify-start text-gray-500 hover:text-indigo-600 p-3 rounded-lg hover:bg-indigo-50 transition text-left">
+                <i class="fas fa-crown text-xl md:text-lg md:w-6 text-center md:mr-3"></i>
+                <span class="hidden md:inline font-semibold text-sm">Premium</span>
             </button>
         </div>
 
-        <div class="p-6 border-t border-gray-100">
-            <div class="text-sm font-semibold bg-indigo-100 text-indigo-800 px-3 py-3 rounded-xl flex items-center justify-center shadow-sm">
-                <i class="fas fa-coins mr-2"></i> <span id="tokens-display">3</span> &nbsp;Tokens Left
+        <div class="p-3 md:p-6 border-t border-gray-100">
+            <div class="text-sm font-semibold bg-indigo-100 text-indigo-800 px-2 md:px-3 py-3 rounded-xl flex items-center justify-center shadow-sm overflow-hidden whitespace-nowrap">
+                <i class="fas fa-coins md:mr-2"></i> <span id="tokens-display" class="hidden md:inline ml-1 md:ml-0">3</span> <span class="hidden md:inline">&nbsp;Tokens</span>
             </div>
         </div>
     </nav>
