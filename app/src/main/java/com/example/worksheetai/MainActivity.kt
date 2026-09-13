@@ -3,6 +3,7 @@ package com.example.worksheetai
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.ConsoleMessage
+import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -11,6 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var webView: WebView
+
+    class WebAppInterface(private val apiKey: String) {
+        @JavascriptInterface
+        fun getGeminiApiKey(): String {
+            return apiKey
+        }
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                     return true
                 }
             }
+
+            addJavascriptInterface(WebAppInterface(BuildConfig.GEMINI_API_KEY), "AndroidBridge")
         }
 
         setContentView(webView)

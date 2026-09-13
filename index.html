@@ -1314,7 +1314,7 @@
             <!-- Loading Indicator -->
             <div id="gen-loading" class="hidden flex flex-col items-center justify-center h-64 space-y-4">
                 <i class="fas fa-circle-notch fa-spin text-4xl theme-accent-color"></i>
-                <p class="font-semibold text-gray-600 dark:text-slate-300 animate-pulse">AI is formatting your A4 worksheet layout...</p>
+                <p id="gen-loading-text" class="font-semibold text-gray-600 dark:text-slate-300 animate-pulse">AI is formatting your A4 worksheet layout...</p>
             </div>
         </section>
 
@@ -2606,8 +2606,408 @@ ${ws.answerKey}
             updateStudioLiveSummary();
         }
 
+        // Dynamic Gemini AI Worksheet Generation with ISO A4 Formatting
+        async function generateWorksheet(customTopic, customDiff) {
+            const diff = customDiff || (document.getElementById('difficulty-select') ? document.getElementById('difficulty-select').value : 'Middle School');
+            const topic = customTopic || (document.getElementById('topic-input') ? document.getElementById('topic-input').value.trim() : '') || (diff + " Grammar Mastery");
+            const layout = document.getElementById('layout-select') ? document.getElementById('layout-select').value : 'Standard Practice';
+            const themeSelect = document.getElementById('worksheet-theme-select');
+            const chosenTheme = (themeSelect && themeSelect.value !== 'app') ? themeSelect.value : currentTheme;
+            
+            const customSchool = document.getElementById('custom-school')?.value.trim() || '';
+            const customTeacher = document.getElementById('custom-teacher')?.value.trim() || '';
+            const customPoints = document.getElementById('custom-points')?.value.trim() || '';
+
+            const incFill = document.getElementById('sec-fill') ? document.getElementById('sec-fill').checked : true;
+            const incMatch = document.getElementById('sec-match') ? document.getElementById('sec-match').checked : true;
+            const incEdit = document.getElementById('sec-edit') ? document.getElementById('sec-edit').checked : true;
+            const incWrite = document.getElementById('sec-write') ? document.getElementById('sec-write').checked : true;
+
+            const genForm = document.getElementById('gen-form');
+            const genLoading = document.getElementById('gen-loading');
+            const genLoadingText = document.getElementById('gen-loading-text');
+
+            if (genForm) genForm.classList.add('hidden');
+            if (genLoading) {
+                genLoading.classList.remove('hidden');
+                genLoading.classList.add('flex');
+            }
+            if (genLoadingText) {
+                genLoadingText.innerText = "Connecting to Gemini AI Studio...";
+            }
+
+            const imgMap = {
+                'Elementary': 'assets/images/img_worksheet_elementary.jpg',
+                'Middle School': 'assets/images/img_worksheet_middle.jpg',
+                'High School': 'assets/images/img_worksheet_advanced.jpg'
+            };
+            const diffKey = diff === 'Elementary' ? 'Elementary' : (diff.includes('Middle') ? 'Middle School' : 'High School');
+            const illustrationUrl = imgMap[diffKey] || 'assets/images/img_worksheet_middle.jpg';
+
+            // Retrieve Key from Android JavascriptBridge
+            let apiKey = null;
+            if (window.AndroidBridge && typeof window.AndroidBridge.getGeminiApiKey === 'function') {
+                apiKey = window.AndroidBridge.getGeminiApiKey();
+            }
+
+            // Fallback check
+            if (!apiKey || apiKey === "mock_or_empty_api_key") {
+                console.warn("No valid Gemini API key found from AndroidBridge. Using offline fallback templates.");
+                if (genLoadingText) genLoadingText.innerText = "Simulating offline generation with school template...";
+                setTimeout(() => {
+                    const ws = generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, incFill, incMatch, incEdit, incWrite);
+                    worksheets.unshift(ws);
+                    localStorage.setItem('worksheets', JSON.stringify(worksheets));
+
+                    if (genForm) genForm.classList.remove('hidden');
+                    if (genLoading) {
+                        genLoading.classList.add('hidden');
+                        genLoading.classList.remove('flex');
+                    }
+
+                    renderDashboard();
+                    updateStudioLibraryBadge();
+                    openViewer(0);
+                }, 1500);
+                return;
+            }
+
+            // Real Gemini AI Generation
+            try {
+                if (genLoadingText) genLoadingText.innerText = `Analyzing worksheet requirements for ${diff}...`;
+
+                const sectionsPrompt = [];
+                if (incFill) {
+                    sectionsPrompt.push("- Section A: Fill in the Blanks / Sentence Completion: Formatted with numbered questions (e.g., '1. ...', '2. ...') and MUST include a Word Box at the top of the section using brackets and bullets, like: '[ word1 • word2 • word3 ]'");
+                }
+                if (incMatch) {
+                    sectionsPrompt.push("- Section B: Match the Terms / Synonym Connections: Formatted where numbered terms on the left correspond to capital-letter answers on the right.");
+                }
+                if (incEdit) {
+                    sectionsPrompt.push("- Section C: Error Correction & Critical Rewriting: Formatted with sentence lines containing errors and a clear 'Correction: _____________________' line below each.");
+                }
+                if (incWrite) {
+                    sectionsPrompt.push("- Section D: Analytical / Creative Ruled Writing: A writing prompt or short-essay exercise with multiple ________________________________ handwriting lines.");
+                }
+
+                const promptText = `You are a world-class school curriculum designer and educational content creator.
+Generate an exceptionally high-quality and professional worksheet specifically designed for the following:
+- Topic/Focus: "${topic}"
+- Grade Level / Difficulty: "${diff}"
+- A4 Layout Style: "${layout}"
+- Included Sections:
+${sectionsPrompt.join('\n')}
+
+Important Requirements:
+1. Do not use generic filler questions; produce genuine, creative, and challenging exercises customized strictly to the topic: "${topic}".
+2. Organize each section strictly with capitalized headers like "SECTION A: VOCABULARY & DRILLS (10 POINTS)" to match the active sections.
+3. Use clean spacing and structure so it formats beautifully onto standard ISO A4 margins when parsed and printed.
+4. Also generate a comprehensive, detailed ANSWER KEY explaining correct answers and grading guidelines.
+
+Return your response strictly as a JSON object with "title", "content", and "answerKey" keys. Do not wrap it in markdown codeblocks. Use this schema:
+{
+  "title": "Title of the worksheet",
+  "content": "The raw worksheet text including the requested sections, formatted nicely. Use double line breaks between questions.",
+  "answerKey": "The step-by-step answers and points evaluation guide."
+}`;
+
+                if (genLoadingText) genLoadingText.innerText = `Generating dynamic exercises with Gemini...`;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: promptText
+                            }]
+                        }],
+                        generationConfig: {
+                            responseMimeType: "application/json",
+                            responseSchema: {
+                                type: "OBJECT",
+                                properties: {
+                                    title: { type: "STRING" },
+                                    content: { type: "STRING" },
+                                    answerKey: { type: "STRING" }
+                                },
+                                required: ["title", "content", "answerKey"]
+                            },
+                            temperature: 0.7
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error ${response.status}`);
+                }
+
+                if (genLoadingText) genLoadingText.innerText = "Formatting answer key and layout structures...";
+
+                const data = await response.json();
+                const resultText = data.candidates[0].content.parts[0].text;
+                const parsedResult = JSON.parse(resultText);
+
+                const ws = {
+                    title: parsedResult.title || topic || (diff + " Worksheet"),
+                    difficulty: diff,
+                    layout: layout,
+                    theme: chosenTheme,
+                    format: 'A4 Standard (210×297mm)',
+                    content: parsedResult.content,
+                    answerKey: parsedResult.answerKey,
+                    illustrationUrl: illustrationUrl,
+                    customSchool: customSchool,
+                    customTeacher: customTeacher,
+                    customPoints: customPoints
+                };
+
+                worksheets.unshift(ws);
+                localStorage.setItem('worksheets', JSON.stringify(worksheets));
+
+                // Cleanup UI
+                if (genForm) genForm.classList.remove('hidden');
+                if (genLoading) {
+                    genLoading.classList.add('hidden');
+                    genLoading.classList.remove('flex');
+                }
+
+                renderDashboard();
+                updateStudioLibraryBadge();
+                openViewer(0);
+
+            } catch (error) {
+                console.error("Gemini API generation failed. Falling back to mock templates.", error);
+                if (genLoadingText) genLoadingText.innerText = "Error encountered. Creating safe offline template...";
+                setTimeout(() => {
+                    const ws = generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, incFill, incMatch, incEdit, incWrite);
+                    worksheets.unshift(ws);
+                    localStorage.setItem('worksheets', JSON.stringify(worksheets));
+
+                    if (genForm) genForm.classList.remove('hidden');
+                    if (genLoading) {
+                        genLoading.classList.add('hidden');
+                        genLoading.classList.remove('flex');
+                    }
+
+                    renderDashboard();
+                    updateStudioLibraryBadge();
+                    openViewer(0);
+                }, 1000);
+            }
+        }
+
+        // Offline Fallback Worksheet Generator Helper
+        function generateOfflineFallbackWorksheet(topic, diff, layout, chosenTheme, illustrationUrl, customSchool, customTeacher, customPoints, incFill, incMatch, incEdit, incWrite) {
+            const diffKey = diff === 'Elementary' ? 'Elementary' : (diff.includes('Middle') ? 'Middle School' : 'High School');
+            let a4Content = '';
+            let answerKey = '';
+
+            if (diff === 'Elementary') {
+                let secBlocks = [];
+                let ansBlocks = [];
+
+                if (incFill) {
+                    secBlocks.push(
+`SECTION A: VOCABULARY & SENTENCE COMPLETION (10 POINTS)
+Instructions: Read each sentence carefully and fill in the blank with the correct word from the word box below.
+
+[  is   •   have   •   reads   •   play   •   bright  ]
+
+1. The fluffy cat __________ (is / are) sleeping under the warm table.
+2. Emma and Lucas __________ (play / plays) soccer together after school.
+3. She __________ (have / has) a shiny red apple in her lunchbox.
+4. My big brother __________ (read / reads) an exciting story every evening.
+5. The yellow sun is very __________ (bright / dark) in the blue summer sky.`);
+                    ansBlocks.push(
+`SECTION A ANSWERS:
+1. is
+2. play
+3. has
+4. reads
+5. bright`);
+                }
+
+                if (incMatch) {
+                    secBlocks.push(
+`SECTION B: MATCH THE SYNONYMS (5 POINTS)
+Draw a clean line connecting the word on the left to its matching meaning on the right:
+
+   Word Column               Matching Meaning
+   ──────────────────        ───────────────────────
+   1. Little         •       • A. Very Happy
+   2. Cheerful       •       • B. Small
+   3. Quick          •       • C. Pretty
+   4. Lovely         •       • D. Fast
+   5. Quiet          •       • E. Silent`);
+                    ansBlocks.push(
+`SECTION B ANSWERS:
+1 - B (Little = Small)
+2 - A (Cheerful = Very Happy)
+3 - D (Quick = Fast)
+4 - C (Lovely = Pretty)
+5 - E (Quiet = Silent)`);
+                }
+
+                if (incWrite) {
+                    secBlocks.push(
+`SECTION C: CREATIVE WRITING & HANDWRITING (5 POINTS)
+Choose any two words from Section A or B and write two complete sentences with proper punctuation.
+
+Sentence 1:
+____________________________________________________________________________________
+
+Sentence 2:
+____________________________________________________________________________________`);
+                    ansBlocks.push(
+`SECTION C SCORING CRITERIA:
+Award 2.5 points per correct sentence demonstrating proper capitalization and terminal punctuation (. ? !).`);
+                }
+
+                a4Content = secBlocks.join('\n\n\n');
+                answerKey = ansBlocks.join('\n\n');
+
+            } else if (diff === 'Middle School' || diffKey === 'Middle School') {
+                let secBlocks = [];
+                let ansBlocks = [];
+
+                if (incFill) {
+                    secBlocks.push(
+`SECTION A: PRESENT PERFECT VS. PAST SIMPLE (8 POINTS)
+Instructions: Complete each sentence by writing the correct form of the verb in parentheses.
+
+1. They _______________________ (live) in Chicago for five years before moving to Seattle.
+2. Look! Jordan _______________________ (finish) all his homework already!
+3. We _______________________ (not see) our favorite teacher since last Tuesday.
+4. Shakespeare _______________________ (write) many renowned sonnets and plays during the Elizabethan era.
+5. _______________ you ever _______________ (climb) a mountain taller than 3,000 meters?
+6. The scientist _______________________ (discover) a new compound in 2024.
+7. I can't find my library book; I think I _______________________ (lose) it.
+8. Yesterday morning, the bell _______________________ (ring) at exactly 8:15 AM.`);
+                    ansBlocks.push(
+`SECTION A ANSWERS:
+1. lived (Past Simple)
+2. has finished (Present Perfect)
+3. have not seen (Present Perfect with 'since')
+4. wrote (Past Simple - historical specific)
+5. Have / climbed (Present Perfect - life experience)
+6. discovered (Past Simple - past year 2024)
+7. have lost (Present Perfect - present consequence)
+8. rang (Past Simple - yesterday)`);
+                }
+
+                if (incEdit) {
+                    secBlocks.push(
+`SECTION B: EDITING & SENTENCE CORRECTION (6 POINTS)
+Identify and correct the grammatical or usage error in each sentence. Rewrite the corrected sentence on the line.
+
+1. Sentence: "Neither of the two students were prepared for the oral presentation."
+   Correction: _____________________________________________________________________
+
+2. Sentence: "The heavy rainfall had an enormous affect on the highway traffic."
+   Correction: _____________________________________________________________________`);
+                    ansBlocks.push(
+`SECTION B ANSWERS:
+1. "Neither of the two students was prepared for the oral presentation." ('Neither' is singular subject).
+2. "The heavy rainfall had an enormous effect on the highway traffic." ('Effect' is a noun; 'affect' is a verb).`);
+                }
+
+                if (incWrite) {
+                    secBlocks.push(
+`SECTION C: CONTEXTUAL APPLICATION & ESSAY EXPANSION (6 POINTS)
+Topic: "${topic}"
+Prompt: In 3 to 5 well-constructed sentences, explain how practicing grammar rules helps you communicate ideas persuasively in everyday life.
+
+____________________________________________________________________________________
+____________________________________________________________________________________
+____________________________________________________________________________________
+____________________________________________________________________________________`);
+                    ansBlocks.push(
+`SECTION C SCORING:
+Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary depth (2 pts).`);
+                }
+
+                a4Content = secBlocks.join('\n\n\n');
+                answerKey = ansBlocks.join('\n\n');
+
+            } else {
+                // High School / Advanced
+                let secBlocks = [];
+                let ansBlocks = [];
+
+                if (incFill) {
+                    secBlocks.push(
+`SECTION A: ADVANCED CLAUSE SYNTAX & MODAL AUXILIARIES (8 POINTS)
+Instructions: Select or supply the correct grammatical construction for advanced academic English.
+
+1. Had the research team known about the temperature anomaly, they _______________ (proceed) with caution.
+   A) would have proceeded     B) will proceed     C) proceeded     D) would proceed
+2. Not only _______________ (the committee / approve) the budget, but they also expanded the grant.
+3. It is imperative that every candidate _______________ (submit) the application before the designated deadline.
+4. The conclusion, _______________ (reach) after extensive peer review, challenged conventional dogma.`);
+                    ansBlocks.push(
+`SECTION A ANSWERS:
+1. A (would have proceeded - Third conditional inverted form)
+2. did the committee approve (Negative inversion requires auxiliary inversion)
+3. submit (Subjunctive mood after 'imperative that')
+4. reached (Passive participle modifying 'conclusion')`);
+                }
+
+                if (incMatch) {
+                    secBlocks.push(
+`SECTION B: RHETORICAL VOCABULARY & IDIOMATIC NUANCE (6 POINTS)
+Match each academic/idiomatic term to its accurate contextual definition:
+
+   1. Ubiquitous      [   ]     A. To face a difficult circumstance with fortitude
+   2. Ephemeral       [   ]     B. Present or found everywhere simultaneously
+   3. Bite the bullet [   ]     C. Lasting for a very short, transient period
+   4. Pragmatic       [   ]     D. Dealing with matters logically and realistically`);
+                    ansBlocks.push(
+`SECTION B ANSWERS:
+1 - B (Ubiquitous = Present everywhere)
+2 - C (Ephemeral = Lasting a very short time)
+3 - A (Bite the bullet = Facing difficulty with fortitude)
+4 - D (Pragmatic = Logical and realistic)`);
+                }
+
+                if (incWrite) {
+                    secBlocks.push(
+`SECTION C: ANALYTICAL SYNTHESIS (6 POINTS)
+Topic: "${topic}"
+Instructions: Formulate a concise analytical thesis statement on the influence of digital language on formal grammar conventions. Support your assertion with two cited or observable examples.
+
+Thesis: ___________________________________________________________________________
+Example 1: _________________________________________________________________________
+Example 2: _________________________________________________________________________
+Concluding Remark: _________________________________________________________________`);
+                    ansBlocks.push(
+`SECTION C EVALUATION:
+Full credit requires an argumentative thesis statement and two clear, coherent real-world instances.`);
+                }
+
+                a4Content = secBlocks.join('\n\n\n');
+                answerKey = ansBlocks.join('\n\n');
+            }
+
+            return {
+                title: topic ? topic : (diff + " Grammar Practice"),
+                difficulty: diff,
+                layout: layout,
+                theme: chosenTheme,
+                format: 'A4 Standard (210×297mm)',
+                content: a4Content,
+                answerKey: answerKey,
+                illustrationUrl: illustrationUrl,
+                customSchool: customSchool,
+                customTeacher: customTeacher,
+                customPoints: customPoints
+            };
+        }
+
         // Mock AI Generation with Comprehensive A4 Layout Structure
-        function generateWorksheet(customTopic, customDiff) {
+        function generateWorksheet_OLD(customTopic, customDiff) {
             const diff = customDiff || (document.getElementById('difficulty-select') ? document.getElementById('difficulty-select').value : 'Middle School');
             const topic = customTopic || (document.getElementById('topic-input') ? document.getElementById('topic-input').value.trim() : '') || (diff + " Grammar Mastery");
             const layout = document.getElementById('layout-select') ? document.getElementById('layout-select').value : 'Standard Practice';
