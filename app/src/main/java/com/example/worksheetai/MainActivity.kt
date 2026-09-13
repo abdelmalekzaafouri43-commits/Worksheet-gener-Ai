@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         webView = WebView(this).apply {
+            clearCache(true)
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
