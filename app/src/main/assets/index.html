@@ -4179,7 +4179,7 @@ ________________________________________________________________________________
             updateTutorGenButtonLabel();
             
             // Re-add the initial greeting bubble
-            addChatBubble("Hello! I'm your AI English Tutor. How can I help you with grammar, vocabulary, reading texts, or lesson planning today?", false);
+            addChatBubble("Hello! I'm your AI English Tutor. How can I help you with grammar, vocabulary, reading texts, or lesson planning today?", false, false, null, true);
         }
 
         function clearTutorChat() {
@@ -4317,13 +4317,12 @@ Provide pedagogical, clear, and structured explanations with relevant examples o
             sendChat();
         }
 
-        function addChatBubble(text, isUser, showA4Action, customTopic) {
+        function addChatBubble(text, isUser, showA4Action, customTopic, isInstant = false) {
             const chatLog = document.getElementById('chat-log');
             const timeStr = getFormattedTime();
             
-            let messageHtml = '';
             if (isUser) {
-                messageHtml = `
+                const messageHtml = `
                 <div class="flex items-end space-x-3 justify-end">
                     <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-end space-y-1">
                         <div class="p-4 sm:p-5 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-3xl rounded-br-xs shadow-md shadow-indigo-600/25 text-sm sm:text-base leading-relaxed break-words">
@@ -4338,6 +4337,8 @@ Provide pedagogical, clear, and structured explanations with relevant examples o
                         <i class="fas fa-user text-xs"></i>
                     </div>
                 </div>`;
+                chatLog.insertAdjacentHTML('beforeend', messageHtml);
+                chatLog.scrollTop = chatLog.scrollHeight;
             } else {
                 let actionBtnHtml = '';
                 if (showA4Action) {
@@ -4351,23 +4352,67 @@ Provide pedagogical, clear, and structured explanations with relevant examples o
                     </div>`;
                 }
 
-                messageHtml = `
+                const bubbleId = 'ai-bubble-' + Date.now();
+                const messageHtml = `
                 <div class="flex items-end space-x-3 justify-start">
                     <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md shadow-indigo-500/20 shrink-0 mb-1">
                         <i class="fas fa-robot text-xs"></i>
                     </div>
                     <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-start space-y-1">
-                        <div class="p-4 sm:p-5 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-3xl rounded-bl-xs leading-relaxed text-sm sm:text-base break-words whitespace-pre-wrap border">
-                            ${text}
-                            ${actionBtnHtml}
+                        <div id="${bubbleId}" class="p-4 sm:p-5 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-3xl rounded-bl-xs leading-relaxed text-sm sm:text-base break-words whitespace-pre-wrap border">
+                            <!-- Typed Text Streams Here -->
                         </div>
                         <span class="text-[11px] text-slate-400 dark:text-slate-500 px-2 font-medium select-none">${timeStr}</span>
                     </div>
                 </div>`;
+
+                chatLog.insertAdjacentHTML('beforeend', messageHtml);
+                chatLog.scrollTop = chatLog.scrollHeight;
+
+                const textContainer = document.getElementById(bubbleId);
+                if (!textContainer) return;
+
+                if (isInstant) {
+                    textContainer.innerHTML = text + (actionBtnHtml ? actionBtnHtml : '');
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                } else {
+                    const words = text.split(" ");
+                    let wordIndex = 0;
+                    
+                    textContainer.innerHTML = `<span class="inline-block w-1.5 h-4 bg-indigo-500 dark:bg-indigo-400 animate-pulse ml-0.5" id="cursor-${bubbleId}">|</span>`;
+                    const cursor = document.getElementById(`cursor-${bubbleId}`);
+
+                    function streamNextWord() {
+                        if (wordIndex < words.length) {
+                            const word = words[wordIndex] + (wordIndex === words.length - 1 ? "" : " ");
+                            if (cursor) {
+                                cursor.insertAdjacentHTML('beforebegin', word);
+                            } else {
+                                textContainer.innerHTML += word;
+                            }
+                            wordIndex++;
+                            chatLog.scrollTop = chatLog.scrollHeight;
+                            
+                            let delay = Math.max(10, Math.min(80, word.length * 8));
+                            if (word.includes('.') || word.includes('!') || word.includes('?')) {
+                                delay += 200; 
+                            } else if (word.includes(',')) {
+                                delay += 100; 
+                            }
+                            
+                            setTimeout(streamNextWord, delay);
+                        } else {
+                            if (cursor) cursor.remove();
+                            if (actionBtnHtml) {
+                                textContainer.insertAdjacentHTML('beforeend', actionBtnHtml);
+                            }
+                            chatLog.scrollTop = chatLog.scrollHeight;
+                        }
+                    }
+
+                    setTimeout(streamNextWord, 100);
+                }
             }
-            
-            chatLog.insertAdjacentHTML('beforeend', messageHtml);
-            chatLog.scrollTop = chatLog.scrollHeight;
         }
 
         async function triggerDirectPrintPDF() {
