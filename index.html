@@ -685,19 +685,52 @@
         </div>
         
         <!-- Navigation Links -->
-        <div class="flex-1 px-3 space-y-1.5 overflow-y-auto">
-            <button onclick="navigate('dashboard')" id="nav-dashboard" class="nav-item active w-full flex items-center text-gray-600 dark:text-slate-300 p-3 rounded-xl transition text-left group">
-                <i class="fas fa-table-columns text-lg w-6 text-center mr-3 group-hover:scale-110 transition-transform"></i>
-                <span class="sidebar-expanded-text font-semibold text-sm">Dashboard</span>
-            </button>
-            <button onclick="navigate('generator')" id="nav-generator" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-3 rounded-xl transition text-left group">
-                <i class="fas fa-file-invoice text-lg w-6 text-center mr-3 group-hover:scale-110 transition-transform"></i>
-                <span class="sidebar-expanded-text font-semibold text-sm">Worksheet Studio</span>
-            </button>
-            <button onclick="navigate('tutor')" id="nav-tutor" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-3 rounded-xl transition text-left group">
-                <i class="fas fa-comment-dots text-lg w-6 text-center mr-3 group-hover:scale-110 transition-transform"></i>
-                <span class="sidebar-expanded-text font-semibold text-sm">AI Tutor</span>
-            </button>
+        <div class="flex-1 px-3 space-y-4 overflow-y-auto">
+            <!-- Group 1: Creation & Library -->
+            <div class="space-y-1">
+                <span class="sidebar-expanded-text text-[10px] font-extrabold uppercase tracking-wider text-gray-400 dark:text-slate-500 px-3 block mb-1">Creation & Library</span>
+                
+                <button onclick="navigate('dashboard')" id="nav-dashboard" class="nav-item active w-full flex items-center text-gray-600 dark:text-slate-300 p-2.5 rounded-xl transition text-left group">
+                    <i class="fas fa-table-columns text-base w-6 text-center mr-2.5 group-hover:scale-110 transition-transform"></i>
+                    <span class="sidebar-expanded-text font-semibold text-xs sm:text-sm">Dashboard</span>
+                </button>
+                
+                <button onclick="navigate('generator', 'builder')" id="nav-generator" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-2.5 rounded-xl transition text-left group">
+                    <i class="fas fa-wand-magic-sparkles text-base w-6 text-center mr-2.5 group-hover:scale-110 transition-transform"></i>
+                    <span class="sidebar-expanded-text font-semibold text-xs sm:text-sm">Worksheet Studio</span>
+                </button>
+                
+                <button onclick="navigate('presets')" id="nav-presets" class="nav-item w-full flex items-center justify-between text-gray-600 dark:text-slate-300 p-2.5 rounded-xl transition text-left group">
+                    <div class="flex items-center">
+                        <i class="fas fa-layer-group text-base w-6 text-center mr-2.5 group-hover:scale-110 transition-transform"></i>
+                        <span class="sidebar-expanded-text font-semibold text-xs sm:text-sm">Presets Catalog</span>
+                    </div>
+                    <span class="sidebar-expanded-text text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900">16</span>
+                </button>
+
+                <button onclick="navigate('library')" id="nav-library" class="nav-item w-full flex items-center justify-between text-gray-600 dark:text-slate-300 p-2.5 rounded-xl transition text-left group">
+                    <div class="flex items-center">
+                        <i class="fas fa-folder-open text-base w-6 text-center mr-2.5 group-hover:scale-110 transition-transform"></i>
+                        <span class="sidebar-expanded-text font-semibold text-xs sm:text-sm">Saved Library</span>
+                    </div>
+                    <span id="nav-saved-count" class="sidebar-expanded-text text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">0</span>
+                </button>
+            </div>
+
+            <!-- Group 2: AI & Print Tools -->
+            <div class="space-y-1 pt-2 border-t border-gray-100 dark:border-slate-800">
+                <span class="sidebar-expanded-text text-[10px] font-extrabold uppercase tracking-wider text-gray-400 dark:text-slate-500 px-3 block mb-1">AI & Tools</span>
+
+                <button onclick="navigate('tutor')" id="nav-tutor" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-2.5 rounded-xl transition text-left group">
+                    <i class="fas fa-robot text-base w-6 text-center mr-2.5 group-hover:scale-110 transition-transform text-emerald-500"></i>
+                    <span class="sidebar-expanded-text font-semibold text-xs sm:text-sm">AI Grammar Tutor</span>
+                </button>
+
+                <button onclick="navigate('printguide')" id="nav-printguide" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-2.5 rounded-xl transition text-left group">
+                    <i class="fas fa-print text-base w-6 text-center mr-2.5 group-hover:scale-110 transition-transform"></i>
+                    <span class="sidebar-expanded-text font-semibold text-xs sm:text-sm">Print & PDF Guide</span>
+                </button>
+            </div>
         </div>
 
         <!-- Sidebar Bottom Controls -->
@@ -778,73 +811,152 @@
 
         <!-- 1. DASHBOARD VIEW -->
         <section id="view-dashboard" class="view-section active p-4 md:p-8 space-y-6 flex-1 overflow-y-auto">
-            <!-- Welcome Header -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-gray-100 dark:border-slate-800/80">
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white tracking-tight">Worksheet Dashboard</h2>
-                    <p class="text-gray-500 dark:text-slate-400 text-sm mt-0.5">Create, format, and print standard ISO A4 English lesson worksheets with AI-powered exercises.</p>
+            <!-- Welcome Hero Banner -->
+            <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-r from-indigo-900 via-indigo-800 to-purple-900 text-white shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="relative z-10 max-w-xl space-y-2">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-indigo-200 text-xs font-bold border border-white/15">
+                        <i class="fas fa-sparkles text-amber-300"></i>
+                        <span>ISO 216 Standard A4 Classroom Studio</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white">English Worksheet Studio</h2>
+                    <p class="text-indigo-100/80 text-xs sm:text-sm leading-relaxed">Design print-ready 210×297mm grammar exercises, tests, and vocabulary sheets customized for Elementary to High School.</p>
                 </div>
-                <div class="flex items-center space-x-2 shrink-0">
-                    <button onclick="navigate('generator')" class="theme-primary-btn text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition active:scale-95 flex items-center space-x-2">
-                        <i class="fas fa-plus-circle"></i>
+                <div class="relative z-10 flex flex-wrap items-center gap-3 shrink-0">
+                    <button onclick="navigate('generator', 'builder')" class="px-5 py-3 rounded-2xl bg-white text-indigo-900 hover:bg-indigo-50 font-black text-xs sm:text-sm shadow-md transition active:scale-95 flex items-center space-x-2">
+                        <i class="fas fa-magic text-indigo-600"></i>
                         <span>Create A4 Sheet</span>
                     </button>
+                    <button onclick="navigate('presets')" class="px-4 py-3 rounded-2xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm backdrop-blur-md transition active:scale-95 flex items-center space-x-2 border border-white/20">
+                        <i class="fas fa-layer-group"></i>
+                        <span>16 Presets</span>
+                    </button>
                 </div>
+                <!-- Background decorative shapes -->
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-10 -top-10 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
             </div>
 
-            <!-- 3 Clean KPI Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- 4 Clean KPI Cards -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 <!-- Stat 1: Worksheets Created -->
-                <div onclick="navigate('generator')" class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-gray-300 dark:hover:border-slate-700 transition cursor-pointer group">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Saved Worksheets</span>
+                <div onclick="navigate('library')" class="p-4 sm:p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-indigo-300 dark:hover:border-indigo-700 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-2 sm:mb-3">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Saved Library</span>
                         <div class="w-8 h-8 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs">
                             <i class="fas fa-file-invoice"></i>
                         </div>
                     </div>
                     <div class="flex items-baseline space-x-2">
                         <span id="dash-stat-sheets" class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">0</span>
-                        <span class="text-xs text-gray-500 dark:text-slate-400 font-medium">ready to print</span>
+                        <span class="text-xs text-gray-500 dark:text-slate-400 font-medium">sheets</span>
                     </div>
                     <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center justify-between">
-                        <span>ISO A4 Format</span>
-                        <span class="theme-accent-color font-semibold group-hover:underline">+ Create New →</span>
+                        <span>ISO A4 Library</span>
+                        <span class="theme-accent-color font-semibold group-hover:underline">View →</span>
                     </p>
                 </div>
 
                 <!-- Stat 2: Active Theme Palette -->
-                <div onclick="openThemePickerModal()" class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-gray-300 dark:hover:border-slate-700 transition cursor-pointer group">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Gemstone Theme</span>
+                <div onclick="openThemePickerModal()" class="p-4 sm:p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-indigo-300 dark:hover:border-indigo-700 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-2 sm:mb-3">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Theme Gem</span>
                         <div class="w-8 h-8 rounded-xl theme-primary-btn text-white flex items-center justify-center text-xs">
                             <i class="fas fa-gem"></i>
                         </div>
                     </div>
                     <div class="flex items-center space-x-2.5">
                         <span id="dash-theme-dot" class="w-4 h-4 rounded-full shadow-xs shrink-0" style="background: var(--theme-dot);"></span>
-                        <span id="dash-theme-name" class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white truncate">Amethyst</span>
+                        <span id="dash-theme-name" class="text-lg sm:text-xl font-black text-gray-900 dark:text-white truncate">Amethyst</span>
                     </div>
                     <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center justify-between">
                         <span id="dash-theme-subtitle">Purple Jewel</span>
-                        <span class="theme-accent-color font-semibold group-hover:underline">Change Palette →</span>
+                        <span class="theme-accent-color font-semibold group-hover:underline">Change →</span>
                     </p>
                 </div>
 
-                <!-- Stat 3: Print & Export Readiness -->
-                <div class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Print Engine</span>
+                <!-- Stat 3: Curriculum Presets -->
+                <div onclick="navigate('presets')" class="p-4 sm:p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-indigo-300 dark:hover:border-indigo-700 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-2 sm:mb-3">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Presets Catalog</span>
+                        <div class="w-8 h-8 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xs">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-2xl sm:text-3xl font-black text-purple-600 dark:text-purple-400">16</span>
+                        <span class="text-xs text-gray-500 dark:text-slate-400 font-medium">ready drills</span>
+                    </div>
+                    <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center justify-between">
+                        <span>CEFR A1–C2</span>
+                        <span class="theme-accent-color font-semibold group-hover:underline">Browse →</span>
+                    </p>
+                </div>
+
+                <!-- Stat 4: Print & Export Readiness -->
+                <div onclick="navigate('printguide')" class="p-4 sm:p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-indigo-300 dark:hover:border-indigo-700 transition cursor-pointer group">
+                    <div class="flex items-center justify-between mb-2 sm:mb-3">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Print Engine</span>
                         <div class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs">
                             <i class="fas fa-print"></i>
                         </div>
                     </div>
                     <div class="flex items-baseline space-x-2">
-                        <span class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400">A4 Ready</span>
+                        <span class="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">ISO A4</span>
+                        <span class="text-[11px] text-gray-500 dark:text-slate-400 font-mono">210×297mm</span>
                     </div>
                     <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center justify-between">
-                        <span>210 × 297 mm</span>
-                        <span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center"><i class="fas fa-check-circle text-xs mr-1"></i>Unlocked</span>
+                        <span class="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center"><i class="fas fa-check-circle text-xs mr-1"></i>Unlocked</span>
+                        <span class="theme-accent-color font-semibold group-hover:underline">Guide →</span>
                     </p>
+                </div>
+            </div>
+
+            <!-- Grade Level Curriculum Quick Launch -->
+            <div class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-bolt text-amber-500 text-sm"></i>
+                        <h3 class="font-bold text-gray-900 dark:text-white text-sm sm:text-base">1-Click Curriculum Quick Launch</h3>
+                    </div>
+                    <button onclick="navigate('presets')" class="text-xs theme-accent-color font-bold hover:underline">View All 16 Presets →</button>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                    <button type="button" onclick="generateWorksheet('Elementary Synonyms & Antonyms', 'Elementary')" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 border border-gray-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition text-left group">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">Elementary (A1-A2)</span>
+                            <i class="fas fa-arrow-right text-[10px] text-gray-400 group-hover:text-indigo-600 transition-colors"></i>
+                        </div>
+                        <h4 class="font-bold text-xs text-gray-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Synonyms & Opposites</h4>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400">Word banks, matching & handwriting</p>
+                    </button>
+
+                    <button type="button" onclick="generateWorksheet('Present Perfect vs Past Simple', 'Middle School')" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 border border-gray-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition text-left group">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300">Middle (B1)</span>
+                            <i class="fas fa-arrow-right text-[10px] text-gray-400 group-hover:text-indigo-600 transition-colors"></i>
+                        </div>
+                        <h4 class="font-bold text-xs text-gray-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Present Perfect vs Past</h4>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400">Time markers & sentence editing</p>
+                    </button>
+
+                    <button type="button" onclick="generateWorksheet('Conditionals & Modal Auxiliaries', 'High School')" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 border border-gray-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition text-left group">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">High School (B2-C1)</span>
+                            <i class="fas fa-arrow-right text-[10px] text-gray-400 group-hover:text-indigo-600 transition-colors"></i>
+                        </div>
+                        <h4 class="font-bold text-xs text-gray-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Conditionals & Modals</h4>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400">Mixed conditionals & deduction</p>
+                    </button>
+
+                    <button type="button" onclick="generateWorksheet('Academic Linking Words & Cohesion', 'High School')" class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 border border-gray-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition text-left group">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">ESL / Advanced (C1)</span>
+                            <i class="fas fa-arrow-right text-[10px] text-gray-400 group-hover:text-indigo-600 transition-colors"></i>
+                        </div>
+                        <h4 class="font-bold text-xs text-gray-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Discourse Connectors</h4>
+                        <p class="text-[11px] text-gray-500 dark:text-slate-400">Formal essay cohesion & thesis</p>
+                    </button>
                 </div>
             </div>
 
@@ -854,25 +966,25 @@
                 <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center space-x-3 mb-2">
-                            <div class="w-9 h-9 rounded-xl theme-primary-btn text-white flex items-center justify-center text-sm shadow-xs">
-                                <i class="fas fa-magic"></i>
+                            <div class="w-10 h-10 rounded-xl theme-primary-btn text-white flex items-center justify-center text-sm shadow-xs">
+                                <i class="fas fa-wand-magic-sparkles"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-900 dark:text-white text-base">Worksheet Studio</h3>
-                                <p class="text-xs text-gray-500 dark:text-slate-400">Target specific grammar topics, CEFR grade, and printable layout</p>
+                                <h3 class="font-bold text-gray-900 dark:text-white text-base">Custom Worksheet Studio</h3>
+                                <p class="text-xs text-gray-500 dark:text-slate-400">Build custom 3-step worksheets with live A4 paper preview</p>
                             </div>
                         </div>
                         <div class="pt-2">
-                            <p class="text-xs font-medium text-gray-500 dark:text-slate-400 mb-2">Popular quick topics:</p>
+                            <p class="text-xs font-medium text-gray-500 dark:text-slate-400 mb-2">Quick topic inspiration:</p>
                             <div class="flex flex-wrap gap-1.5">
-                                <button type="button" onclick="generateWorksheet('Present Perfect vs Past Simple', 'Middle School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Present Perfect</button>
-                                <button type="button" onclick="generateWorksheet('Irregular Verbs Drill', 'High School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Irregular Verbs</button>
-                                <button type="button" onclick="generateWorksheet('Passive Voice Mastery', 'High School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Passive Voice</button>
+                                <button type="button" onclick="setGenTopic('Passive Voice Mastery', 'Middle School'); navigate('generator', 'builder');" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Passive Voice</button>
+                                <button type="button" onclick="setGenTopic('Direct vs Indirect Speech', 'Middle School'); navigate('generator', 'builder');" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Reported Speech</button>
+                                <button type="button" onclick="setGenTopic('Subjunctive Mood & Inversion', 'High School'); navigate('generator', 'builder');" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Subjunctive Inversion</button>
                             </div>
                         </div>
                     </div>
-                    <button onclick="navigate('generator')" class="w-full py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600 bg-slate-50 dark:bg-slate-800 text-xs font-bold text-gray-800 dark:text-slate-200 transition flex items-center justify-center space-x-2 active:scale-95">
-                        <span>Open Worksheet Studio</span>
+                    <button onclick="navigate('generator', 'builder')" class="w-full py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600 bg-slate-50 dark:bg-slate-800 text-xs font-bold text-gray-800 dark:text-slate-200 transition flex items-center justify-center space-x-2 active:scale-95">
+                        <span>Open 3-Step Worksheet Builder</span>
                         <i class="fas fa-arrow-right text-xs"></i>
                     </button>
                 </div>
@@ -881,12 +993,12 @@
                 <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center space-x-3 mb-2">
-                            <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm shadow-xs">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm shadow-xs">
                                 <i class="fas fa-robot"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-gray-900 dark:text-white text-base">Interactive AI Grammar Tutor</h3>
-                                <p class="text-xs text-gray-500 dark:text-slate-400">Ask grammar rules, breakdown complex tenses, or practice dialogs</p>
+                                <p class="text-xs text-gray-500 dark:text-slate-400">Ask grammar rules, breakdown tricky concepts, or request pop quizzes</p>
                             </div>
                         </div>
                         <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 text-xs text-gray-600 dark:text-slate-300 italic">
@@ -907,10 +1019,13 @@
                         <i class="fas fa-clock text-gray-400 text-sm"></i>
                         <h3 class="font-bold text-gray-800 dark:text-slate-100 text-base">Recent Worksheets</h3>
                     </div>
-                    <button onclick="navigate('generator')" class="text-xs theme-accent-color font-semibold hover:underline flex items-center space-x-1">
-                        <i class="fas fa-plus text-[10px]"></i>
-                        <span>New Sheet</span>
-                    </button>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="navigate('library')" class="text-xs text-gray-500 dark:text-slate-400 font-semibold hover:underline">View All</button>
+                        <button onclick="navigate('generator', 'builder')" class="text-xs theme-accent-color font-semibold hover:underline flex items-center space-x-1">
+                            <i class="fas fa-plus text-[10px]"></i>
+                            <span>New Sheet</span>
+                        </button>
+                    </div>
                 </div>
                 <div id="recent-worksheets" class="space-y-2.5">
                     <!-- Populated by JS -->
@@ -1985,36 +2100,80 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
         }
 
         // Navigation Router
-        function navigate(viewId) {
+        function navigate(viewId, subTab) {
+            let actualView = viewId;
+            let targetSubTab = subTab;
+
+            // Handle direct subtab shortcuts from sidebar
+            if (viewId === 'presets') {
+                actualView = 'generator';
+                targetSubTab = 'presets';
+            } else if (viewId === 'library') {
+                actualView = 'generator';
+                targetSubTab = 'library';
+            } else if (viewId === 'printguide') {
+                actualView = 'generator';
+                targetSubTab = 'printguide';
+            }
+
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-            const targetView = document.getElementById('view-' + viewId);
+            const targetView = document.getElementById('view-' + actualView);
             if (targetView) targetView.classList.add('active');
             
+            // Highlight active sidebar item
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            const targetNav = document.getElementById('nav-' + viewId);
+            let activeNavId = 'nav-' + viewId;
+            if (viewId === 'generator' && targetSubTab && targetSubTab !== 'builder') {
+                activeNavId = 'nav-' + targetSubTab;
+            }
+            const targetNav = document.getElementById(activeNavId) || document.getElementById('nav-' + actualView);
             if (targetNav) targetNav.classList.add('active');
 
             // Update topbar title
             const titles = {
                 'dashboard': 'Worksheet Dashboard',
                 'generator': 'A4 Worksheet Studio',
+                'presets': 'Curriculum Presets Catalog',
+                'library': 'Saved Worksheets Library',
+                'printguide': 'ISO A4 Print & PDF Guide',
                 'viewer': 'Worksheet Print Preview',
                 'tutor': 'Interactive AI Tutor'
             };
             const topbarTitle = document.getElementById('topbar-view-title');
-            if (topbarTitle) topbarTitle.innerText = titles[viewId] || 'Dashboard';
+            if (topbarTitle) {
+                let effectiveTitle = titles[viewId] || titles[actualView] || 'Dashboard';
+                if (actualView === 'generator' && targetSubTab && titles[targetSubTab]) {
+                    effectiveTitle = titles[targetSubTab];
+                }
+                topbarTitle.innerText = effectiveTitle;
+            }
             
             // Close mobile sidebar on navigation
             closeMobileSidebar();
 
-            if (viewId === 'dashboard') renderDashboard();
-            if (viewId === 'tutor') {
+            if (actualView === 'generator' && targetSubTab) {
+                switchStudioTab(targetSubTab);
+            }
+
+            if (actualView === 'dashboard') renderDashboard();
+            if (actualView === 'tutor') {
                 setTimeout(() => {
                     const chatLog = document.getElementById('chat-log');
                     if (chatLog) chatLog.scrollTop = chatLog.scrollHeight;
                     const chatInput = document.getElementById('chat-input');
                     if (chatInput) chatInput.focus();
                 }, 50);
+            }
+        }
+
+        function updateStudioLibraryBadge() {
+            const badge = document.getElementById('studio-library-count-badge');
+            if (badge) {
+                badge.innerText = worksheets.length;
+            }
+            const navBadge = document.getElementById('nav-saved-count');
+            if (navBadge) {
+                navBadge.innerText = worksheets.length;
             }
         }
 
@@ -2032,30 +2191,42 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
                         </div>
                         <h4 class="font-bold text-gray-800 dark:text-slate-200 text-sm">No worksheets generated yet</h4>
                         <p class="text-gray-500 dark:text-slate-400 text-xs">Create your first ISO A4 worksheet with custom gemstone colors!</p>
-                        <button onclick="navigate('generator')" class="mt-2 text-xs theme-primary-btn text-white font-semibold px-3 py-1.5 rounded-lg inline-flex items-center space-x-1.5 shadow-2xs">
+                        <button onclick="navigate('generator', 'builder')" class="mt-2 text-xs theme-primary-btn text-white font-semibold px-3 py-1.5 rounded-lg inline-flex items-center space-x-1.5 shadow-2xs">
                             <i class="fas fa-plus"></i>
                             <span>Create Now</span>
                         </button>
                     </div>`;
                 
-                worksheets.forEach((ws, idx) => {
+                worksheets.slice(0, 5).forEach((ws, idx) => {
                     const wsThemeKey = ws.theme || 'amethyst';
                     const wsTheme = GEM_THEMES[wsThemeKey] || GEM_THEMES.amethyst;
                     list.innerHTML += `
-                    <div onclick="openViewer(${idx})" class="p-4 bg-white dark:bg-slate-900 rounded-2xl shadow-2xs border border-gray-100 dark:border-slate-800/90 flex items-center space-x-3.5 cursor-pointer active:scale-95 transition hover:border-gray-300 dark:hover:border-slate-700 group">
-                        <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-2xs shrink-0" style="background: ${wsTheme.bgGradient};">
-                            <i class="fas fa-file-invoice text-sm"></i>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center space-x-2">
-                                <h4 class="font-bold text-gray-900 dark:text-slate-100 truncate text-sm">${ws.title}</h4>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold shrink-0" style="background: ${wsTheme.primary}18; color: ${wsTheme.primary};">${wsTheme.name}</span>
+                    <div class="p-4 bg-white dark:bg-slate-900 rounded-2xl shadow-xs border border-gray-200/90 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-indigo-300 dark:hover:border-indigo-700 transition group">
+                        <div onclick="openViewer(${idx})" class="flex items-center space-x-3.5 cursor-pointer min-w-0 flex-1">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-2xs shrink-0 group-hover:scale-105 transition-transform" style="background: ${wsTheme.bgGradient};">
+                                <i class="fas fa-file-invoice text-sm"></i>
                             </div>
-                            <p class="text-xs text-gray-500 dark:text-slate-400 mt-0.5">${ws.difficulty}${ws.layout ? ' • ' + ws.layout : ' • Standard A4'}</p>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center space-x-2">
+                                    <h4 class="font-bold text-gray-900 dark:text-slate-100 truncate text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${ws.title}</h4>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold shrink-0" style="background: ${wsTheme.primary}18; color: ${wsTheme.primary};">${wsTheme.name}</span>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-slate-400 mt-0.5">${ws.difficulty}${ws.layout ? ' • ' + ws.layout : ' • Standard A4'}</p>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-1 text-gray-400 group-hover:text-indigo-600 transition">
-                            <span class="text-xs font-semibold hidden sm:inline">View A4</span>
-                            <i class="fas fa-chevron-right text-xs group-hover:translate-x-0.5 transition-transform"></i>
+                        
+                        <div class="flex items-center space-x-2 shrink-0 self-end sm:self-center">
+                            <button type="button" onclick="openViewer(${idx})" class="theme-primary-btn text-white text-xs font-bold px-3 py-1.5 rounded-xl flex items-center space-x-1 shadow-2xs transition active:scale-95">
+                                <i class="fas fa-eye text-[10px]"></i>
+                                <span>Preview</span>
+                            </button>
+                            <button type="button" onclick="openViewer(${idx}); setTimeout(() => window.print(), 300);" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold px-2.5 py-1.5 rounded-xl flex items-center space-x-1 transition active:scale-95 border border-gray-200 dark:border-slate-700" title="Direct Print">
+                                <i class="fas fa-print text-[10px]"></i>
+                                <span class="hidden sm:inline">Print</span>
+                            </button>
+                            <button type="button" onclick="deleteWorksheet(${idx})" class="p-1.5 rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition" title="Delete">
+                                <i class="fas fa-trash-alt text-xs"></i>
+                            </button>
                         </div>
                     </div>`;
                 });
