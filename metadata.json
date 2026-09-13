@@ -1,6 +1,6 @@
 {
   "name": "Worksheet AI",
-  "description": "An AI-powered English worksheet generator and tutor with dark mode and interactive chat.",
+  "description": "An AI-powered English worksheet generator with ISO A4 print format and 7 gemstone color themes (Ruby, Emerald, Amethyst, Topaz, Diamond, Obsidian, Citrine).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
