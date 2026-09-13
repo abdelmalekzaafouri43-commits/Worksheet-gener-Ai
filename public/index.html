@@ -342,72 +342,121 @@
             </div>
         </section>
 
-        <!-- 4. TUTOR VIEW (Chat) -->
-        <section id="view-tutor" class="view-section flex flex-col flex-1 h-full p-2 sm:p-5 md:p-8 relative overflow-hidden">
+        <!-- 4. TUTOR VIEW (Side-by-side AI area next to chat text) -->
+        <section id="view-tutor" class="view-section flex flex-col flex-1 h-full p-2 sm:p-4 md:p-6 relative overflow-hidden">
             <!-- Decorative Ambient Glowing Orbs behind glass -->
             <div class="absolute -top-20 -left-20 w-80 h-80 bg-indigo-400/20 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="flex flex-col flex-1 h-full glass-ai-stage rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden relative z-10">
-                <!-- AI Tutor Header Bar -->
-                <div class="p-3 sm:p-4 px-4 sm:px-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border-b border-white/40 dark:border-slate-700/60 flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center text-lg shadow-lg shadow-indigo-500/25">
-                                <i class="fas fa-brain"></i>
+            <div class="flex flex-col lg:flex-row flex-1 h-full gap-4 relative z-10 min-h-0 overflow-hidden">
+                
+                <!-- Left AI Assistant Panel (Enlarged & Glassed next to the chat) -->
+                <div class="w-full lg:w-80 xl:w-96 glass-ai-stage rounded-2xl md:rounded-3xl p-5 md:p-6 flex flex-col justify-between shrink-0 shadow-xl overflow-y-auto hide-scrollbar">
+                    <div class="space-y-5">
+                        <!-- AI Avatar & Identity -->
+                        <div class="flex items-center space-x-3.5 pb-4 border-b border-white/40 dark:border-slate-700/60">
+                            <div class="relative">
+                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center text-xl shadow-lg shadow-indigo-500/30">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
                             </div>
-                            <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
+                            <div>
+                                <h3 class="font-bold text-gray-800 dark:text-slate-100 text-lg flex items-center">
+                                    Worksheet AI
+                                    <span class="ml-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300">Online</span>
+                                </h3>
+                                <p class="text-xs text-gray-500 dark:text-slate-400">English Language Companion</p>
+                            </div>
                         </div>
+
+                        <!-- AI Status Glass Card -->
+                        <div class="glass-bubble-ai p-4 rounded-2xl border space-y-2">
+                            <div class="flex items-center justify-between text-xs font-semibold text-gray-600 dark:text-slate-300">
+                                <span><i class="fas fa-sparkles text-amber-400 mr-1.5"></i>Tutor Capabilities</span>
+                                <span class="text-indigo-600 dark:text-indigo-400">Active</span>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
+                                Ask about grammar structures, idioms, synonym matches, reading texts, or requesting practice drills.
+                            </p>
+                        </div>
+
+                        <!-- Suggested Quick Topics / Prompts -->
                         <div>
-                            <h3 class="font-bold text-gray-800 dark:text-slate-100 text-base sm:text-lg flex items-center">
-                                AI English Tutor
-                                <span class="ml-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/80 text-indigo-700 dark:text-indigo-300">Active</span>
-                            </h3>
-                            <p class="text-xs text-gray-500 dark:text-slate-400">Grammar, vocabulary & lesson guidance</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-1.5">
-                        <button onclick="document.getElementById('chat-log').innerHTML=''; addChatBubble('Chat cleared! What shall we explore next?', false);" title="Clear Chat" class="p-2 rounded-xl text-gray-400 hover:text-gray-600 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-800/60 transition">
-                            <i class="fas fa-trash-alt text-sm"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Quick Prompts Pill Carousel -->
-                <div class="p-3 px-4 sm:px-6 bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm border-b border-white/40 dark:border-slate-700/40 flex items-center space-x-2.5 overflow-x-auto whitespace-nowrap hide-scrollbar">
-                    <span class="text-xs font-semibold text-gray-400 dark:text-slate-500 flex items-center mr-1"><i class="fas fa-bolt text-amber-400 mr-1.5"></i>Prompts:</span>
-                    <button onclick="sendQuickPrompt('Explain Present Perfect')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">Explain Present Perfect</button>
-                    <button onclick="sendQuickPrompt('Give me an idiom example')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">Idiom Example</button>
-                    <button onclick="sendQuickPrompt('Generate a 5-question pop quiz')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">5-Question Pop Quiz</button>
-                    <button onclick="sendQuickPrompt('Difference between Affect vs Effect')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">Affect vs Effect</button>
-                </div>
-
-                <!-- Chat Log (Enlarged viewport) -->
-                <div id="chat-log" class="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto space-y-5 bg-transparent">
-                    <div class="flex items-end space-x-3 justify-start">
-                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md shadow-indigo-500/20 shrink-0 mb-1">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-start space-y-1">
-                            <div class="p-4 sm:p-5 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-3xl rounded-bl-xs leading-relaxed text-sm sm:text-base border">
-                                Hello! I'm your AI English Tutor. How can I help you with grammar, vocabulary, reading texts, or lesson planning today?
+                            <span class="text-xs font-bold text-gray-700 dark:text-slate-300 mb-2.5 flex items-center">
+                                <i class="fas fa-bolt text-amber-400 mr-1.5"></i>Quick Learning Topics
+                            </span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-1">
+                                <button onclick="sendQuickPrompt('Explain Present Perfect with 3 examples')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
+                                    <span>Present Perfect Tense</span>
+                                    <i class="fas fa-chevron-right text-[10px] opacity-60"></i>
+                                </button>
+                                <button onclick="sendQuickPrompt('Give me a common English idiom with meaning')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
+                                    <span>Idiom of the Day</span>
+                                    <i class="fas fa-chevron-right text-[10px] opacity-60"></i>
+                                </button>
+                                <button onclick="sendQuickPrompt('Generate a 5-question pop quiz on prepositions')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
+                                    <span>Prepositions Quiz</span>
+                                    <i class="fas fa-chevron-right text-[10px] opacity-60"></i>
+                                </button>
+                                <button onclick="sendQuickPrompt('Difference between Affect vs Effect')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 p-2.5 rounded-xl text-xs font-medium text-left transition flex items-center justify-between active:scale-95">
+                                    <span>Affect vs Effect</span>
+                                    <i class="fas fa-chevron-right text-[10px] opacity-60"></i>
+                                </button>
                             </div>
-                            <span class="text-[11px] text-slate-400 dark:text-slate-500 px-2 font-medium select-none">Just now</span>
+                        </div>
+                    </div>
+
+                    <!-- Reset Chat Helper -->
+                    <div class="pt-4 mt-4 border-t border-white/40 dark:border-slate-700/60 flex items-center justify-between">
+                        <span class="text-[11px] text-gray-400 dark:text-slate-500">Session Memory Active</span>
+                        <button onclick="document.getElementById('chat-log').innerHTML=''; addChatBubble('Chat cleared! What shall we explore next?', false);" class="text-xs text-gray-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 flex items-center transition">
+                            <i class="fas fa-trash-alt mr-1"></i> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right / Main Chat Text Stage -->
+                <div class="flex flex-col flex-1 h-full glass-ai-stage rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden min-h-0">
+                    <!-- Chat Header Bar -->
+                    <div class="p-3.5 px-4 sm:px-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border-b border-white/40 dark:border-slate-700/60 flex items-center justify-between shrink-0">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-comments text-indigo-600 dark:text-indigo-400 text-lg"></i>
+                            <h4 class="font-bold text-gray-800 dark:text-slate-100 text-sm sm:text-base">Interactive Conversation</h4>
+                        </div>
+                        <span class="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span> Live
+                        </span>
+                    </div>
+
+                    <!-- Chat Messages Log -->
+                    <div id="chat-log" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-transparent min-h-0">
+                        <div class="flex items-end space-x-3 justify-start">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md shadow-indigo-500/20 shrink-0 mb-1">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-start space-y-1">
+                                <div class="p-4 sm:p-5 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-3xl rounded-bl-xs leading-relaxed text-sm sm:text-base border">
+                                    Hello! I'm your AI English Tutor. How can I help you with grammar, vocabulary, reading texts, or lesson planning today?
+                                </div>
+                                <span class="text-[11px] text-slate-400 dark:text-slate-500 px-2 font-medium select-none">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input Glass Bar -->
+                    <div class="p-3 sm:p-4 md:p-5 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border-t border-white/50 dark:border-slate-700/60 pb-safe shrink-0">
+                        <div class="flex items-center space-x-3">
+                            <div class="flex-1 relative flex items-center">
+                                <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Type your question or practice sentence..." class="w-full glass-input-bar rounded-full pl-6 pr-12 py-3.5 sm:py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/80 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-base">
+                            </div>
+                            <button onclick="sendChat()" class="bg-gradient-to-tr from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white h-12 w-12 sm:h-14 sm:w-14 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/30 active:scale-95 transition flex-shrink-0">
+                                <i class="fas fa-paper-plane text-base sm:text-lg"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Chat Input Floating Glass Bar -->
-                <div class="p-3 sm:p-5 md:p-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border-t border-white/50 dark:border-slate-700/60 pb-safe">
-                    <div class="flex items-center space-x-3">
-                        <div class="flex-1 relative flex items-center">
-                            <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Type a message or ask grammar advice..." class="w-full glass-input-bar rounded-full pl-6 pr-12 py-3.5 sm:py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/80 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-base sm:text-lg">
-                        </div>
-                        <button onclick="sendChat()" class="bg-gradient-to-tr from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white h-12 w-12 sm:h-14 sm:w-14 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/30 active:scale-95 transition flex-shrink-0">
-                            <i class="fas fa-paper-plane text-base sm:text-xl"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
         </section>
 
