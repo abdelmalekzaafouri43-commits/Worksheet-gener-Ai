@@ -116,10 +116,10 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main id="app-content" class="flex-1 overflow-y-auto relative">
+    <main id="app-content" class="flex-1 overflow-y-auto relative flex flex-col">
         
         <!-- 1. DASHBOARD VIEW -->
-        <section id="view-dashboard" class="view-section active p-4 space-y-6">
+        <section id="view-dashboard" class="view-section active p-4 space-y-6 flex-1">
             <div>
                 <h2 class="text-2xl font-bold text-gray-800">Welcome Back, Scholar!</h2>
                 <p class="text-gray-500">Ready to create some learning materials?</p>
@@ -226,37 +226,37 @@
         </section>
 
         <!-- 4. TUTOR VIEW (Chat) -->
-        <section id="view-tutor" class="view-section flex flex-col h-full bg-slate-50">
-            <!-- Quick Prompts -->
-            <div class="p-3 bg-white border-b border-gray-200 flex space-x-2 overflow-x-auto whitespace-nowrap hide-scrollbar">
-                <button onclick="sendQuickPrompt('Explain Present Perfect')" class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-semibold border border-indigo-100">Explain Present Perfect</button>
-                <button onclick="sendQuickPrompt('Give me an idiom example')" class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-semibold border border-indigo-100">Idiom Example</button>
-            </div>
+        <section id="view-tutor" class="view-section flex flex-col flex-1 p-4 sm:p-8">
+            <div class="flex flex-col flex-1 glass-panel rounded-2xl border border-white/60 shadow-xl overflow-hidden">
+                <!-- Quick Prompts -->
+                <div class="p-4 bg-white/50 backdrop-blur-md border-b border-white/60 flex space-x-3 overflow-x-auto whitespace-nowrap hide-scrollbar">
+                    <button onclick="sendQuickPrompt('Explain Present Perfect')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-5 py-2.5 rounded-full text-sm font-semibold border border-indigo-200 transition">Explain Present Perfect</button>
+                    <button onclick="sendQuickPrompt('Give me an idiom example')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-5 py-2.5 rounded-full text-sm font-semibold border border-indigo-200 transition">Idiom Example</button>
+                </div>
 
-            <!-- Chat Log -->
-            <div id="chat-log" class="flex-1 p-4 overflow-y-auto space-y-4">
-                <div class="flex justify-start">
-                    <div class="max-w-[85%] p-4 glass-panel text-gray-800 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-sm shadow-sm premium-border">
-                        <div class="premium-inner p-3 bg-transparent border-0 backdrop-blur-none">
+                <!-- Chat Log -->
+                <div id="chat-log" class="flex-1 p-6 overflow-y-auto space-y-6 bg-transparent">
+                    <div class="flex justify-start">
+                        <div class="max-w-[85%] p-4 bg-white/80 backdrop-blur-md text-gray-800 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-sm shadow-sm border border-white/50">
                             Hello! I'm your AI English Tutor. How can I help you grammar, vocabulary, or lesson planning today?
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Chat Input -->
-            <div class="p-4 bg-white border-t border-gray-200 pb-safe">
-                <div class="flex items-center space-x-2">
-                    <input type="text" id="chat-input" placeholder="Ask your tutor..." class="flex-1 bg-gray-100 border-none rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <button onclick="sendChat()" class="bg-indigo-600 text-white h-12 w-12 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+                <!-- Chat Input -->
+                <div class="p-4 sm:p-6 bg-white/50 backdrop-blur-md border-t border-white/60 pb-safe">
+                    <div class="flex items-center space-x-3">
+                        <input type="text" id="chat-input" placeholder="Ask your tutor..." class="flex-1 bg-white/70 backdrop-blur-sm border border-white/60 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner text-gray-800 placeholder-gray-500 text-lg">
+                        <button onclick="sendChat()" class="bg-indigo-600 hover:bg-indigo-700 text-white h-14 w-14 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition flex-shrink-0">
+                            <i class="fas fa-paper-plane text-xl"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 5. PREMIUM VIEW -->
-        <section id="view-premium" class="view-section p-6 space-y-8 flex flex-col items-center py-10">
+        <section id="view-premium" class="view-section p-6 space-y-8 flex-col items-center py-10 flex-1">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-emerald-500">Worksheet AI Premium</h2>
                 <p class="text-gray-500 mt-2">Unlock your full teaching potential.</p>
