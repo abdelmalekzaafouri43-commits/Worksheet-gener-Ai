@@ -1,0 +1,6 @@
+{
+  "name": "Worksheet AI",
+  "description": "An AI-powered English worksheet generator and tutor, built as a hybrid SPA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
