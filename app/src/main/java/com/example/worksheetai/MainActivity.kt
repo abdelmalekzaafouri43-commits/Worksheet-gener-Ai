@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         webView = WebView(this).apply {
-            clearCache(true)
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                 allowContentAccess = true
                 loadsImagesAutomatically = true
                 mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-                cacheMode = WebSettings.LOAD_NO_CACHE
+                cacheMode = WebSettings.LOAD_DEFAULT
             }
 
             webViewClient = WebViewClient()
@@ -49,3 +48,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
