@@ -281,10 +281,16 @@
                 </div>
 
                 <!-- Chat Log -->
-                <div id="chat-log" class="flex-1 p-6 overflow-y-auto space-y-6 bg-transparent">
-                    <div class="flex justify-start">
-                        <div class="max-w-[85%] p-4 bg-white/80 dark:bg-slate-800/90 backdrop-blur-md text-gray-800 dark:text-slate-100 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-sm shadow-sm border border-white/50 dark:border-slate-700">
-                            Hello! I'm your AI English Tutor. How can I help you grammar, vocabulary, or lesson planning today?
+                <div id="chat-log" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-transparent">
+                    <div class="flex items-end space-x-2 justify-start">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
+                            <i class="fas fa-robot text-xs"></i>
+                        </div>
+                        <div class="max-w-[85%] sm:max-w-[75%] flex flex-col items-start space-y-1">
+                            <div class="p-3.5 sm:p-4 bg-white dark:bg-slate-800 text-gray-800 dark:text-slate-100 rounded-2xl rounded-bl-xs shadow-sm border border-slate-200/80 dark:border-slate-700 leading-relaxed text-sm sm:text-base">
+                                Hello! I'm your AI English Tutor. How can I help you grammar, vocabulary, or lesson planning today?
+                            </div>
+                            <span class="text-[11px] text-slate-400 dark:text-slate-500 px-1 font-medium select-none">Just now</span>
                         </div>
                     </div>
                 </div>
@@ -514,6 +520,15 @@
         }
 
         // Chat Logic
+        function getFormattedTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            return `${hours}:${minutes} ${ampm}`;
+        }
+
         function sendChat() {
             const input = document.getElementById('chat-input');
             const msg = input.value.trim();
@@ -526,13 +541,14 @@
             const chatLog = document.getElementById('chat-log');
             const typingId = 'typing-' + Date.now();
             const typingHtml = `
-            <div id="${typingId}" class="flex justify-start">
-                <div class="max-w-[85%] p-4 glass-panel text-gray-800 dark:text-slate-100 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-sm shadow-sm premium-border">
-                    <div class="premium-inner p-3 flex space-x-1 items-center bg-transparent border-0 backdrop-blur-none h-12">
-                        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
-                        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-                        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
-                    </div>
+            <div id="${typingId}" class="flex items-end space-x-2 justify-start">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
+                    <i class="fas fa-robot text-xs"></i>
+                </div>
+                <div class="p-3.5 bg-white dark:bg-slate-800 rounded-2xl rounded-bl-xs shadow-sm border border-slate-200/80 dark:border-slate-700 flex items-center space-x-1.5 h-10">
+                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
                 </div>
             </div>`;
             chatLog.insertAdjacentHTML('beforeend', typingHtml);
@@ -548,7 +564,7 @@
                 if(msg.toLowerCase().includes("idiom")) aiRes = "'Bite the bullet' is a common idiom. It means to decide to do something difficult that you have been putting off.";
                 
                 addChatBubble(aiRes, false);
-            }, 1500);
+            }, 1200);
         }
 
         function sendQuickPrompt(prompt) {
@@ -558,19 +574,41 @@
 
         function addChatBubble(text, isUser) {
             const chatLog = document.getElementById('chat-log');
-            const align = isUser ? 'justify-end' : 'justify-start';
+            const timeStr = getFormattedTime();
             
-            let bubbleHtml = '';
+            let messageHtml = '';
             if (isUser) {
-                bubbleHtml = `<div class="max-w-[80%] p-3 bg-indigo-600 text-white rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-sm shadow-sm">${text}</div>`;
+                messageHtml = `
+                <div class="flex items-end space-x-2 justify-end">
+                    <div class="max-w-[85%] sm:max-w-[75%] flex flex-col items-end space-y-1">
+                        <div class="p-3.5 sm:p-4 bg-indigo-600 text-white rounded-2xl rounded-br-xs shadow-sm text-sm sm:text-base leading-relaxed break-words">
+                            ${text}
+                        </div>
+                        <div class="flex items-center space-x-1 px-1 text-[11px] text-slate-400 dark:text-slate-500 font-medium select-none">
+                            <span>${timeStr}</span>
+                            <i class="fas fa-check-double text-[10px] text-indigo-500 dark:text-indigo-400"></i>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
+                        <i class="fas fa-user text-xs"></i>
+                    </div>
+                </div>`;
             } else {
-                bubbleHtml = `
-                <div class="max-w-[85%] p-4 glass-panel text-gray-800 dark:text-slate-100 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-sm shadow-sm premium-border">
-                    <div class="premium-inner p-3 bg-transparent border-0 backdrop-blur-none">${text}</div>
+                messageHtml = `
+                <div class="flex items-end space-x-2 justify-start">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
+                        <i class="fas fa-robot text-xs"></i>
+                    </div>
+                    <div class="max-w-[85%] sm:max-w-[75%] flex flex-col items-start space-y-1">
+                        <div class="p-3.5 sm:p-4 bg-white dark:bg-slate-800 text-gray-800 dark:text-slate-100 rounded-2xl rounded-bl-xs shadow-sm border border-slate-200/80 dark:border-slate-700 text-sm sm:text-base leading-relaxed break-words">
+                            ${text}
+                        </div>
+                        <span class="text-[11px] text-slate-400 dark:text-slate-500 px-1 font-medium select-none">${timeStr}</span>
+                    </div>
                 </div>`;
             }
             
-            chatLog.innerHTML += `<div class="flex ${align}">${bubbleHtml}</div>`;
+            chatLog.insertAdjacentHTML('beforeend', messageHtml);
             chatLog.scrollTop = chatLog.scrollHeight;
         }
 
