@@ -692,15 +692,11 @@
             </button>
             <button onclick="navigate('generator')" id="nav-generator" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-3 rounded-xl transition text-left group">
                 <i class="fas fa-file-invoice text-lg w-6 text-center mr-3 group-hover:scale-110 transition-transform"></i>
-                <span class="sidebar-expanded-text font-semibold text-sm">Create A4 Sheet</span>
+                <span class="sidebar-expanded-text font-semibold text-sm">Worksheet Studio</span>
             </button>
             <button onclick="navigate('tutor')" id="nav-tutor" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-3 rounded-xl transition text-left group">
                 <i class="fas fa-comment-dots text-lg w-6 text-center mr-3 group-hover:scale-110 transition-transform"></i>
                 <span class="sidebar-expanded-text font-semibold text-sm">AI Tutor</span>
-            </button>
-            <button onclick="navigate('premium')" id="nav-premium" class="nav-item w-full flex items-center text-gray-600 dark:text-slate-300 p-3 rounded-xl transition text-left group">
-                <i class="fas fa-crown text-lg w-6 text-center mr-3 group-hover:scale-110 transition-transform text-amber-500"></i>
-                <span class="sidebar-expanded-text font-semibold text-sm">Premium Plan</span>
             </button>
         </div>
 
@@ -724,16 +720,13 @@
                 <span id="theme-badge" class="sidebar-expanded-text text-[10px] px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium">Off</span>
             </button>
 
-            <!-- Scholar Tokens Pill -->
-            <div onclick="navigate('premium')" class="cursor-pointer text-xs font-semibold theme-badge px-3 py-2 rounded-xl flex items-center justify-between shadow-2xs hover:opacity-90 transition">
-                <div class="flex items-center">
-                    <i class="fas fa-coins mr-2 text-amber-500"></i>
-                    <span class="sidebar-expanded-text">Balance:</span>
+            <!-- Free & Unlimited Status Badge -->
+            <div class="px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="sidebar-expanded-text text-xs font-bold text-emerald-700 dark:text-emerald-300">Unlimited Studio</span>
                 </div>
-                <div>
-                    <span id="tokens-display" class="font-bold">3</span>
-                    <span class="sidebar-expanded-text text-[11px]">&nbsp;tokens</span>
-                </div>
+                <span class="sidebar-expanded-text text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-200 dark:bg-emerald-800 text-emerald-800 dark:text-emerald-100">Free</span>
             </div>
         </div>
     </nav>
@@ -775,13 +768,6 @@
                     <i id="topbar-theme-icon" class="fas fa-moon text-indigo-500"></i>
                 </button>
 
-                <!-- Tokens Pill -->
-                <div onclick="navigate('premium')" class="cursor-pointer px-3 py-1.5 rounded-xl text-xs font-bold theme-badge flex items-center space-x-1.5 hover:opacity-90 transition active:scale-95 shadow-2xs">
-                    <i class="fas fa-coins text-amber-500"></i>
-                    <span id="topbar-tokens-display">3</span>
-                    <span class="hidden sm:inline">Tokens</span>
-                </div>
-
                 <!-- Quick Create Button -->
                 <button type="button" onclick="navigate('generator')" class="theme-primary-btn text-white px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm hover:shadow transition active:scale-95">
                     <i class="fas fa-plus text-xs"></i>
@@ -790,13 +776,13 @@
             </div>
         </header>
 
-        <!-- 1. DASHBOARD VIEW (Reduced Complexity & Clean Layout) -->
+        <!-- 1. DASHBOARD VIEW -->
         <section id="view-dashboard" class="view-section active p-4 md:p-8 space-y-6 flex-1 overflow-y-auto">
             <!-- Welcome Header -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-gray-100 dark:border-slate-800/80">
                 <div>
-                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white tracking-tight">Welcome back, Scholar</h2>
-                    <p class="text-gray-500 dark:text-slate-400 text-sm mt-0.5">Generate print-ready A4 lesson worksheets with intelligent exercises and gemstone themes.</p>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white tracking-tight">Worksheet Dashboard</h2>
+                    <p class="text-gray-500 dark:text-slate-400 text-sm mt-0.5">Create, format, and print standard ISO A4 English lesson worksheets with AI-powered exercises.</p>
                 </div>
                 <div class="flex items-center space-x-2 shrink-0">
                     <button onclick="navigate('generator')" class="theme-primary-btn text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition active:scale-95 flex items-center space-x-2">
@@ -806,30 +792,30 @@
                 </div>
             </div>
 
-            <!-- 3 Clean KPI Cards (Minimalist, Executive) -->
+            <!-- 3 Clean KPI Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <!-- Stat 1: Tokens Available -->
-                <div onclick="navigate('premium')" class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-gray-300 dark:hover:border-slate-700 transition cursor-pointer group">
+                <!-- Stat 1: Worksheets Created -->
+                <div onclick="navigate('generator')" class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-gray-300 dark:hover:border-slate-700 transition cursor-pointer group">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Tokens Balance</span>
-                        <div class="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs">
-                            <i class="fas fa-coins"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Saved Worksheets</span>
+                        <div class="w-8 h-8 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs">
+                            <i class="fas fa-file-invoice"></i>
                         </div>
                     </div>
                     <div class="flex items-baseline space-x-2">
-                        <span id="dash-stat-tokens" class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">3</span>
-                        <span class="text-xs text-gray-500 dark:text-slate-400 font-medium">available</span>
+                        <span id="dash-stat-sheets" class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">0</span>
+                        <span class="text-xs text-gray-500 dark:text-slate-400 font-medium">ready to print</span>
                     </div>
                     <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center justify-between">
-                        <span id="dash-plan-name">Free Plan</span>
-                        <span class="theme-accent-color font-semibold group-hover:underline">Upgrade →</span>
+                        <span>ISO A4 Format</span>
+                        <span class="theme-accent-color font-semibold group-hover:underline">+ Create New →</span>
                     </p>
                 </div>
 
                 <!-- Stat 2: Active Theme Palette -->
                 <div onclick="openThemePickerModal()" class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-gray-300 dark:hover:border-slate-700 transition cursor-pointer group">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Theme Palette</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Gemstone Theme</span>
                         <div class="w-8 h-8 rounded-xl theme-primary-btn text-white flex items-center justify-center text-xs">
                             <i class="fas fa-gem"></i>
                         </div>
@@ -840,25 +826,24 @@
                     </div>
                     <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center justify-between">
                         <span id="dash-theme-subtitle">Purple Jewel</span>
-                        <span class="theme-accent-color font-semibold group-hover:underline">Change Theme →</span>
+                        <span class="theme-accent-color font-semibold group-hover:underline">Change Palette →</span>
                     </p>
                 </div>
 
-                <!-- Stat 3: Worksheets Created -->
-                <div onclick="navigate('generator')" class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs hover:border-gray-300 dark:hover:border-slate-700 transition cursor-pointer group">
+                <!-- Stat 3: Print & Export Readiness -->
+                <div class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">A4 Worksheets</span>
-                        <div class="w-8 h-8 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs">
-                            <i class="fas fa-file-invoice"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">Print Engine</span>
+                        <div class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs">
+                            <i class="fas fa-print"></i>
                         </div>
                     </div>
                     <div class="flex items-baseline space-x-2">
-                        <span id="dash-stat-sheets" class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">0</span>
-                        <span class="text-xs text-gray-500 dark:text-slate-400 font-medium">ready to print</span>
+                        <span class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400">A4 Ready</span>
                     </div>
                     <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center justify-between">
-                        <span>ISO A4 (210×297mm)</span>
-                        <span class="theme-accent-color font-semibold group-hover:underline">+ Create New →</span>
+                        <span>210 × 297 mm</span>
+                        <span class="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center"><i class="fas fa-check-circle text-xs mr-1"></i>Unlocked</span>
                     </p>
                 </div>
             </div>
@@ -873,12 +858,12 @@
                                 <i class="fas fa-magic"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-900 dark:text-white text-base">Generate Custom Worksheet</h3>
+                                <h3 class="font-bold text-gray-900 dark:text-white text-base">Worksheet Studio</h3>
                                 <p class="text-xs text-gray-500 dark:text-slate-400">Target specific grammar topics, CEFR grade, and printable layout</p>
                             </div>
                         </div>
                         <div class="pt-2">
-                            <p class="text-xs font-medium text-gray-500 dark:text-slate-400 mb-2">Quick presets:</p>
+                            <p class="text-xs font-medium text-gray-500 dark:text-slate-400 mb-2">Popular quick topics:</p>
                             <div class="flex flex-wrap gap-1.5">
                                 <button type="button" onclick="generateWorksheet('Present Perfect vs Past Simple', 'Middle School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Present Perfect</button>
                                 <button type="button" onclick="generateWorksheet('Irregular Verbs Drill', 'High School')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">Irregular Verbs</button>
@@ -887,7 +872,7 @@
                         </div>
                     </div>
                     <button onclick="navigate('generator')" class="w-full py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600 bg-slate-50 dark:bg-slate-800 text-xs font-bold text-gray-800 dark:text-slate-200 transition flex items-center justify-center space-x-2 active:scale-95">
-                        <span>Open Generator Studio</span>
+                        <span>Open Worksheet Studio</span>
                         <i class="fas fa-arrow-right text-xs"></i>
                     </button>
                 </div>
@@ -915,28 +900,16 @@
                 </div>
             </div>
 
-            <!-- Free Plan Notice (Hidden if Premium) -->
-            <div id="free-plan-card" class="premium-border shadow-md cursor-pointer transition transform active:scale-95" onclick="navigate('premium')">
-                <div class="premium-inner p-4 flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-500 flex items-center justify-center text-lg shrink-0">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-900 dark:text-slate-100 text-sm">Free Plan • <span id="tokens-text" class="theme-accent-color font-black">3</span> Tokens Left</h3>
-                            <p class="text-xs text-gray-500 dark:text-slate-400">Upgrade for unlimited A4 worksheet generations & answer keys</p>
-                        </div>
+            <!-- Recent Worksheets Section -->
+            <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-clock text-gray-400 text-sm"></i>
+                        <h3 class="font-bold text-gray-800 dark:text-slate-100 text-base">Recent Worksheets</h3>
                     </div>
-                    <span class="text-xs font-bold px-3 py-1.5 rounded-lg theme-primary-btn text-white shrink-0">Upgrade</span>
-                </div>
-            </div>
-
-            <!-- Recent Worksheets -->
-            <div>
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-bold text-gray-800 dark:text-slate-100 text-base">Recent Worksheets</h3>
                     <button onclick="navigate('generator')" class="text-xs theme-accent-color font-semibold hover:underline flex items-center space-x-1">
-                        <span>+ New Sheet</span>
+                        <i class="fas fa-plus text-[10px]"></i>
+                        <span>New Sheet</span>
                     </button>
                 </div>
                 <div id="recent-worksheets" class="space-y-2.5">
@@ -945,82 +918,164 @@
             </div>
         </section>
 
-        <!-- 2. GENERATOR VIEW -->
+        <!-- 2. ORGANIZED WORKSHEET STUDIO (GENERATOR) -->
         <section id="view-generator" class="view-section p-4 md:p-8 space-y-6 flex-1 overflow-y-auto">
-            <div class="flex items-center justify-between">
+            <!-- Studio Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-100 dark:border-slate-800">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-slate-100">Create A4 Worksheet</h2>
-                    <p class="text-sm text-gray-500 dark:text-slate-400">Generate print-ready A4 lesson sheets with structured sections, headers, and exercises</p>
+                    <h2 class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Worksheet Studio</h2>
+                    <p class="text-sm text-gray-500 dark:text-slate-400">Configure curriculum goals, layout structure, and gemstone accent for an authentic ISO A4 printable worksheet.</p>
                 </div>
-                <span class="inline-flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-                    <i class="fas fa-file-invoice text-sm"></i>
-                    <span>A4 Standard (210×297mm)</span>
-                </span>
+                <div class="flex items-center space-x-2 shrink-0">
+                    <span class="inline-flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60">
+                        <i class="fas fa-file-invoice text-indigo-500"></i>
+                        <span>ISO A4 • 210×297mm</span>
+                    </span>
+                </div>
             </div>
             
-            <div id="gen-form" class="space-y-6">
-                <div>
-                    <label class="block font-semibold text-gray-700 dark:text-slate-300 mb-2">Worksheet Topic or Focus:</label>
-                    <input type="text" id="topic-input" placeholder="e.g. Present Perfect & Past Simple, Irregular Verbs, Synonyms..." class="w-full bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm text-sm" />
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block font-semibold text-gray-700 dark:text-slate-300 mb-2 text-sm">Difficulty Level:</label>
-                        <select id="difficulty-select" class="w-full bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm text-sm">
-                            <option value="Elementary">Elementary (Grades 1-4)</option>
-                            <option value="Middle School">Middle School (Grades 5-8)</option>
-                            <option value="High School">High School (Grades 9-12)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block font-semibold text-gray-700 dark:text-slate-300 mb-2 text-sm">A4 Layout Style:</label>
-                        <select id="layout-select" class="w-full bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm text-sm">
-                            <option value="Standard Practice">Full A4 Classroom Drill</option>
-                            <option value="Reading & Grammar">Reading Passage + Vocabulary Drill</option>
-                            <option value="Assessment Test">Pop Quiz / Assessment Test</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block font-semibold text-gray-700 dark:text-slate-300 mb-2 text-sm">Worksheet Gemstone Accent:</label>
-                        <select id="worksheet-theme-select" class="w-full bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm text-sm">
-                            <option value="app">Match Workspace Theme</option>
-                            <option value="ruby">Ruby (Deep Red)</option>
-                            <option value="emerald">Emerald (Vibrant Green)</option>
-                            <option value="amethyst">Amethyst (Purple)</option>
-                            <option value="topaz">Topaz (Yellow/Orange)</option>
-                            <option value="diamond">Diamond / Pearl (Clear/White)</option>
-                            <option value="obsidian">Slate / Obsidian</option>
-                            <option value="citrine">Citrine (Golden Yellow)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Quick topic suggestions -->
-                <div>
-                    <span class="text-xs font-semibold text-gray-500 dark:text-slate-400 mb-2 block">Quick A4 Worksheet Templates:</span>
-                    <div class="flex flex-wrap gap-2">
-                        <button type="button" onclick="setGenTopic('Present Perfect & Past Simple', 'Middle School')" class="text-xs px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 border border-slate-200 dark:border-slate-700 transition">Present Perfect vs Past Simple</button>
-                        <button type="button" onclick="setGenTopic('Vocabulary & Synonyms Drill', 'Elementary')" class="text-xs px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 border border-slate-200 dark:border-slate-700 transition">Elementary Synonyms & Antonyms</button>
-                        <button type="button" onclick="setGenTopic('Conditionals & Modal Verbs', 'High School')" class="text-xs px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 border border-slate-200 dark:border-slate-700 transition">High School Conditionals</button>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-4 rounded-xl border border-gray-200 dark:border-slate-700 space-y-2">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                            <h3 class="font-bold text-gray-800 dark:text-slate-100">A4 Print Features</h3>
-                            <i class="fas fa-check-circle text-emerald-500 text-sm"></i>
+            <div id="gen-form" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Left Configuration Column (8 cols) -->
+                <div class="lg:col-span-8 space-y-5">
+                    <!-- Card 1: Curriculum Topic & Quick Templates -->
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label for="topic-input" class="block font-bold text-gray-800 dark:text-slate-200 text-sm">
+                                    <i class="fas fa-book-open theme-accent-color mr-1.5"></i>Worksheet Topic or Curriculum Focus:
+                                </label>
+                                <span class="text-[11px] text-gray-400 dark:text-slate-500">Custom topic or select below</span>
+                            </div>
+                            <input type="text" id="topic-input" placeholder="e.g. Present Perfect & Past Simple, Irregular Verbs Drill, Synonyms & Antonyms..." class="w-full bg-slate-50 dark:bg-slate-800/80 border border-gray-300 dark:border-slate-700 rounded-xl p-3.5 text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner text-sm transition" />
                         </div>
-                        <span class="text-xs theme-accent-color font-medium">Standard 210 × 297 mm</span>
+
+                        <!-- Organized Topic Category Chips -->
+                        <div class="space-y-2 pt-1 border-t border-gray-100 dark:border-slate-800">
+                            <span class="text-xs font-bold text-gray-500 dark:text-slate-400 block">Suggested Quick Curriculum Templates:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="setGenTopic('Present Perfect vs Past Simple', 'Middle School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                    <i class="fas fa-clock text-amber-500 mr-1"></i>Present Perfect vs Past Simple
+                                </button>
+                                <button type="button" onclick="setGenTopic('Irregular Verbs Drill', 'Middle School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                    <i class="fas fa-bolt text-indigo-500 mr-1"></i>Irregular Verbs Drill
+                                </button>
+                                <button type="button" onclick="setGenTopic('Elementary Synonyms & Antonyms', 'Elementary')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                    <i class="fas fa-spell-check text-emerald-500 mr-1"></i>Synonyms & Antonyms
+                                </button>
+                                <button type="button" onclick="setGenTopic('Passive Voice Mastery', 'High School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                    <i class="fas fa-graduation-cap text-purple-500 mr-1"></i>Passive Voice Mastery
+                                </button>
+                                <button type="button" onclick="setGenTopic('Conditionals & Modal Auxiliaries', 'High School')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 border border-slate-200 dark:border-slate-700 transition">
+                                    <i class="fas fa-code-branch text-rose-500 mr-1"></i>Conditionals & Modals
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-sm text-gray-500 dark:text-slate-400">Includes student header block (Name, Date, Class, Score), structured Section A & B drills, handwriting lines, and answer key formatted to match your selected gemstone styling.</p>
+
+                    <!-- Card 2: Parameters & Gemstone Styling -->
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-4">
+                        <h3 class="font-bold text-gray-800 dark:text-slate-200 text-sm flex items-center">
+                            <i class="fas fa-sliders-h theme-accent-color mr-2"></i>Worksheet Specifications
+                        </h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="difficulty-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Target Level / Grade:</label>
+                                <select id="difficulty-select" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
+                                    <option value="Elementary">Elementary (Grades 1-4)</option>
+                                    <option value="Middle School" selected>Middle School (Grades 5-8)</option>
+                                    <option value="High School">High School (Grades 9-12)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="layout-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">A4 Layout Structure:</label>
+                                <select id="layout-select" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
+                                    <option value="Standard Practice" selected>Classroom Practice Drill</option>
+                                    <option value="Reading & Grammar">Reading Passage + Exercises</option>
+                                    <option value="Assessment Test">Pop Quiz & Assessment</option>
+                                    <option value="Vocabulary & Writing">Vocabulary & Ruled Writing</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="worksheet-theme-select" class="block font-semibold text-gray-700 dark:text-slate-300 mb-1.5 text-xs">Printable Gem Accent:</label>
+                                <select id="worksheet-theme-select" class="w-full bg-slate-50 dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-xl p-3 text-gray-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs font-medium">
+                                    <option value="app" selected>Match Workspace Theme</option>
+                                    <option value="amethyst">Amethyst (Purple)</option>
+                                    <option value="ruby">Ruby (Deep Red)</option>
+                                    <option value="emerald">Emerald (Vibrant Green)</option>
+                                    <option value="topaz">Topaz (Orange)</option>
+                                    <option value="diamond">Diamond / Pearl (Sky Cyan)</option>
+                                    <option value="obsidian">Slate / Obsidian</option>
+                                    <option value="citrine">Citrine (Golden Yellow)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Generate CTA Button -->
+                    <button onclick="generateWorksheet()" class="w-full theme-primary-btn text-white font-bold text-base py-4 rounded-2xl flex items-center justify-center space-x-2.5 shadow-md hover:shadow-lg transition transform active:scale-95">
+                        <i class="fas fa-magic text-lg"></i>
+                        <span>Generate A4 Worksheet</span>
+                    </button>
                 </div>
 
-                <button onclick="generateWorksheet()" class="w-full theme-primary-btn text-white font-bold text-lg py-4 rounded-2xl flex items-center justify-center space-x-2 transition transform active:scale-95">
-                    <i class="fas fa-magic"></i>
-                    <span>Generate A4 Worksheet</span>
-                </button>
+                <!-- Right Information Column (4 cols) -->
+                <div class="lg:col-span-4 space-y-4">
+                    <!-- A4 Features Card -->
+                    <div class="p-5 bg-white dark:bg-slate-900 rounded-2xl border border-gray-200/90 dark:border-slate-800 shadow-xs space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center">
+                                <i class="fas fa-check-circle text-emerald-500 mr-1.5"></i>A4 Standard Features
+                            </span>
+                            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">210×297mm</span>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-600 dark:text-slate-300">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-heading text-indigo-500 mt-0.5 shrink-0 text-[11px]"></i>
+                                <span><strong>Header Block:</strong> Student Name, Date, Class, Teacher, and Score matrix.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-list-ol text-indigo-500 mt-0.5 shrink-0 text-[11px]"></i>
+                                <span><strong>Section A & B Drills:</strong> Point-scored fill-in-the-blanks, MCQs, and word banks.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-pen-fancy text-indigo-500 mt-0.5 shrink-0 text-[11px]"></i>
+                                <span><strong>Ruled Writing Lines:</strong> Standard handwriting guide slots for student responses.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-key text-indigo-500 mt-0.5 shrink-0 text-[11px]"></i>
+                                <span><strong>Answer Key:</strong> Complete teacher scoring criteria and explanations.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-palette text-indigo-500 mt-0.5 shrink-0 text-[11px]"></i>
+                                <span><strong>Gemstone Styling:</strong> High-clarity color accents formatted for crisp printing.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Instant Quick Templates Box -->
+                    <div class="p-5 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-900 dark:to-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900/60 space-y-2.5">
+                        <div class="flex items-center space-x-2 text-xs font-bold text-indigo-900 dark:text-indigo-200">
+                            <i class="fas fa-bolt text-amber-500"></i>
+                            <span>1-Click Fast Generation</span>
+                        </div>
+                        <p class="text-xs text-indigo-700/80 dark:text-slate-400">Instantly launch popular standard lesson worksheets:</p>
+                        <div class="space-y-1.5 pt-1">
+                            <button type="button" onclick="generateWorksheet('Present Perfect vs Past Simple', 'Middle School')" class="w-full text-left p-2 rounded-xl bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-xs font-semibold text-gray-800 dark:text-slate-200 border border-indigo-100 dark:border-slate-700 flex items-center justify-between transition">
+                                <span>Present Perfect Drill</span>
+                                <i class="fas fa-arrow-right text-[10px] text-indigo-500"></i>
+                            </button>
+                            <button type="button" onclick="generateWorksheet('Elementary Synonyms & Antonyms', 'Elementary')" class="w-full text-left p-2 rounded-xl bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-xs font-semibold text-gray-800 dark:text-slate-200 border border-indigo-100 dark:border-slate-700 flex items-center justify-between transition">
+                                <span>Elementary Vocabulary</span>
+                                <i class="fas fa-arrow-right text-[10px] text-indigo-500"></i>
+                            </button>
+                            <button type="button" onclick="generateWorksheet('High School Conditionals & Modals', 'High School')" class="w-full text-left p-2 rounded-xl bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-xs font-semibold text-gray-800 dark:text-slate-200 border border-indigo-100 dark:border-slate-700 flex items-center justify-between transition">
+                                <span>High School Conditionals</span>
+                                <i class="fas fa-arrow-right text-[10px] text-indigo-500"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="gen-loading" class="hidden flex flex-col items-center justify-center h-64 space-y-4">
@@ -1029,45 +1084,60 @@
             </div>
         </section>
 
-        <!-- 3. VIEWER VIEW -->
+        <!-- 3. ORGANIZED WORKSHEET VIEWER (PREVIEW & PRINT) -->
         <section id="view-viewer" class="view-section p-4 md:p-8 space-y-6 flex-1 overflow-y-auto">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <!-- Viewer Header & Action Toolbar -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-2 border-b border-gray-100 dark:border-slate-800">
                 <div class="flex items-center space-x-3">
-                    <button onclick="navigate('dashboard')" title="Back to Dashboard" class="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition active:scale-95">
+                    <button onclick="navigate('dashboard')" title="Back to Dashboard" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition active:scale-95">
                         <i class="fas fa-arrow-left"></i>
                     </button>
                     <div>
                         <div class="flex items-center space-x-2">
-                            <h2 id="viewer-title" class="text-2xl font-bold text-gray-800 dark:text-slate-100">Worksheet Title</h2>
-                            <span class="text-[11px] font-bold px-2 py-0.5 rounded theme-badge uppercase tracking-wider">A4 Format</span>
+                            <h2 id="viewer-title" class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white truncate max-w-xs sm:max-w-md">Worksheet Title</h2>
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded theme-badge uppercase tracking-wider shrink-0">ISO A4</span>
                         </div>
-                        <p id="viewer-difficulty" class="text-sm text-gray-500 dark:text-slate-400">Difficulty</p>
+                        <p id="viewer-difficulty" class="text-xs text-gray-500 dark:text-slate-400">Difficulty</p>
                     </div>
                 </div>
-                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
-                    <button id="viewer-share-btn" onclick="shareWorksheet()" title="Share Worksheet" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 p-3 rounded-xl shadow-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition active:scale-95 flex items-center space-x-2 text-sm font-medium">
+
+                <!-- Action Controls -->
+                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end flex-wrap gap-y-2">
+                    <!-- Answer Key Quick Toggle -->
+                    <div class="flex items-center space-x-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700">
+                        <span class="text-xs font-bold text-gray-700 dark:text-slate-300 flex items-center">
+                            <i class="fas fa-key text-amber-500 mr-1.5"></i>Answer Key
+                        </span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="answer-toggle" class="sr-only peer" onchange="toggleAnswerKey(event)">
+                            <div class="w-9 h-5 bg-gray-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                        </label>
+                    </div>
+
+                    <!-- Share Button -->
+                    <button id="viewer-share-btn" onclick="shareWorksheet()" title="Share or Copy Worksheet" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-3 py-2 rounded-xl border border-gray-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition active:scale-95 flex items-center space-x-1.5 text-xs font-bold">
                         <i class="fas fa-share-alt"></i>
-                        <span class="hidden sm:inline">Share</span>
+                        <span>Share</span>
                     </button>
-                    <button onclick="window.print()" title="Print A4 Worksheet or Save as PDF" class="theme-primary-btn text-white px-4 py-3 rounded-xl shadow-md transition active:scale-95 flex items-center space-x-2 text-sm font-bold">
+
+                    <!-- Print / PDF Primary Button -->
+                    <button onclick="window.print()" title="Print A4 Worksheet or Save as PDF" class="theme-primary-btn text-white px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition active:scale-95 flex items-center space-x-2 text-xs font-bold">
                         <i class="fas fa-print"></i>
                         <span>Print A4 / PDF</span>
                     </button>
                 </div>
             </div>
 
-            <!-- A4 Dimension Notice -->
-            <div class="flex items-center justify-between px-4 py-2 theme-badge rounded-lg text-xs print:hidden">
+            <!-- A4 Dimension Notice Bar -->
+            <div class="flex items-center justify-between px-4 py-2 theme-badge rounded-xl text-xs print:hidden">
                 <div class="flex items-center space-x-2">
                     <i class="fas fa-ruler-combined"></i>
-                    <span>Preview rendered in <strong>ISO 216 A4 aspect ratio (1:√2)</strong>. Ready for 1-click printing or PDF export.</span>
+                    <span>Ready for 1-click printing or PDF export in standard <strong>ISO 216 A4 (210 × 297 mm)</strong> format.</span>
                 </div>
-                <span class="font-mono text-[11px] bg-white dark:bg-slate-800 px-2 py-0.5 rounded border border-gray-300 dark:border-slate-700">210 × 297 mm</span>
+                <span class="font-mono text-[11px] bg-white/80 dark:bg-slate-800/80 px-2 py-0.5 rounded border border-gray-200 dark:border-slate-700 font-bold">210 × 297 mm</span>
             </div>
 
-            <hr class="border-gray-200 dark:border-slate-800">
-
-            <div class="flex justify-center bg-slate-200/70 dark:bg-slate-950 p-3 sm:p-6 -mx-4 rounded-xl print:p-0 print:m-0 print:bg-transparent">
+            <div class="flex justify-center bg-slate-200/70 dark:bg-slate-950 p-3 sm:p-6 -mx-4 rounded-2xl print:p-0 print:m-0 print:bg-transparent">
                 <!-- A4 Paper Viewport -->
                 <div id="printable-paper" class="a4-page p-6 sm:p-10 text-gray-800 dark:text-slate-100 font-sans mx-auto overflow-y-auto w-full flex flex-col justify-between">
                     <div>
@@ -1124,19 +1194,15 @@
                 </div>
             </div>
 
-            <div class="flex justify-between items-center bg-gray-50 dark:bg-slate-900 p-4 rounded-xl border border-gray-200 dark:border-slate-800">
-                <span class="font-semibold text-gray-700 dark:text-slate-300">Show Answer Key (Premium)</span>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="answer-toggle" class="sr-only peer" onchange="toggleAnswerKey(event)">
-                    <div class="w-11 h-6 bg-gray-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
-                </label>
-            </div>
-
-            <div id="answer-container" class="hidden premium-border">
-                <div class="premium-inner p-5">
-                    <h3 class="font-bold text-gray-800 dark:text-slate-100 mb-2"><i class="fas fa-key text-yellow-500 mr-2"></i>Answer Key & Explanations</h3>
-                    <div id="viewer-answer" class="text-gray-700 dark:text-slate-200 whitespace-pre-wrap font-sans text-sm leading-relaxed"></div>
+            <!-- Answer Key Container -->
+            <div id="answer-container" class="hidden p-6 rounded-2xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 shadow-sm space-y-4">
+                <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-slate-800">
+                    <h3 class="font-extrabold text-gray-900 dark:text-slate-100 text-base flex items-center">
+                        <i class="fas fa-key text-amber-500 mr-2"></i>Answer Key & Explanations
+                    </h3>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 font-bold">Teacher Solutions</span>
                 </div>
+                <div id="viewer-answer" class="text-gray-700 dark:text-slate-200 whitespace-pre-wrap font-sans text-sm leading-relaxed"></div>
             </div>
         </section>
 
@@ -1294,28 +1360,6 @@
             </div>
         </section>
 
-        <!-- 5. PREMIUM VIEW -->
-        <section id="view-premium" class="view-section p-6 space-y-8 flex-col items-center py-10 flex-1 overflow-y-auto">
-            <div class="text-center">
-                <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-emerald-500">Worksheet AI Premium</h2>
-                <p class="text-gray-500 dark:text-slate-400 mt-2">Unlock your full teaching potential.</p>
-            </div>
-
-            <div class="w-full premium-border shadow-2xl shadow-indigo-100 dark:shadow-none">
-                <div class="premium-inner p-6 space-y-4">
-                    <div class="flex items-center text-gray-700 dark:text-slate-200"><i class="fas fa-check-circle text-emerald-500 text-xl mr-3"></i> <span>Unlimited AI generation</span></div>
-                    <div class="flex items-center text-gray-700 dark:text-slate-200"><i class="fas fa-check-circle text-emerald-500 text-xl mr-3"></i> <span>Answer Keys unlocked</span></div>
-                    <div class="flex items-center text-gray-700 dark:text-slate-200"><i class="fas fa-check-circle text-emerald-500 text-xl mr-3"></i> <span>Advanced Reading Comprehension texts</span></div>
-                    <div class="flex items-center text-gray-700 dark:text-slate-200"><i class="fas fa-check-circle text-emerald-500 text-xl mr-3"></i> <span>Ad-free experience</span></div>
-                    <div class="flex items-center text-gray-700 dark:text-slate-200"><i class="fas fa-check-circle text-emerald-500 text-xl mr-3"></i> <span>Custom PDF styling</span></div>
-                </div>
-            </div>
-
-            <button id="upgrade-btn" onclick="togglePremium()" class="w-full bg-gradient-to-r from-indigo-600 to-emerald-500 text-white font-bold text-lg py-4 rounded-2xl shadow-lg transition transform active:scale-95">
-                Upgrade Now - $9.99/mo
-            </button>
-        </section>
-
         <!-- Gemstone Theme Selector Modal -->
         <div id="theme-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
             <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-3xl shadow-2xl border border-gray-200 dark:border-slate-800 p-6 space-y-5 animate-scale-in">
@@ -1418,8 +1462,6 @@
         };
 
         // State Management via LocalStorage
-        let isPremium = localStorage.getItem('isPremium') === 'true';
-        let tokens = parseInt(localStorage.getItem('tokens') || '3');
         let worksheets = JSON.parse(localStorage.getItem('worksheets') || '[]');
         let isDarkMode = localStorage.getItem('isDarkMode') === 'true';
         let currentTheme = localStorage.getItem('gemTheme') || 'amethyst';
@@ -1666,11 +1708,10 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
 
             // Update topbar title
             const titles = {
-                'dashboard': 'Dashboard',
+                'dashboard': 'Worksheet Dashboard',
                 'generator': 'A4 Worksheet Studio',
                 'viewer': 'Worksheet Print Preview',
-                'tutor': 'Interactive AI Tutor',
-                'premium': 'Premium Membership'
+                'tutor': 'Interactive AI Tutor'
             };
             const topbarTitle = document.getElementById('topbar-view-title');
             if (topbarTitle) topbarTitle.innerText = titles[viewId] || 'Dashboard';
@@ -1679,7 +1720,6 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
             closeMobileSidebar();
 
             if (viewId === 'dashboard') renderDashboard();
-            if (viewId === 'premium') renderPremium();
             if (viewId === 'tutor') {
                 setTimeout(() => {
                     const chatLog = document.getElementById('chat-log');
@@ -1692,28 +1732,8 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
 
         // Dashboard Render
         function renderDashboard() {
-            const tokenCount = isPremium ? '∞' : tokens;
-            
-            const tokensDisplay = document.getElementById('tokens-display');
-            if (tokensDisplay) tokensDisplay.innerText = tokenCount;
-            
-            const topbarTokens = document.getElementById('topbar-tokens-display');
-            if (topbarTokens) topbarTokens.innerText = tokenCount;
-
-            const tokensText = document.getElementById('tokens-text');
-            if (tokensText) tokensText.innerText = tokenCount;
-
-            const dashTokens = document.getElementById('dash-stat-tokens');
-            if (dashTokens) dashTokens.innerText = tokenCount;
-
-            const dashPlan = document.getElementById('dash-plan-name');
-            if (dashPlan) dashPlan.innerText = isPremium ? 'Unlimited Pro Plan' : 'Free Plan (3 Tokens)';
-
             const dashSheets = document.getElementById('dash-stat-sheets');
             if (dashSheets) dashSheets.innerText = worksheets.length;
-            
-            const freePlanCard = document.getElementById('free-plan-card');
-            if (freePlanCard) freePlanCard.style.display = isPremium ? 'none' : 'block';
 
             const list = document.getElementById('recent-worksheets');
             if (list) {
@@ -1754,30 +1774,6 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
             }
         }
 
-        // Premium Toggle (Mock)
-        function togglePremium() {
-            isPremium = !isPremium;
-            localStorage.setItem('isPremium', isPremium);
-            if(isPremium) {
-                tokens = 999;
-                localStorage.setItem('tokens', tokens);
-            }
-            renderPremium();
-            renderDashboard();
-        }
-
-        function renderPremium() {
-            const btn = document.getElementById('upgrade-btn');
-            if(isPremium) {
-                btn.innerText = "Revert to Free Plan (Mock)";
-                btn.className = "w-full bg-gray-500 text-white font-bold text-lg py-4 rounded-2xl shadow-lg transition transform active:scale-95";
-            } else {
-                btn.innerText = "Upgrade Now - $9.99/mo";
-                btn.className = "w-full bg-gradient-to-r from-indigo-600 to-emerald-500 text-white font-bold text-lg py-4 rounded-2xl shadow-lg transition transform active:scale-95";
-            }
-            document.getElementById('premium-lock').style.display = isPremium ? 'none' : 'inline-block';
-        }
-
         function setGenTopic(topic, diff) {
             document.getElementById('topic-input').value = topic;
             if (diff) {
@@ -1787,12 +1783,6 @@ Award up to 6 points: Coherence (2 pts), Grammar & Mechanics (2 pts), Vocabulary
 
         // Mock AI Generation with Comprehensive A4 Layout Structure
         function generateWorksheet(customTopic, customDiff) {
-            if (!isPremium && tokens <= 0) {
-                alert("No tokens left! Please upgrade to Premium.");
-                navigate('premium');
-                return;
-            }
-            
             const diff = customDiff || document.getElementById('difficulty-select').value;
             const topic = customTopic || (document.getElementById('topic-input') ? document.getElementById('topic-input').value.trim() : '') || (diff + " Grammar Mastery");
             const layout = document.getElementById('layout-select') ? document.getElementById('layout-select').value : 'Standard Practice';
@@ -1981,11 +1971,6 @@ Full credit requires an argumentative thesis statement and two clear, coherent r
                 
                 worksheets.unshift(ws);
                 localStorage.setItem('worksheets', JSON.stringify(worksheets));
-                
-                if(!isPremium) {
-                    tokens--;
-                    localStorage.setItem('tokens', tokens);
-                }
                 
                 document.getElementById('gen-form').classList.remove('hidden');
                 document.getElementById('gen-loading').classList.add('hidden');
@@ -2336,12 +2321,6 @@ Full credit requires an argumentative thesis statement and two clear, coherent r
         }
 
         function toggleAnswerKey(e) {
-            if (!isPremium) {
-                e.preventDefault();
-                alert("Answer keys are a Premium feature! Upgrade to view.");
-                navigate('premium');
-                return;
-            }
             if(e.target.checked) {
                 document.getElementById('answer-container').classList.remove('hidden');
             } else {
