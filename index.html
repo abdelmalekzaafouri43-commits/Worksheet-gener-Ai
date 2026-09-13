@@ -53,6 +53,67 @@
             border: 1px solid rgba(51, 65, 85, 0.7);
         }
 
+        /* Frosted Glass AI Canvas */
+        .glass-ai-stage {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(243, 244, 246, 0.4) 100%);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 50px -12px rgba(99, 102, 241, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+        }
+
+        .dark .glass-ai-stage {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.5) 100%);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-ai-pill {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .dark .glass-ai-pill {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+        }
+
+        .glass-bubble-ai {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .dark .glass-bubble-ai {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .glass-input-bar {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .dark .glass-input-bar {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+        }
+
         .premium-border {
             position: relative;
             background: linear-gradient(120deg, #4F46E5, #10B981, #EAB308, #4F46E5);
@@ -282,35 +343,68 @@
         </section>
 
         <!-- 4. TUTOR VIEW (Chat) -->
-        <section id="view-tutor" class="view-section flex flex-col flex-1 h-full p-4 sm:p-8">
-            <div class="flex flex-col flex-1 h-full glass-panel rounded-2xl border border-white/60 dark:border-slate-700 shadow-xl overflow-hidden">
-                <!-- Quick Prompts -->
-                <div class="p-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border-b border-white/60 dark:border-slate-700 flex space-x-3 overflow-x-auto whitespace-nowrap hide-scrollbar">
-                    <button onclick="sendQuickPrompt('Explain Present Perfect')" class="bg-indigo-50 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-slate-700 text-indigo-700 dark:text-indigo-300 px-5 py-2.5 rounded-full text-sm font-semibold border border-indigo-200 dark:border-slate-600 transition">Explain Present Perfect</button>
-                    <button onclick="sendQuickPrompt('Give me an idiom example')" class="bg-indigo-50 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-slate-700 text-indigo-700 dark:text-indigo-300 px-5 py-2.5 rounded-full text-sm font-semibold border border-indigo-200 dark:border-slate-600 transition">Idiom Example</button>
+        <section id="view-tutor" class="view-section flex flex-col flex-1 h-full p-2 sm:p-5 md:p-8 relative overflow-hidden">
+            <!-- Decorative Ambient Glowing Orbs behind glass -->
+            <div class="absolute -top-20 -left-20 w-80 h-80 bg-indigo-400/20 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col flex-1 h-full glass-ai-stage rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden relative z-10">
+                <!-- AI Tutor Header Bar -->
+                <div class="p-3 sm:p-4 px-4 sm:px-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border-b border-white/40 dark:border-slate-700/60 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center text-lg shadow-lg shadow-indigo-500/25">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 dark:text-slate-100 text-base sm:text-lg flex items-center">
+                                AI English Tutor
+                                <span class="ml-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/80 text-indigo-700 dark:text-indigo-300">Active</span>
+                            </h3>
+                            <p class="text-xs text-gray-500 dark:text-slate-400">Grammar, vocabulary & lesson guidance</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <button onclick="document.getElementById('chat-log').innerHTML=''; addChatBubble('Chat cleared! What shall we explore next?', false);" title="Clear Chat" class="p-2 rounded-xl text-gray-400 hover:text-gray-600 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-white/60 dark:hover:bg-slate-800/60 transition">
+                            <i class="fas fa-trash-alt text-sm"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Chat Log -->
-                <div id="chat-log" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-transparent">
-                    <div class="flex items-end space-x-2 justify-start">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
-                            <i class="fas fa-robot text-xs"></i>
+                <!-- Quick Prompts Pill Carousel -->
+                <div class="p-3 px-4 sm:px-6 bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm border-b border-white/40 dark:border-slate-700/40 flex items-center space-x-2.5 overflow-x-auto whitespace-nowrap hide-scrollbar">
+                    <span class="text-xs font-semibold text-gray-400 dark:text-slate-500 flex items-center mr-1"><i class="fas fa-bolt text-amber-400 mr-1.5"></i>Prompts:</span>
+                    <button onclick="sendQuickPrompt('Explain Present Perfect')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">Explain Present Perfect</button>
+                    <button onclick="sendQuickPrompt('Give me an idiom example')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">Idiom Example</button>
+                    <button onclick="sendQuickPrompt('Generate a 5-question pop quiz')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">5-Question Pop Quiz</button>
+                    <button onclick="sendQuickPrompt('Difference between Affect vs Effect')" class="glass-ai-pill hover:bg-indigo-50/90 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xs transition active:scale-95">Affect vs Effect</button>
+                </div>
+
+                <!-- Chat Log (Enlarged viewport) -->
+                <div id="chat-log" class="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto space-y-5 bg-transparent">
+                    <div class="flex items-end space-x-3 justify-start">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md shadow-indigo-500/20 shrink-0 mb-1">
+                            <i class="fas fa-robot"></i>
                         </div>
-                        <div class="max-w-[85%] sm:max-w-[75%] flex flex-col items-start space-y-1">
-                            <div class="p-3.5 sm:p-4 bg-white dark:bg-slate-800 text-gray-800 dark:text-slate-100 rounded-2xl rounded-bl-xs shadow-sm border border-slate-200/80 dark:border-slate-700 leading-relaxed text-sm sm:text-base">
-                                Hello! I'm your AI English Tutor. How can I help you grammar, vocabulary, or lesson planning today?
+                        <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-start space-y-1">
+                            <div class="p-4 sm:p-5 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-3xl rounded-bl-xs leading-relaxed text-sm sm:text-base border">
+                                Hello! I'm your AI English Tutor. How can I help you with grammar, vocabulary, reading texts, or lesson planning today?
                             </div>
-                            <span class="text-[11px] text-slate-400 dark:text-slate-500 px-1 font-medium select-none">Just now</span>
+                            <span class="text-[11px] text-slate-400 dark:text-slate-500 px-2 font-medium select-none">Just now</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Chat Input -->
-                <div class="p-4 sm:p-6 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border-t border-white/60 dark:border-slate-700 pb-safe">
+                <!-- Chat Input Floating Glass Bar -->
+                <div class="p-3 sm:p-5 md:p-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border-t border-white/50 dark:border-slate-700/60 pb-safe">
                     <div class="flex items-center space-x-3">
-                        <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Ask your tutor..." class="flex-1 bg-white/70 dark:bg-slate-800/80 backdrop-blur-sm border border-white/60 dark:border-slate-700 rounded-full px-6 py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 text-lg">
-                        <button onclick="sendChat()" class="bg-indigo-600 hover:bg-indigo-700 text-white h-14 w-14 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition flex-shrink-0">
-                            <i class="fas fa-paper-plane text-xl"></i>
+                        <div class="flex-1 relative flex items-center">
+                            <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Type a message or ask grammar advice..." class="w-full glass-input-bar rounded-full pl-6 pr-12 py-3.5 sm:py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/80 shadow-inner text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-base sm:text-lg">
+                        </div>
+                        <button onclick="sendChat()" class="bg-gradient-to-tr from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white h-12 w-12 sm:h-14 sm:w-14 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/30 active:scale-95 transition flex-shrink-0">
+                            <i class="fas fa-paper-plane text-base sm:text-xl"></i>
                         </button>
                     </div>
                 </div>
@@ -582,14 +676,14 @@
             const chatLog = document.getElementById('chat-log');
             const typingId = 'typing-' + Date.now();
             const typingHtml = `
-            <div id="${typingId}" class="flex items-end space-x-2 justify-start">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
+            <div id="${typingId}" class="flex items-end space-x-3 justify-start">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md shrink-0 mb-1">
                     <i class="fas fa-robot text-xs"></i>
                 </div>
-                <div class="p-3.5 bg-white dark:bg-slate-800 rounded-2xl rounded-bl-xs shadow-sm border border-slate-200/80 dark:border-slate-700 flex items-center space-x-1.5 h-10">
-                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
-                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                <div class="p-4 glass-bubble-ai rounded-3xl rounded-bl-xs border flex items-center space-x-2 h-12">
+                    <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                    <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
                 </div>
             </div>`;
             chatLog.insertAdjacentHTML('beforeend', typingHtml);
@@ -600,10 +694,12 @@
                 const typingIndicator = document.getElementById(typingId);
                 if(typingIndicator) typingIndicator.remove();
 
-                let aiRes = "That's a great question! English grammar can be tricky, but practicing helps.";
-                if(msg.toLowerCase().includes("present perfect")) aiRes = "The Present Perfect tense is formed using 'have/has' + the past participle. We use it for past actions connected to the present.";
-                if(msg.toLowerCase().includes("idiom")) aiRes = "'Bite the bullet' is a common idiom. It means to decide to do something difficult that you have been putting off.";
-                
+                let aiRes = "That's a great question! English grammar can be tricky, but practicing regularly makes it intuitive.";
+                if(msg.toLowerCase().includes("present perfect")) aiRes = "The Present Perfect tense is formed using 'have/has' + past participle (e.g., 'I have visited London'). We use it for actions in the past with current relevance or continuing results.";
+                if(msg.toLowerCase().includes("idiom")) aiRes = "'Bite the bullet' means facing a difficult situation with courage. Example: 'I didn't want to study tonight, but I had to bite the bullet.'";
+                if(msg.toLowerCase().includes("quiz") || msg.toLowerCase().includes("question")) aiRes = "Here is a quick pop-quiz!\n\n1. Choose the correct form: 'Neither of the answers ___ (was/were) correct.'\n\nTake a guess and I will grade it for you!";
+                if(msg.toLowerCase().includes("affect")) aiRes = "'Affect' is typically a verb meaning to influence ('Weather affects mood'). 'Effect' is usually a noun meaning the result ('The medicine had an immediate effect').";
+
                 addChatBubble(aiRes, false);
             }, 1200);
         }
@@ -620,31 +716,31 @@
             let messageHtml = '';
             if (isUser) {
                 messageHtml = `
-                <div class="flex items-end space-x-2 justify-end">
-                    <div class="max-w-[85%] sm:max-w-[75%] flex flex-col items-end space-y-1">
-                        <div class="p-3.5 sm:p-4 bg-indigo-600 text-white rounded-2xl rounded-br-xs shadow-sm text-sm sm:text-base leading-relaxed break-words">
+                <div class="flex items-end space-x-3 justify-end">
+                    <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-end space-y-1">
+                        <div class="p-4 sm:p-5 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-3xl rounded-br-xs shadow-md shadow-indigo-600/25 text-sm sm:text-base leading-relaxed break-words">
                             ${text}
                         </div>
-                        <div class="flex items-center space-x-1 px-1 text-[11px] text-slate-400 dark:text-slate-500 font-medium select-none">
+                        <div class="flex items-center space-x-1.5 px-2 text-[11px] text-slate-400 dark:text-slate-500 font-medium select-none">
                             <span>${timeStr}</span>
                             <i class="fas fa-check-double text-[10px] text-indigo-500 dark:text-indigo-400"></i>
                         </div>
                     </div>
-                    <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-sm font-bold shadow shrink-0 mb-1">
                         <i class="fas fa-user text-xs"></i>
                     </div>
                 </div>`;
             } else {
                 messageHtml = `
-                <div class="flex items-end space-x-2 justify-start">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow shrink-0 mb-1">
+                <div class="flex items-end space-x-3 justify-start">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-md shadow-indigo-500/20 shrink-0 mb-1">
                         <i class="fas fa-robot text-xs"></i>
                     </div>
-                    <div class="max-w-[85%] sm:max-w-[75%] flex flex-col items-start space-y-1">
-                        <div class="p-3.5 sm:p-4 bg-white dark:bg-slate-800 text-gray-800 dark:text-slate-100 rounded-2xl rounded-bl-xs shadow-sm border border-slate-200/80 dark:border-slate-700 text-sm sm:text-base leading-relaxed break-words">
+                    <div class="max-w-[88%] sm:max-w-[80%] flex flex-col items-start space-y-1">
+                        <div class="p-4 sm:p-5 glass-bubble-ai text-gray-800 dark:text-slate-100 rounded-3xl rounded-bl-xs leading-relaxed text-sm sm:text-base break-words whitespace-pre-wrap border">
                             ${text}
                         </div>
-                        <span class="text-[11px] text-slate-400 dark:text-slate-500 px-1 font-medium select-none">${timeStr}</span>
+                        <span class="text-[11px] text-slate-400 dark:text-slate-500 px-2 font-medium select-none">${timeStr}</span>
                     </div>
                 </div>`;
             }
